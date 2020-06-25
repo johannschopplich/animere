@@ -6,7 +6,7 @@ Reveal elements while you scroll with an animation of your liking.
 
 **Key features**:
 
-1. 🍃 **Lightweight**: 750 B minified & gzipped
+1. 🍃 **Lightweight**: 773 B minified & gzipped
 2. ✨ **CSS-Driven**: Utilizes [Animate.css](https://animate.style) under the hood
 3. 🔧 **Customizable**: Uses `data` attributes for animation delay, duration etc.
 4. ♿️ **Accessible**: Respects reduced motion preference
