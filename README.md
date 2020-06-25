@@ -6,11 +6,11 @@ Reveal elements while you scroll with an animation of your liking.
 
 **Key features**:
 
-1. 🍃 **Lightweight**: 759 B minified & gzipped
+1. 🍃 **Lightweight**: 750 B minified & gzipped
 2. ✨ **CSS-Driven**: Utilizes [Animate.css](https://animate.style) under the hood
-3. 🔧 **Customizable**: Use `data` attributes to for animation delay, duration etc.
+3. 🔧 **Customizable**: Uses `data` attributes for animation delay, duration etc.
 4. ♿️ **Accessible**: Respects reduced motion preference
-5. 🔍 **SEO-friendly**: Detects e.g. Google Bot and doesn't initialize
+5. 🔍 **SEO-friendly**: Detects e.g. Google Bot and skips initialization
 6. 👀 **Observant**: Watches for DOM changes
 
 ## Installation
@@ -29,7 +29,7 @@ Or simply download the source or minified [`animere.min.js`](dist/animere.min.js
 
 ## Usage
 
-Add the `data-animere` atrribute to an element of your choice which you seek to animate. Set any animation name available from [Animate.css](https://animate.style).
+Add the `data-animere` attribute to an element of your choice which you seek to animate. Set any animation name available from [Animate.css](https://animate.style).
 
 ```html
 <div data-animere="fadeIn"></div>
