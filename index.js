@@ -74,7 +74,7 @@ export default class Animere {
       const node = entry.target
 
       // Add custom properties options for `Animate.css` if available
-      // from dataset like `data-animere-delay="2s"`
+      // from dataset like `data-animere-duration="2s"`
       Object.keys(node.dataset)
         .filter(i => i !== this.prefix && i.startsWith(this.prefix))
         .forEach(option => {
@@ -122,9 +122,13 @@ export default class Animere {
         const newNodes = mutation.addedNodes
         if (!newNodes) return
 
-        Array.from(newNodes).forEach(node => {
-          this.intersectOnScroll(node)
-        })
+        Array.from(newNodes)
+          // Filter node types other than `element` like `text` and
+          // make sure only nodes to animate get selected
+          .filter(i => i.nodeType === 1 && this.prefix in i.dataset)
+          .forEach(node => {
+            this.intersectOnScroll(node)
+          })
       })
     })
 
