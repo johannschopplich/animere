@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Animere.js</title>
+  <meta name="description" content="Animere.js – CSS-Driven Scroll-Based Animations">
+  <link rel="canonical" href="https://animere.jhnn.dev">
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://animere.jhnn.dev">
+  <meta property="og:title" content="Animere.js">
+  <meta property="og:description" content="Animere.js – CSS-Driven Scroll-Based Animations">
+  <meta name="twitter:url" content="https://animere.jhnn.dev">
+  <meta name="twitter:title" content="Animere.js">
+  <meta name="twitter:description" content="Animere.js – CSS-Driven Scroll-Based Animations">
+
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link href="/animate.css" rel="stylesheet">
+  <link href="/buldy-slim.css" rel="stylesheet">
+  <link href="/main.css" rel="stylesheet">
+
+  <script>document.documentElement.style.setProperty('--vh', `${window.innerHeight * 0.01}px`)</script>
+
+</head>
+
+<body>
+
+  <header id="header" class="box">
+    <div>
+      <h1 data-animere="bounceIn">Animere.js</h1>
+      <h2 data-animere="fadeIn" data-animere-duration="3s">CSS-Driven Scroll-Based Animations</h2>
+    </div>
+    <div>
+      <a href="https://github.com/johannschopplich/animere" class="button is-link">Download Animere.js</a>
+    </div>
+  </header>
+
+  <main id="main">
+    <div class="box" data-animere="fadeInDown">
+      May the scrollable feature list begin! 👇
+    </div>
+    <div class="box" data-animere="zoomIn">
+      <p>🍃 <strong>Lightweight</strong>: 759 B minified & gzipped</p>
+    </div>
+    <div class="box" data-animere="fadeInLeft">
+      <p>✨ <strong>CSS-Driven</strong>: Utilizes <a href="https://animate.style">Animate.css</a> under the hood</p>
+    </div>
+    <div class="box" data-animere="lightSpeedInRight">
+      <p>🔧 <strong>Customizable</strong>: Use <code>data</code> attributes to for animation delay, duration etc.</p>
+    </div>
+    <div class="box" data-animere="rotateInUpLeft">
+      <p>♿️ <strong>Accessible</strong>: Respects reduced motion preference</p>
+    </div>
+    <div class="box" data-animere="zoomInRight">
+      <p>🔍 <strong>SEO-friendly</strong>: Detects e.g. Google Bot and doesn't initialize</p>
+    </div>
+    <div class="box" data-animere="flipInX">
+      <p>👀 <strong>Observant</strong>: Watches for DOM changes</p>
+    </div>
+
+  </main>
+
+  <footer class="footer">
+    <button id="add-node" class="button is-primary">Add new DOM element</button>
+  </footer>
+
+<script type="module">
+  import Animere from './animere.min.js'
+  const animere = new Animere({
+    offset: 0.35,
+    watchDOM: true
+  })
+
+  document.querySelector('#add-node').addEventListener('click', () => {
+    const box = document.createElement('div')
+    box.className = 'box'
+    box.textContent = 'This is an added DOM element'
+    box.setAttribute('data-animere', 'zoomIn')
+    document.querySelector('#main').insertAdjacentElement('beforeend', box)
+  })
+</script>
+
+</body>
+</html>

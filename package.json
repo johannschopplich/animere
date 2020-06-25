@@ -1,0 +1,40 @@
+{
+  "name": "animere",
+  "version": "1.0.0",
+  "description": "CSS-Driven Scroll-Based Animations",
+  "main": "index.js",
+  "scripts": {
+    "build": "rollup -c",
+    "dev": "rollup -c -w",
+    "test": "echo \"No test specified\""
+  },
+  "dependencies": {
+    "animate.css": "^4.1.0"
+  },
+  "devDependencies": {
+    "rollup": "^2.18.0",
+    "rollup-plugin-terser": "^6.1.0"
+  },
+  "files": [
+    "index.js",
+    "LICENSE",
+    "README.md"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/johannschopplich/animere.git"
+  },
+  "keywords": [
+    "animation",
+    "animate.css",
+    "on-scroll",
+    "scroll-animation",
+    "scroll-story"
+  ],
+  "author": "Johann Schopplich <mail@johannschopplich.com> (https://johannschopplich.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/johannschopplich/animere/issues"
+  },
+  "homepage": "https://github.com/johannschopplich/animere#readme"
+}

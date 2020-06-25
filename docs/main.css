@@ -1,0 +1,78 @@
+:root {
+  --color-primary: hsl(155, 11%, 50%);
+  --color-primary-hover: hsl(155, 11%, 40%);
+  --color-primary-active: hsl(155, 11%, 40%);
+  --color-primary-lucent: hsla(155, 11%, 50%, 0.35);
+  --font-family-base: "Inter", system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+  --fluid-max-size: 20;
+  --radius: 0.5em;
+}
+
+body {
+  padding: var(--space-xs);
+}
+
+#header {
+  position: sticky;
+  top: var(--space-xs);
+  left: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  border: 2px solid hsl(42, 82%, 75%);
+  margin-bottom: var(--space-xs);
+  z-index: 10;
+}
+
+#header > :first-child {
+  flex-grow: 1;
+}
+
+#main > *:not(:last-child) {
+  margin-bottom: var(--space-xs);
+}
+
+#main .box {
+  height: calc(30 * var(--vh, 1vh));
+  display: grid;
+  place-items: center;
+  font-size: var(--text-3);
+  line-height: var(--line-height-heading);
+}
+
+@media (min-width: 640px) {
+  #main .box {
+    height: calc(50 * var(--vh, 1vh));
+    padding: var(--space-xl);
+    text-align: center;
+  }
+}
+
+#main .box:nth-child(1n) {
+  background-color: hsl(42, 82%, 75%);
+}
+
+#main .box:nth-child(2n) {
+  background-color: hsl(155, 11%, 50%);
+  color: white;
+}
+
+#main .box:nth-child(3n) {
+  background-color: hsl(209, 100%, 8%);
+  color: white;
+}
+
+.footer {
+  display: grid;
+  place-items: center;
+  padding: var(--space-l);
+}
+
+h1 {
+  font-size: var(--text-5);
+  font-weight: 700;
+}
+
+h2 {
+  line-height: var(--line-height-heading);
+}
