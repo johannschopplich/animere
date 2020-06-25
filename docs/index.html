@@ -18,9 +18,10 @@
   <meta name="twitter:description" content="Animere.js – CSS-Driven Scroll-Based Animations">
 
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-  <link href="/animate.css" rel="stylesheet">
-  <link href="/buldy-slim.css" rel="stylesheet">
-  <link href="/main.css" rel="stylesheet">
+  <link href="/css/animate.css" rel="stylesheet">
+  <link href="/css/buldy-slim.css" rel="stylesheet">
+  <link href="/css/main.css" rel="stylesheet">
+  <link href="/fonts/WorkSans.css" rel="stylesheet">
 
   <script>document.documentElement.style.setProperty('--vh', `${window.innerHeight * 0.01}px`)</script>
 
@@ -34,7 +35,7 @@
       <h2 data-animere="fadeIn" data-animere-duration="3s">CSS-Driven Scroll-Based Animations</h2>
     </div>
     <div>
-      <a href="https://github.com/johannschopplich/animere" class="button is-link">Download Animere.js</a>
+      <a href="https://github.com/johannschopplich/animere" class="button is-primary is-outlined">On GitHub</a>
     </div>
   </header>
 
@@ -43,7 +44,7 @@
       May the scrollable feature list begin! 👇
     </div>
     <div class="box" data-animere="zoomIn">
-      <p>🍃 <strong>Lightweight</strong>: 750 B minified & gzipped</p>
+      <p>🍃 <strong>Lightweight</strong>: 773 B minified & gzipped</p>
     </div>
     <div class="box" data-animere="fadeInLeft">
       <p>✨ <strong>CSS-Driven</strong>: Utilizes <a href="https://animate.style">Animate.css</a> under the hood</p>
@@ -60,28 +61,19 @@
     <div class="box" data-animere="flipInX">
       <p>👀 <strong>Observant</strong>: Watches for DOM changes</p>
     </div>
-
   </main>
 
   <footer class="footer">
-    <button id="add-node" class="button is-primary">Add new DOM element</button>
+    <button id="button-add-nodes" class="button is-primary">Add new DOM element</button>
   </footer>
 
-<script type="module">
-  import Animere from './animere.min.js'
-  const animere = new Animere({
-    offset: 0.35,
-    watchDOM: true
-  })
+  <template id="box-template">
+    <div class="box" data-animere="zoomIn">
+      <p>This is an added DOM element</p>
+    </div>
+  </template>
 
-  document.querySelector('#add-node').addEventListener('click', () => {
-    const box = document.createElement('div')
-    box.className = 'box'
-    box.textContent = 'This is an added DOM element'
-    box.setAttribute('data-animere', 'zoomIn')
-    document.querySelector('#main').insertAdjacentElement('beforeend', box)
-  })
-</script>
+<script type="module" src="/js/index.js"></script>
 
 </body>
 </html>

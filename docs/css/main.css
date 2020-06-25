@@ -3,7 +3,7 @@
   --color-primary-hover: hsl(155, 11%, 40%);
   --color-primary-active: hsl(155, 11%, 40%);
   --color-primary-lucent: hsla(155, 11%, 50%, 0.35);
-  --font-family-base: "Inter", system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+  --font-family-base: "Work Sans", system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
   --fluid-max-size: 20;
   --radius: 0.5em;
 }
@@ -14,11 +14,11 @@ body {
 
 #header {
   position: sticky;
+  display: flex;
+  align-items: center;
   top: var(--space-xs);
   left: 0;
   width: 100%;
-  display: flex;
-  align-items: center;
   border: 2px solid hsl(42, 82%, 75%);
   margin-bottom: var(--space-xs);
   z-index: 10;
@@ -26,6 +26,7 @@ body {
 
 #header > :first-child {
   flex-grow: 1;
+  padding-right: var(--space-s);
 }
 
 #main > *:not(:last-child) {
@@ -33,10 +34,11 @@ body {
 }
 
 #main .box {
-  height: calc(30 * var(--vh, 1vh));
   display: grid;
   place-items: center;
-  font-size: var(--text-3);
+  height: calc(30 * var(--vh, 1vh));
+  padding: var(--space-l);
+  font-size: var(--text-4);
   line-height: var(--line-height-heading);
 }
 
@@ -44,15 +46,16 @@ body {
   #main .box {
     height: calc(50 * var(--vh, 1vh));
     padding: var(--space-xl);
+    font-size: var(--text-3);
     text-align: center;
   }
 }
 
-#main .box:nth-child(1n) {
+#main .box {
   background-color: hsl(42, 82%, 75%);
 }
 
-#main .box:nth-child(2n) {
+#main .box:nth-child(3n-1) {
   background-color: hsl(155, 11%, 50%);
   color: white;
 }
@@ -75,4 +78,8 @@ h1 {
 
 h2 {
   line-height: var(--line-height-heading);
+}
+
+code {
+  border-radius: 0.125em;
 }
