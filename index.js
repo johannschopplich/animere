@@ -55,7 +55,7 @@ export default class Animere {
       function handleAnimationEnd () {
         node.classList.remove(`${prefix}animated`, animationName)
         node.removeEventListener('animationend', handleAnimationEnd)
-        resolve('Animation ended')
+        resolve()
       }
 
       node.addEventListener('animationend', handleAnimationEnd)
