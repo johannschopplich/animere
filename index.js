@@ -91,7 +91,7 @@ export default class Animere {
       node.style.visibility = null
 
       // Start animation
-      this.animateCSS(node, node.dataset[`${this.prefix}`])
+      this.animateCSS(node, node.dataset[this.prefix])
 
       observer.unobserve(node)
     })
