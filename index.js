@@ -74,7 +74,7 @@ export default class Animere {
       const node = entry.target
 
       // Add custom properties for `Animate.css` animations from
-      // dataset if available, for example `data-animere-duration="2s"`
+      // `data` attributes if available, for example `data-animere-duration="2s"`
       Object.keys(node.dataset)
         .filter(i => i !== this.prefix && i.startsWith(this.prefix))
         .forEach(dataAttr => {
