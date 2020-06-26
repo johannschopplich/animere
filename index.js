@@ -78,11 +78,11 @@ export default class Animere {
       Object.keys(node.dataset)
         .filter(i => i !== this.prefix && i.startsWith(this.prefix))
         .forEach(dataAttr => {
-          const animationOption = dataAttr.slice(this.prefix.length).toLowerCase()
-          const propertyName = `--animate-${animationOption}`
+          const animateOption = dataAttr.slice(this.prefix.length).toLowerCase()
+          const propertyName = `--animate-${animateOption}`
 
-          if (animationOption === 'delay') node.style.animationDelay = `var(${propertyName})`
-          if (animationOption === 'repeat') node.style.animationIterationCount = `var(${propertyName})`
+          if (animateOption === 'delay') node.style.animationDelay = `var(${propertyName})`
+          if (animateOption === 'repeat') node.style.animationIterationCount = `var(${propertyName})`
 
           node.style.setProperty(propertyName, node.dataset[dataAttr])
         })
