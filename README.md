@@ -6,17 +6,17 @@ Reveal elements while you scroll with an animation of your liking.
 
 **Key features**:
 
-1. 🍃 **Lightweight**: 822 bytes minified & gzipped
+1. 🍃 **Lightweight**: 820 bytes minified & gzipped
 2. ✨ **CSS-Driven**: Utilizes [Animate.css](https://animate.style) under the hood
-3. 🔧 **Customizable**: Uses `data` attributes for animation delay, duration etc.
+3. 🔧 **Customizable**: Use `data` attributes for animation duration, delay, repeat
 4. ♿️ **Accessible**: Respects reduced motion preference
 5. 🔍 **SEO-friendly**: Detects e.g. Google Bot and skips initialization
 6. 👀 **Observant**: Watches for DOM changes
 
 ## Installation
 
-```bash
-npm install animere
+```
+$ npm install animere
 ```
 
 Or simply download the source or minified [`animere.min.js`](dist/animere.min.js) script and import it in your web project:
@@ -27,6 +27,12 @@ Or simply download the source or minified [`animere.min.js`](dist/animere.min.js
 </script>
 ```
 
+[Animate.css](https://animate.style) is required. You may include the `animate.css` stylesheet into your project manually or link a cloud-hosted version:
+
+```html
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.0/animate.min.css">
+```
+
 ## Usage
 
 Add the `data-animere` attribute to an element of your choice which you seek to animate. Set any animation name available from [Animate.css](https://animate.style).
@@ -34,8 +40,6 @@ Add the `data-animere` attribute to an element of your choice which you seek to 
 ```html
 <div data-animere="fadeIn"></div>
 ```
-
-For this to work, you have to include the `animate.css` stylesheet into your project.
 
 > Note: You can customize the data attribute prefix `animere`. Head over to [API](#api) to read more.
 

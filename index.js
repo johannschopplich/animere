@@ -41,9 +41,9 @@ export default class Animere {
   /**
    * Add animation classes and remove after animation has finished
    *
-   * @param {Node} node
-   * @param {string} animation
-   * @param {string} prefix
+   * @param {Node} node - The node to animate
+   * @param {string} animation - Name of animation
+   * @param {string} prefix - Global class prefix of Animate.css
    * @returns {Promise}
    */
   animateCSS (node, animation, prefix = 'animate__') {
@@ -78,12 +78,13 @@ export default class Animere {
       Object.keys(node.dataset)
         .filter(i => i !== this.prefix && i.startsWith(this.prefix))
         .forEach(dataAttr => {
-          const propName = dataAttr.slice(this.prefix.length).toLowerCase()
+          const animationOption = dataAttr.slice(this.prefix.length).toLowerCase()
+          const propertyName = `--animate-${animationOption}`
 
-          if (propName === 'delay') node.style.animationDelay = 'var(--animate-delay)'
-          if (propName === 'repeat') node.style.animationIterationCount = 'var(--animate-repeat)'
+          if (animationOption === 'delay') node.style.animationDelay = `var(${propertyName})`
+          if (animationOption === 'repeat') node.style.animationIterationCount = `var(${propertyName})`
 
-          node.style.setProperty(`--animate-${propName}`, node.dataset[dataAttr])
+          node.style.setProperty(propertyName, node.dataset[dataAttr])
         })
 
       // Show element
