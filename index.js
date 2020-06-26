@@ -3,7 +3,7 @@
 /**
  * Animere.js - CSS-Driven Scroll-Based Animations
  *
- * @version 1.0.0
+ * @version 1.2.0
  * @author Johann Schopplich
  * @license MIT
  */
@@ -73,17 +73,22 @@ export default class Animere {
       if (!entry.isIntersecting) return
       const node = entry.target
 
-      // Add custom properties options for `Animate.css` if available
-      // from dataset like `data-animere-duration="2s"`
+      // Add custom properties for `Animate.css` animations from
+      // dataset if available, for example `data-animere-duration="2s"`
       Object.keys(node.dataset)
         .filter(i => i !== this.prefix && i.startsWith(this.prefix))
-        .forEach(option => {
-          const varName = `--animate-${option.slice(this.prefix.length).toLowerCase()}`
-          node.style.setProperty(varName, node.dataset[option])
+        .forEach(dataAttr => {
+          const propName = dataAttr.slice(this.prefix.length).toLowerCase()
+
+          if (propName === 'delay') node.style.animationDelay = 'var(--animate-delay)'
+          if (propName === 'repeat') node.style.animationIterationCount = 'var(--animate-repeat)'
+
+          node.style.setProperty(`--animate-${propName}`, node.dataset[dataAttr])
         })
 
       // Show element
       node.style.visibility = null
+
       // Start animation
       this.animateCSS(node, node.dataset[`${this.prefix}`])
 
@@ -123,8 +128,8 @@ export default class Animere {
         if (!newNodes) return
 
         Array.from(newNodes)
-          // Filter node types other than `element` like `text` and
-          // make sure only nodes to animate get selected
+          // Filter just `elements` (apart from node types like `text`)
+          // and nodes to animate
           .filter(i => i.nodeType === 1 && this.prefix in i.dataset)
           .forEach(node => {
             this.intersectOnScroll(node)

@@ -6,7 +6,7 @@ Reveal elements while you scroll with an animation of your liking.
 
 **Key features**:
 
-1. 🍃 **Lightweight**: 773 B minified & gzipped
+1. 🍃 **Lightweight**: 822 bytes minified & gzipped
 2. ✨ **CSS-Driven**: Utilizes [Animate.css](https://animate.style) under the hood
 3. 🔧 **Customizable**: Uses `data` attributes for animation delay, duration etc.
 4. ♿️ **Accessible**: Respects reduced motion preference
@@ -39,7 +39,7 @@ For this to work, you have to include the `animate.css` stylesheet into your pro
 
 > Note: You can customize the data attribute prefix `animere`. Head over to [API](#api) to read more.
 
-You can use any of the custom property utilities provided by Animate.css, like `--animate-delay` or `--animate-duration` much easier through `data` attributes: `data-animere-duration` and `data-animere-delay`. All custom animation options beginning with `data-animere-` (respectively the data attribute prefix you chose) will be set as custom properties on the corresponsing element.
+You can use any of the utility classes/custom properties provided by Animate.css much easier through their corresponding `data` attributes. All custom animation options beginning with `data-animere-` (respectively the data attribute prefix you chose) will be passed to Animate.css. Head over to [Utilities](#utilities) to read more.
 
 Finally, to initialize the library, create a new `Animere` instance.
 
@@ -47,11 +47,19 @@ Finally, to initialize the library, create a new `Animere` instance.
 const animere = new Animere()
 ```
 
+## Utilities
+
+Option | Example Attribute | Description
+--- | --- | ---
+Duration | `data-animere-duration="1500ms"` | Change the animation's duration to be slow or fast.
+Delay | `data-animere-delay="1s"` | Delay the animation.
+Repeat | `data-animere-repeat="3"` | The iteration count of the animation.
+
 ## API
 
 ### new Animere(options: object)
 
-Available options:
+Available options are:
 
 Option | Default | Description
 --- | --- | ---
