@@ -75,7 +75,27 @@
     </div>
   </template>
 
-<script type="module" src="/js/index.js"></script>
+<script type="module" src="/js/docs.js"></script>
+<script>
+  ;(async () => {
+    if (!('serviceWorker' in navigator)) return
+
+    const __SW_ENABLE__ = true
+    const hasExistingSw = !!navigator.serviceWorker.controller
+
+    if (__SW_ENABLE__) {
+      try {
+        navigator.serviceWorker.register('/service-worker.js')
+      } catch (err) {
+        console.log('Failed to register service worker:', err)
+      }
+    } else if (hasExistingSw) {
+      for (const reg of await navigator.serviceWorker.getRegistrations()) {
+        await reg.unregister()
+      }
+    }
+  })()
+</script>
 
 </body>
 </html>
