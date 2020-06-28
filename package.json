@@ -16,6 +16,7 @@
     "rollup-plugin-terser": "^6.1.0"
   },
   "files": [
+    "dist/animere.min.js",
     "index.js",
     "LICENSE",
     "README.md"
