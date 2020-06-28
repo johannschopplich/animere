@@ -1,6 +1,6 @@
 {
   "name": "animere",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "description": "CSS-Driven Scroll-Based Animations",
   "main": "index.js",
   "scripts": {
@@ -31,7 +31,11 @@
     "scroll-animation",
     "scroll-story"
   ],
-  "author": "Johann Schopplich <mail@johannschopplich.com> (https://johannschopplich.com)",
+  "author": {
+    "name" : "Johann Schopplich",
+    "email" : "pkg@johannschopplich.com",
+    "url" : "https://johannschopplich.com"
+  },
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/johannschopplich/animere/issues"

@@ -1,12 +1,5 @@
 /* global IntersectionObserver, MutationObserver */
 
-/**
- * Animere.js - CSS-Driven Scroll-Based Animations
- *
- * @version 1.2.0
- * @author Johann Schopplich
- * @license MIT
- */
 export default class Animere {
   /**
    * Constructor. Available options: `prefix`, `offset`, `watchDOM`
