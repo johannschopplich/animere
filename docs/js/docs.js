@@ -8,9 +8,8 @@ const animere = new Animere({
 
 const addNode = () => {
   const t = document.querySelector('#box-template')
-  const main = document.querySelector('#main')
   const clone = document.importNode(t.content, true)
-  main.appendChild(clone)
+  document.querySelector('#main').appendChild(clone)
 }
 
 document.querySelector('#button-add-nodes').addEventListener('click', addNode)

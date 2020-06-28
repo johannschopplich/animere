@@ -3,6 +3,11 @@
   --color-primary-hover: hsl(155, 11%, 40%);
   --color-primary-active: hsl(155, 11%, 40%);
   --color-primary-lucent: hsla(155, 11%, 50%, 0.35);
+
+  --color-box-1: hsl(42, 82%, 75%);
+  --color-box-2: var(--color-primary);
+  --color-box-3: hsl(209, 100%, 8%);
+
   --font-family-base: "Work Sans", system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
   --fluid-max-size: 20;
   --radius: 0.5em;
@@ -19,7 +24,7 @@ body {
   top: var(--space-xs);
   left: 0;
   width: 100%;
-  border: 2px solid hsl(42, 82%, 75%);
+  border: 2px solid var(--color-box-1);
   margin-bottom: var(--space-xs);
   z-index: 10;
 }
@@ -52,16 +57,16 @@ body {
 }
 
 #main .box {
-  background-color: hsl(42, 82%, 75%);
+  background-color: var(--color-box-1);
 }
 
 #main .box:nth-child(3n-1) {
-  background-color: hsl(155, 11%, 50%);
+  background-color: var(--color-box-2);
   color: white;
 }
 
 #main .box:nth-child(3n) {
-  background-color: hsl(209, 100%, 8%);
+  background-color: var(--color-box-3);
   color: white;
 }
 
