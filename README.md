@@ -84,3 +84,8 @@ Animere.js does not hide elements from Google. Since the Google Bot doesn't scro
 ### Why yet another on scroll animation library?
 
 Because I couldn't find one that is as small as possible while being also versatile, SEO-friendly and accessible.
+
+## Thanks
+
+- [Animate.css](https://animate.style) for the best, easy to use library of CSS animations
+- [Josh.js](https://github.com/mamunhpath/josh.js) as inspiration and proving that an animation library can be small
