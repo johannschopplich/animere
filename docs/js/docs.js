@@ -6,10 +6,10 @@ const animere = new Animere({
   watchDOM: true
 })
 
-const addNode = () => {
-  const t = document.querySelector('#box-template')
-  const clone = document.importNode(t.content, true)
-  document.querySelector('#main').appendChild(clone)
-}
+const qs = s => document.querySelector(s)
+const template = qs('#box-template')
+const clone = document.importNode(template.content, true)
 
-document.querySelector('#button-add-nodes').addEventListener('click', addNode)
+qs('#button-add-nodes').addEventListener('click', () => {
+  qs('#main').appendChild(clone)
+})

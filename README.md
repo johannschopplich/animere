@@ -1,6 +1,14 @@
-# Animere.js
+<p align="center">
+  <img src="./img/favicon.svg" alt="Logo of Animere.js" height="114">
+</p>
 
-> CSS-Driven Scroll-Based Animations
+<h3 align="center">Animere.js</h3>
+
+<p align="center">
+  CSS-Driven Scroll-Based Animations<br>
+</p>
+
+<br>
 
 Reveal elements while you scroll with an animation of your liking.
 
