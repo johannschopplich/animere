@@ -10,9 +10,9 @@
 
 <br>
 
-Reveal elements while you scroll with an animation of your liking.
+## Key Features
 
-**Key features**:
+> Reveal elements while you scroll with an animation of your liking.
 
 1. 🍃 **Lightweight**: 817 bytes minified & gzipped
 2. ✨ **CSS-Driven**: Utilizes [Animate.css](https://animate.style) under the hood
