@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./img/favicon.svg" alt="Logo of Animere.js" height="114">
+  <img src="./docs/img/favicon.svg" alt="Logo of Animere.js" height="114">
 </p>
 
 <h3 align="center">Animere.js</h3>
