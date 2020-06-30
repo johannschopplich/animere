@@ -45,19 +45,21 @@ self.addEventListener('activate', event => {
 })
 
 self.addEventListener('fetch', event => {
+  const { request } = event
+
   event.respondWith(
     (async () => {
       // Cache-first strategy
-      const cachedResponse = await caches.match(event.request)
+      const cachedResponse = await caches.match(request)
       if (cachedResponse) return cachedResponse
 
       try {
-        const response = await fetch(event.request)
+        const response = await fetch(request)
         const cache = await caches.open(CACHE_KEYS.RUNTIME)
-        cache.put(event.request, response.clone())
+        cache.put(request, response.clone())
         return response
       } catch (error) {
-        return console.error(`${event.request.url} couldn't be fetched by service worker.`)
+        return console.error(`${request.url} couldn't be fetched by service worker.`)
       }
     })()
   )
