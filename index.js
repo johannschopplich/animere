@@ -20,9 +20,9 @@ export default class Animere {
     // Don't initialize if the user prefers a reduced amount of motion
     if (this.prefersReducedMotion()) return
 
-    Array.from(document.querySelectorAll(`[data-${this.prefix}]`)).forEach(node => {
+    for (const node of document.querySelectorAll(`[data-${this.prefix}]`)) {
       this.intersectOnScroll(node)
-    })
+    }
 
     if (watchDOM) {
       window.addEventListener('DOMContentLoaded', () => {
@@ -62,8 +62,8 @@ export default class Animere {
    * @param {function} observer
    */
   intersectionObserverCallback (entries, observer) {
-    entries.forEach(entry => {
-      if (!entry.isIntersecting) return
+    for (const entry of entries) {
+      if (!entry.isIntersecting) continue
       const node = entry.target
 
       // Add custom properties for `Animate.css` animations from
@@ -87,7 +87,7 @@ export default class Animere {
       this.animateCSS(node, node.dataset[this.prefix])
 
       observer.unobserve(node)
-    })
+    }
   }
 
   /**
@@ -117,9 +117,9 @@ export default class Animere {
    */
   onDOMContentChanges () {
     const changeObserver = new MutationObserver(mutations => {
-      mutations.forEach(mutation => {
+      for (const mutation of mutations) {
         const newNodes = mutation.addedNodes
-        if (!newNodes) return
+        if (!newNodes) continue
 
         Array.from(newNodes)
           // Filter just `elements` (apart from node types like `text`)
@@ -128,7 +128,7 @@ export default class Animere {
           .forEach(node => {
             this.intersectOnScroll(node)
           })
-      })
+      }
     })
 
     changeObserver.observe(document.body, {

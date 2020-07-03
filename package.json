@@ -13,7 +13,7 @@
     "animate.css": "^4.1.0"
   },
   "devDependencies": {
-    "rollup": "^2.18.0",
+    "rollup": "^2.18.2",
     "rollup-plugin-terser": "^6.1.0"
   },
   "files": [
@@ -34,9 +34,9 @@
     "scroll-story"
   ],
   "author": {
-    "name" : "Johann Schopplich",
-    "email" : "pkg@johannschopplich.com",
-    "url" : "https://johannschopplich.com"
+    "name": "Johann Schopplich",
+    "email": "pkg@johannschopplich.com",
+    "url": "https://johannschopplich.com"
   },
   "license": "MIT",
   "bugs": {
