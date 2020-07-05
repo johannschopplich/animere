@@ -1,25 +1,28 @@
 <p align="center">
-  <img src="./docs/img/favicon.svg" alt="Logo of Animere.js" height="114">
+  <img src="./docs/img/favicon.svg" alt="Logo of Animere.js" width="114" height="114">
 </p>
 
 <h3 align="center">Animere.js</h3>
 
 <p align="center">
   CSS-Driven Scroll-Based Animations<br>
+  <a href="https://animere.jhnn.dev"><strong>Explore the demo »</strong></a>
 </p>
 
 <br>
 
-## Key Features
+## Animere.js
+
+### Key Features
 
 > Reveal elements while you scroll with an animation of your liking.
 
-1. 🍃 **Lightweight**: 829 bytes minified & gzipped
-2. ✨ **CSS-Driven**: Utilizes [Animate.css](https://animate.style) under the hood
-3. 🔧 **Customizable**: Use `data` attributes for animation duration, delay, repeat
-4. ♿️ **Accessible**: Respects reduced motion preference
-5. 🔍 **SEO-friendly**: Detects e.g. Google Bot and skips initialization
-6. 👀 **Observant**: Watches for DOM changes
+- 🍃 **Lightweight**: 829 bytes minified & gzipped
+- ✨ **CSS-Driven**: Utilizes [Animate.css](https://animate.style) under the hood
+- 🔧 **Customizable**: Use `data` attributes for animation duration, delay, repeat
+- ♿️ **Accessible**: Respects reduced motion preference
+- 🔍 **SEO-friendly**: Detects e.g. Google Bot and skips initialization
+- 👀 **Observant**: Watches for DOM changes
 
 ## Installation
 
