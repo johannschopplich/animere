@@ -1,10 +1,11 @@
-/* global IntersectionObserver, MutationObserver */
-
 export default class Animere {
   /**
-   * Constructor. Available options: `prefix`, `offset`, `watchDOM`
+   * Initializes a new Animere instance
    *
-   * @param {object} options
+   * @param {object} options Set of options
+   * @param {string} options.prefix The prefix for `data` attributes
+   * @param {number} options.offset Offset until animation should appear
+   * @param {boolean} options.watchDOM Indicates if Animere should be activated on DOM updates
    */
   constructor ({
     prefix = 'animere',
@@ -32,19 +33,21 @@ export default class Animere {
   }
 
   /**
-   * Add animation classes and remove after animation has finished
+   * Adds animation classes and removes them after animation has finished
    *
-   * @param {Node} node - The node to animate
-   * @param {string} animation - Name of animation
-   * @param {string} prefix - Global class prefix of Animate.css
-   * @returns {Promise}
+   * @param {Node} node The node to animate
+   * @param {string} animation Name of the `Animate.css` animation
+   * @param {string} prefix Global class prefix of `Animate.css`
+   * @returns {Promise} Resolves when the animation has finished
    */
   animateCSS (node, animation, prefix = 'animate__') {
     return new Promise((resolve, reject) => {
       const animationName = `${prefix}${animation}`
       node.classList.add(`${prefix}animated`, animationName)
 
-      // When the animation ends, clean the classes and resolve the Promise
+      /**
+       * Clean classes and resolve the Promise when the animation ends
+       */
       function handleAnimationEnd () {
         node.classList.remove(`${prefix}animated`, animationName)
         node.removeEventListener('animationend', handleAnimationEnd)
@@ -58,8 +61,8 @@ export default class Animere {
   /**
    * Callback for when the target node comes into view
    *
-   * @param {NodeList} entries
-   * @param {function} observer
+   * @param {NodeList} entries The list of entries
+   * @param {Function} observer The observer instance
    */
   intersectionObserverCallback (entries, observer) {
     for (const entry of entries) {
@@ -93,7 +96,7 @@ export default class Animere {
   /**
    * Creates an `IntersectionObserver` to observe a target node
    *
-   * @param {Node} node
+   * @param {Node} node The node to observe
    */
   intersectOnScroll (node) {
     // Hide element
@@ -138,19 +141,19 @@ export default class Animere {
   }
 
   /**
-   * Detect if the user has requested that the system minimizes the
+   * Detects if the user has requested that the system minimizes the
    * amount of animation or motion it uses
    *
-   * @returns {boolean}
+   * @returns {boolean} `True` if reduced motion are preferred
    */
   prefersReducedMotion () {
     return window.matchMedia('(prefers-reduced-motion: reduce)').matches
   }
 
   /**
-   * Detect whether the user agent is capable to scroll
+   * Detects whether the user agent is capable to scroll
    *
-   * @returns {boolean}
+   * @returns {boolean} `True` for scroll-less and Bot-like browsers
    */
   supportsScroll () {
     return ('onscroll' in window) && !(/(gle|ing)bot/.test(navigator.userAgent))
