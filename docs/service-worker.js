@@ -1,6 +1,6 @@
 /* eslint-env serviceworker */
 
-const VERSION = '1.3.0'
+const VERSION = '1.3.1'
 const CACHE_KEYS = {
   PRE_CACHE: `precache-${VERSION}`,
   RUNTIME: `runtime-${VERSION}`
@@ -47,9 +47,9 @@ self.addEventListener('activate', event => {
 self.addEventListener('fetch', event => {
   const { request } = event
 
+  // Cache-first strategy
   event.respondWith(
     (async () => {
-      // Cache-first strategy
       const cachedResponse = await caches.match(request)
       if (cachedResponse) return cachedResponse
 
@@ -59,7 +59,7 @@ self.addEventListener('fetch', event => {
         cache.put(request, response.clone())
         return response
       } catch (error) {
-        return console.error(`${request.url} couldn't be fetched by service worker.`)
+        console.error(error)
       }
     })()
   )
