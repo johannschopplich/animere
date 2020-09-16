@@ -10,11 +10,11 @@
     "test": "echo \"No test specified\""
   },
   "dependencies": {
-    "animate.css": "^4.1.0"
+    "animate.css": "^4.1.1"
   },
   "devDependencies": {
-    "rollup": "^2.21.0",
-    "rollup-plugin-terser": "^6.1.0"
+    "rollup": "^2.27.0",
+    "rollup-plugin-terser": "^7.0.2"
   },
   "files": [
     "dist/animere.min.js",
