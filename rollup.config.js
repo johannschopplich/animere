@@ -1,9 +1,9 @@
-import fs from 'fs'
+import { readFileSync } from 'fs'
 import { terser } from 'rollup-plugin-terser'
 
 const production = !process.env.ROLLUP_WATCH
 const sourcemap = !production ? 'inline' : false
-const { version, author, license } = JSON.parse(fs.readFileSync('package.json'))
+const { version, author, license } = JSON.parse(readFileSync('package.json'))
 
 export const preamble = `/*!
  * Animere.js v${version}

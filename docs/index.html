@@ -51,7 +51,7 @@
       May the scrollable feature list begin! 👇
     </div>
     <div class="box" data-animere="zoomIn">
-      <p>🍃 <strong>Lightweight</strong>: 829 bytes minified & gzipped</p>
+      <p>🍃 <strong>Lightweight</strong>: 824 bytes minified & gzipped</p>
     </div>
     <div class="box" data-animere="fadeInLeft">
       <p>✨ <strong>CSS-Driven</strong>: Utilizes <a href="https://animate.style">Animate.css</a> under the hood</p>
@@ -85,19 +85,18 @@
   ;(async () => {
     if (!('serviceWorker' in navigator)) return
 
-    const __SW_ENABLE__ = true
+    const enableSw = true
     const hasExistingSw = !!navigator.serviceWorker.controller
 
-    if (__SW_ENABLE__) {
+    if (enableSw) {
       try {
         navigator.serviceWorker.register('/service-worker.js')
-      } catch (err) {
-        console.log('Failed to register service worker:', err)
+      } catch (error) {
+        console.error('Error during service worker registration:', error)
       }
     } else if (hasExistingSw) {
-      for (const reg of await navigator.serviceWorker.getRegistrations()) {
-        await reg.unregister()
-      }
+      const registration = await navigator.serviceWorker.ready
+      registration.unregister()
     }
   })()
 </script>

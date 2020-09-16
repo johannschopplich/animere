@@ -15,8 +15,8 @@ export default class Animere {
     this.prefix = prefix
     this.offset = offset
 
-    // Don't initialize for Bot browsers like Google Bot
-    if (!this.supportsScroll()) return
+    // Don't initialize for crawlers like Google Bot
+    if (this.isCrawler()) return
 
     // Don't initialize if the user prefers a reduced amount of motion
     if (this.prefersReducedMotion()) return
@@ -144,7 +144,7 @@ export default class Animere {
    * Detects if the user has requested that the system minimizes the
    * amount of animation or motion it uses
    *
-   * @returns {boolean} `True` if reduced motion are preferred
+   * @returns {boolean} `true` if reduced motion are preferred
    */
   prefersReducedMotion () {
     return window.matchMedia('(prefers-reduced-motion: reduce)').matches
@@ -153,9 +153,9 @@ export default class Animere {
   /**
    * Detects whether the user agent is capable to scroll
    *
-   * @returns {boolean} `True` for scroll-less and Bot-like browsers
+   * @returns {boolean} `true` for Bing or Google Bot
    */
-  supportsScroll () {
-    return ('onscroll' in window) && !(/(gle|ing)bot/.test(navigator.userAgent))
+  isCrawler () {
+    return /(gle|ing|uck)bot/.test(navigator.userAgent)
   }
 }
