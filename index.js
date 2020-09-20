@@ -15,21 +15,40 @@ export default class Animere {
     this.prefix = prefix
     this.offset = offset
 
-    // Don't initialize for crawlers like Google Bot
-    if (this.isCrawler()) return
-
     // Don't initialize if the user prefers a reduced amount of motion
     if (this.prefersReducedMotion()) return
 
+    // Don't initialize for crawlers like Google Bot
+    if (this.isCrawler()) return
+
     for (const node of document.querySelectorAll(`[data-${this.prefix}]`)) {
-      this.intersectOnScroll(node)
+      this.onIntersection(node)
     }
 
     if (watchDOM) {
       window.addEventListener('DOMContentLoaded', () => {
-        this.onDOMContentChanges()
+        this.onMutation()
       })
     }
+  }
+
+  /**
+   * Detects if the user has requested that the system minimizes the
+   * amount of animation or motion it uses
+   *
+   * @returns {boolean} `true` if reduced motion are preferred
+   */
+  prefersReducedMotion () {
+    return window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  }
+
+  /**
+   * Detects whether the user agent is capable to scroll
+   *
+   * @returns {boolean} `true` for Bing or Google Bot
+   */
+  isCrawler () {
+    return /(gle|ing|uck)bot/.test(navigator.userAgent)
   }
 
   /**
@@ -42,19 +61,14 @@ export default class Animere {
    */
   animateCSS (node, animation, prefix = 'animate__') {
     return new Promise((resolve, reject) => {
-      const animationName = `${prefix}${animation}`
-      node.classList.add(`${prefix}animated`, animationName)
+      const animations = [`${prefix}animated`, `${prefix}${animation}`]
+      node.classList.add(...animations)
 
-      /**
-       * Clean classes and resolve the Promise when the animation ends
-       */
-      function handleAnimationEnd () {
-        node.classList.remove(`${prefix}animated`, animationName)
-        node.removeEventListener('animationend', handleAnimationEnd)
+      // Clean classes and resolve the Promise when the animation ends
+      node.addEventListener('animationend', () => {
+        node.classList.remove(...animations)
         resolve()
-      }
-
-      node.addEventListener('animationend', handleAnimationEnd)
+      }, { once: true })
     })
   }
 
@@ -98,7 +112,7 @@ export default class Animere {
    *
    * @param {Node} node The node to observe
    */
-  intersectOnScroll (node) {
+  onIntersection (node) {
     // Hide element
     node.style.visibility = 'hidden'
 
@@ -115,10 +129,10 @@ export default class Animere {
   }
 
   /**
-   * Wait for DOM changes and attach the `intersectOnScroll` method
+   * Wait for DOM changes and attach the `onIntersection` method
    * on each element
    */
-  onDOMContentChanges () {
+  onMutation () {
     const changeObserver = new MutationObserver(mutations => {
       for (const mutation of mutations) {
         const newNodes = mutation.addedNodes
@@ -129,7 +143,7 @@ export default class Animere {
           // and nodes to animate
           .filter(i => i.nodeType === 1 && this.prefix in i.dataset)
           .forEach(node => {
-            this.intersectOnScroll(node)
+            this.onIntersection(node)
           })
       }
     })
@@ -138,24 +152,5 @@ export default class Animere {
       childList: true,
       subtree: true
     })
-  }
-
-  /**
-   * Detects if the user has requested that the system minimizes the
-   * amount of animation or motion it uses
-   *
-   * @returns {boolean} `true` if reduced motion are preferred
-   */
-  prefersReducedMotion () {
-    return window.matchMedia('(prefers-reduced-motion: reduce)').matches
-  }
-
-  /**
-   * Detects whether the user agent is capable to scroll
-   *
-   * @returns {boolean} `true` for Bing or Google Bot
-   */
-  isCrawler () {
-    return /(gle|ing|uck)bot/.test(navigator.userAgent)
   }
 }

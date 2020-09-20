@@ -5,7 +5,7 @@
 <h3 align="center">Animere.js</h3>
 
 <p align="center">
-  CSS-Driven Scroll-Based Animations<br>
+  CSS-driven scroll-based animations<br>
   <a href="https://animere.jhnn.dev"><strong>Explore the demo »</strong></a>
 </p>
 
@@ -17,7 +17,7 @@
 
 > Reveal elements while you scroll with an animation of your liking.
 
-- 🍃 **Lightweight**: 824 bytes minified & gzipped
+- 🍃 **Lightweight**: 807 bytes minified & gzipped
 - ✨ **CSS-Driven**: Utilizes [Animate.css](https://animate.style) under the hood
 - 🔧 **Customizable**: Use `data` attributes for animation duration, delay, repeat
 - ♿️ **Accessible**: Respects reduced motion preference
