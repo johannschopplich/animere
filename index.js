@@ -27,7 +27,7 @@ export default class Animere {
 
     if (watchDOM) {
       window.addEventListener('DOMContentLoaded', () => {
-        this.onMutation()
+        this.onMutations()
       })
     }
   }
@@ -132,7 +132,7 @@ export default class Animere {
    * Wait for DOM changes and attach the `onIntersection` method
    * on each element
    */
-  onMutation () {
+  onMutations () {
     const changeObserver = new MutationObserver(mutations => {
       for (const mutation of mutations) {
         const newNodes = mutation.addedNodes
