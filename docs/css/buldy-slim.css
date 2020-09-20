@@ -163,6 +163,22 @@ small {
   font-size: 0.875em;
 }
 
+sub,
+sup {
+  position: relative;
+  font-size: 0.75em;
+  line-height: 0;
+  vertical-align: baseline;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+sup {
+  top: -0.5em;
+}
+
 img,
 svg {
   vertical-align: middle;
@@ -337,6 +353,15 @@ pre code {
   padding: 0;
 }
 
+[data-js-focus-visible] :focus:not([data-focus-visible-added]) {
+  outline: none;
+}
+[data-js-focus-visible] a[data-focus-visible-added],
+[data-js-focus-visible] button[data-focus-visible-added] {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
 /* Layout */
 
 .container {
@@ -387,12 +412,14 @@ pre code {
 }
 
 .stack > *:not(:last-child),
-.stack-v > *:not(:last-child) {
-  margin-bottom: var(--space, var(--component-spacer));
+.stack-v > *:not(:last-child),
+[style*="--stack-v"] > *:not(:last-child) {
+  margin-bottom: var(--stack-v, var(--component-spacer));
 }
 
-.stack-h > *:not(:last-child) {
-  margin-right: var(--space, var(--component-spacer));
+.stack-h > *:not(:last-child),
+[style*="--stack-h"] > *:not(:last-child) {
+  margin-right: var(--stack-h, var(--component-spacer));
 }
 
 /* Form */
@@ -727,11 +754,11 @@ textarea.control[rows] {
 .sr-only {
   position: absolute;
   width: 1px;
-  height: auto;
-  clip: rect(0 0 0 0);
+  height: 1px;
   border: 0;
   padding: 0;
   margin: 0;
+  clip-path: inset(50%);
   overflow: hidden;
   white-space: nowrap;
 }
