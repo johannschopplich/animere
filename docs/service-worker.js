@@ -24,7 +24,7 @@ self.addEventListener('install', event => {
   event.waitUntil(
     (async () => {
       const cache = await caches.open(CACHE_KEYS.PRE_CACHE)
-      return cache.addAll(PRECACHE_URLS)
+      await cache.addAll(PRECACHE_URLS)
     })()
   )
 })
