@@ -358,8 +358,8 @@ pre code {
 }
 [data-js-focus-visible] a[data-focus-visible-added],
 [data-js-focus-visible] button[data-focus-visible-added] {
-  outline: 2px solid currentColor;
-  outline-offset: 2px;
+  outline: 5px auto Highlight;
+  outline: 5px auto -webkit-focus-ring-color;
 }
 
 /* Layout */
