@@ -48,7 +48,7 @@ export default class Animere {
    * @returns {boolean} `true` for Bing or Google Bot
    */
   isCrawler () {
-    return /(gle|ing|uck)bot/.test(navigator.userAgent)
+    return !('onscroll' in window) || /(gle|ing|ro)bot|crawl|spider/i.test(navigator.userAgent)
   }
 
   /**

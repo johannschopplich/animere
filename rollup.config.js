@@ -13,18 +13,11 @@ export const preamble = `/*!
 
 export default {
   input: 'index.js',
-  output: [
-    {
+  output: {
       file: 'dist/animere.min.js',
       format: 'es',
       sourcemap: sourcemap
-    },
-    {
-      file: 'docs/js/animere.min.js',
-      format: 'es',
-      sourcemap: sourcemap
-    }
-  ],
+  },
   plugins: [
     production && terser({ output: { preamble } })
   ]

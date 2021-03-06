@@ -1,6 +1,6 @@
 /* eslint-env serviceworker */
 
-const VERSION = '1.4.0'
+const VERSION = '1.5.0'
 const CACHE_KEYS = {
   PRE_CACHE: `precache-${VERSION}`,
   RUNTIME: `runtime-${VERSION}`
@@ -9,7 +9,7 @@ const CACHE_KEYS = {
 const PRECACHE_URLS = [
   '/',
   '/css/animate.css',
-  '/css/buldy-slim.css',
+  '/css/buldy.min.css',
   '/css/main.css',
   '/js/animere.min.js',
   '/js/docs.js',
