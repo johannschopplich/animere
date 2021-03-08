@@ -2,17 +2,19 @@ export default class Animere {
   /**
    * Initializes a new Animere instance
    *
-   * @param {object} options Set of options
-   * @param {string} options.prefix The prefix for `data` attributes
-   * @param {number} options.offset Offset until animation should appear
-   * @param {boolean} options.watchDOM Indicates if Animere should be activated on DOM updates
+   * @param {object} [options] Set of options
+   * @param {string} [options.prefix=animere] The prefix for `data` attributes
+   * @param {number} [options.offset=0.2] Offset until animation should appear
+   * @param {boolean} [options.watchDOM=false] Indicates if Animere should be activated on DOM updates
    */
   constructor ({
     prefix = 'animere',
     offset = 0.2,
     watchDOM = false
   } = {}) {
+    /** @protected */
     this.prefix = prefix
+    /** @protected */
     this.offset = offset
 
     // Don't initialize if the user prefers a reduced amount of motion
@@ -54,19 +56,19 @@ export default class Animere {
   /**
    * Adds animation classes and removes them after animation has finished
    *
-   * @param {Node} node The node to animate
-   * @param {string} animation Name of the `Animate.css` animation
-   * @param {string} prefix Global class prefix of `Animate.css`
-   * @returns {Promise} Resolves when the animation has finished
+   * @param {Element} element The element to animate
+   * @param {string} animation Name of the `Animate.css` animation (without prefix)
+   * @param {string} [prefix=animate__] `Animate.css` global class name prefix
+   * @returns {Promise<void>} Resolves when the animation has finished
    */
-  animateCSS (node, animation, prefix = 'animate__') {
+  animateCSS (element, animation, prefix = 'animate__') {
     return new Promise((resolve, reject) => {
       const animations = [`${prefix}animated`, `${prefix}${animation}`]
-      node.classList.add(...animations)
+      element.classList.add(...animations)
 
       // Clean classes and resolve the Promise when the animation ends
-      node.addEventListener('animationend', () => {
-        node.classList.remove(...animations)
+      element.addEventListener('animationend', () => {
+        element.classList.remove(...animations)
         resolve()
       }, { once: true })
     })
@@ -76,7 +78,9 @@ export default class Animere {
    * Callback for when the target node comes into view
    *
    * @param {NodeList} entries The list of entries
-   * @param {Function} observer The observer instance
+   * @param {IntersectionObserver} observer The observer instance
+   * @protected
+   * @returns {void}
    */
   intersectionObserverCallback (entries, observer) {
     for (const entry of entries) {
@@ -110,11 +114,13 @@ export default class Animere {
   /**
    * Creates an `IntersectionObserver` to observe a target node
    *
-   * @param {Node} node The node to observe
+   * @param {Element} element The element to observe
+   * @protected
+   * @returns {void}
    */
-  onIntersection (node) {
+  onIntersection (element) {
     // Hide element
-    node.style.visibility = 'hidden'
+    element.style.visibility = 'hidden'
 
     const observer = new IntersectionObserver(
       this.intersectionObserverCallback.bind(this),
@@ -125,12 +131,15 @@ export default class Animere {
       }
     )
 
-    observer.observe(node)
+    observer.observe(element)
   }
 
   /**
    * Wait for DOM changes and attach the `onIntersection` method
    * on each element
+   *
+   * @protected
+   * @returns {void}
    */
   onMutations () {
     const changeObserver = new MutationObserver(mutations => {
