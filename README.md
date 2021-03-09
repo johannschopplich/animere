@@ -30,23 +30,23 @@
 $ npm install animere
 ```
 
-Or simply download the source or minified [`animere.min.js`](dist/animere.min.js) script and import it in your web project:
+Or simply download the source or minified [`index.min.js`](dist/index.min.js) script and import it in your web project:
 
 ```html
 <script type="module">
-  import Animere from './animere.min.js'
+  import Animere from './index.js'
 </script>
 ```
 
 [Animate.css](https://animate.style) is required. You may include the `animate.css` stylesheet into your project manually or link a cloud-hosted version:
 
 ```html
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.0/animate.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
 ```
 
 ## Usage
 
-Add the `data-animere` attribute to an element of your choice which you seek to animate. Set any animation name available from [Animate.css](https://animate.style).
+Add the `data-animere` attribute to an element of your choice which you seek to animate. Set any animation name available from [Animate.css](https://animate.style) (without the `animate__` class name prefix).
 
 ```html
 <div data-animere="fadeIn"></div>
