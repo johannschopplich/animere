@@ -1,4 +1,4 @@
-import Animere from './animere.min.js'
+import Animere from './animere.js'
 
 // eslint-disable-next-line no-unused-vars
 const animere = new Animere({
