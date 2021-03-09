@@ -1,13 +1,13 @@
 {
   "name": "animere",
-  "version": "1.7.0",
+  "version": "1.7.1",
   "description": "CSS-driven scroll-based animations",
   "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
     "docs": "cp dist/index.js docs/js/animere.js",
-    "minify": "terser dist/index.js --compress --mangle -o dist/index.min.js",
+    "minify": "terser dist/index.js -c -m -o dist/index.min.js",
     "dev": "tsc --watch",
     "build": "tsc && npm run minify && npm run docs",
     "size": "cat dist/index.min.js | gzip | wc -c",
