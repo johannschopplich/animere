@@ -1,23 +1,24 @@
 {
   "name": "animere",
-  "version": "1.6.0",
+  "version": "1.7.0",
   "description": "CSS-driven scroll-based animations",
   "type": "module",
-  "main": "index.js",
-  "types": "types/index.d.ts",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
-    "dev": "rollup -c -w",
-    "build": "rollup -c && cp dist/animere.min.js docs/js/animere.min.js && npm run types",
-    "types": "npx tsc index.js --declaration --allowJs --emitDeclarationOnly --outDir types",
-    "size": "cat dist/animere.min.js | gzip | wc -c",
+    "docs": "cp dist/index.js docs/js/animere.min.js",
+    "minify": "terser dist/index.js --compress --mangle -o dist/index.min.js",
+    "dev": "tsc --watch",
+    "build": "tsc && npm run minify && npm run docs",
+    "size": "cat dist/index.min.js | gzip | wc -c",
     "test": "echo \"No test specified\""
   },
   "dependencies": {
     "animate.css": "^4.1.1"
   },
   "devDependencies": {
-    "rollup": "^2.40.0",
-    "rollup-plugin-terser": "^7.0.2"
+    "terser": "^5.6.0",
+    "typescript": "^4.2.3"
   },
   "files": [
     "dist/*",
