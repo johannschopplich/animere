@@ -6,7 +6,7 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "docs": "cp dist/index.js docs/js/animere.min.js",
+    "docs": "cp dist/index.js docs/js/animere.js",
     "minify": "terser dist/index.js --compress --mangle -o dist/index.min.js",
     "dev": "tsc --watch",
     "build": "tsc && npm run minify && npm run docs",
@@ -22,8 +22,7 @@
   },
   "files": [
     "dist/*",
-    "types/*",
-    "index.js",
+    "src/*",
     "LICENSE",
     "README.md"
   ],
