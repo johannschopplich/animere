@@ -34,11 +34,11 @@ export default class Animere {
     /**
      * Callback for when the target element comes into view
      */
-    intersectionObserverCallback(entries: Array<IntersectionObserverEntry>, observer: IntersectionObserver): void;
+    protected intersectionObserverCallback(entries: Array<IntersectionObserverEntry>, observer: IntersectionObserver): void;
     /**
      * Creates an `IntersectionObserver` to observe a target element
      */
-    onIntersection(element: HTMLElement): void;
+    protected onIntersection(element: HTMLElement): void;
     /**
      * Wait for DOM changes and attach the `onIntersection` method
      * on each element

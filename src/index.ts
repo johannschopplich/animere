@@ -78,7 +78,7 @@ export default class Animere {
   /**
    * Callback for when the target element comes into view
    */
-  intersectionObserverCallback (entries: Array<IntersectionObserverEntry>, observer: IntersectionObserver): void {
+   protected intersectionObserverCallback (entries: Array<IntersectionObserverEntry>, observer: IntersectionObserver): void {
     for (const entry of entries) {
       if (!entry.isIntersecting) continue
       const node = <HTMLElement>entry.target
@@ -110,7 +110,7 @@ export default class Animere {
   /**
    * Creates an `IntersectionObserver` to observe a target element
    */
-  onIntersection (element: HTMLElement): void {
+  protected onIntersection (element: HTMLElement): void {
     // Hide element
     element.style.visibility = 'hidden'
 
