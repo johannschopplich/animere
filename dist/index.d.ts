@@ -39,7 +39,7 @@ export default class Animere {
     /**
      * Callback for when the target element comes into view
      */
-    protected intersectionObserverCallback(entries: Array<IntersectionObserverEntry>, observer: IntersectionObserver): void;
+    protected intersectionObserverCallback(entries: Array<IntersectionObserverEntry>, observer: IntersectionObserver): Promise<void>;
     /**
      * Creates an `IntersectionObserver` to observe a target element
      */

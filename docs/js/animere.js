@@ -46,7 +46,7 @@ export default class Animere {
      * @param {string} [prefix=animate__] `Animate.css` global class name prefix
      * @returns {Promise<void>} Resolves when the animation has finished
      */
-    animateCSS(element, animation, prefix = 'animate__') {
+    async animateCSS(element, animation, prefix = 'animate__') {
         return new Promise((resolve, reject) => {
             const animations = [`${prefix}animated`, `${prefix}${animation}`];
             element.classList.add(...animations);
@@ -60,29 +60,32 @@ export default class Animere {
     /**
      * Callback for when the target element comes into view
      */
-    intersectionObserverCallback(entries, observer) {
+    async intersectionObserverCallback(entries, observer) {
         for (const entry of entries) {
             if (!entry.isIntersecting)
                 continue;
-            const node = entry.target;
+            const element = entry.target;
             // Add custom properties for `Animate.css` animations from
             // `data` attributes if available, for example `data-animere-duration="2s"`
-            Object.keys(node.dataset)
+            Object.keys(element.dataset)
                 .filter(i => i !== this.prefix && i.startsWith(this.prefix))
                 .forEach(dataAttr => {
                 const animateOption = dataAttr.slice(this.prefix.length).toLowerCase();
                 const propertyName = `--animate-${animateOption}`;
                 if (animateOption === 'delay')
-                    node.style.animationDelay = `var(${propertyName})`;
+                    element.style.animationDelay = `var(${propertyName})`;
                 if (animateOption === 'repeat')
-                    node.style.animationIterationCount = `var(${propertyName})`;
-                node.style.setProperty(propertyName, node.dataset[dataAttr]);
+                    element.style.animationIterationCount = `var(${propertyName})`;
+                element.style.setProperty(propertyName, element.dataset[dataAttr]);
             });
             // Show element
-            node.style.visibility = 'visible';
+            element.style.visibility = 'visible';
+            // Stop observing the target element
+            observer.unobserve(element);
             // Start animation
-            this.animateCSS(node, node.dataset[this.prefix]);
-            observer.unobserve(node);
+            await this.animateCSS(element, element.dataset[this.prefix]);
+            // Mark element as animated
+            element.dataset[`${this.prefix}Finished`] = 'true';
         }
     }
     /**

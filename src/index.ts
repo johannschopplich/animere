@@ -67,7 +67,7 @@ export default class Animere {
    * @param {string} [prefix=animate__] `Animate.css` global class name prefix
    * @returns {Promise<void>} Resolves when the animation has finished
    */
-  animateCSS (element: HTMLElement, animation: string, prefix: string = 'animate__'): Promise<void> {
+  async animateCSS (element: HTMLElement, animation: string, prefix: string = 'animate__'): Promise<void> {
     return new Promise((resolve, reject) => {
       const animations = [`${prefix}animated`, `${prefix}${animation}`]
       element.classList.add(...animations)
@@ -83,32 +83,39 @@ export default class Animere {
   /**
    * Callback for when the target element comes into view
    */
-   protected intersectionObserverCallback (entries: Array<IntersectionObserverEntry>, observer: IntersectionObserver): void {
+   protected async intersectionObserverCallback (
+     entries: Array<IntersectionObserverEntry>,
+     observer: IntersectionObserver
+    ): Promise<void> {
     for (const entry of entries) {
       if (!entry.isIntersecting) continue
-      const node = <HTMLElement>entry.target
+      const element = <HTMLElement>entry.target
 
       // Add custom properties for `Animate.css` animations from
       // `data` attributes if available, for example `data-animere-duration="2s"`
-      Object.keys(node.dataset)
+      Object.keys(element.dataset)
         .filter(i => i !== this.prefix && i.startsWith(this.prefix))
         .forEach(dataAttr => {
           const animateOption = dataAttr.slice(this.prefix.length).toLowerCase()
           const propertyName = `--animate-${animateOption}`
 
-          if (animateOption === 'delay') node.style.animationDelay = `var(${propertyName})`
-          if (animateOption === 'repeat') node.style.animationIterationCount = `var(${propertyName})`
+          if (animateOption === 'delay') element.style.animationDelay = `var(${propertyName})`
+          if (animateOption === 'repeat') element.style.animationIterationCount = `var(${propertyName})`
 
-          node.style.setProperty(propertyName, <string>node.dataset[dataAttr])
+          element.style.setProperty(propertyName, <string>element.dataset[dataAttr])
         })
 
       // Show element
-      node.style.visibility = 'visible'
+      element.style.visibility = 'visible'
+
+      // Stop observing the target element
+      observer.unobserve(element)
 
       // Start animation
-      this.animateCSS(node, <string>node.dataset[this.prefix])
+      await this.animateCSS(element, <string>element.dataset[this.prefix])
 
-      observer.unobserve(node)
+      // Mark element as animated
+      element.dataset[`${this.prefix}Finished`] = 'true'
     }
   }
 
