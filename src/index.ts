@@ -7,13 +7,18 @@ export interface AnimereOptions {
   watchDOM?: boolean
 }
 
-/**
- * Initializes a new Animere instance
- */
 export default class Animere {
   protected prefix: string
   protected offset: number
 
+  /**
+   * Initializes a new Animere instance
+   *
+   * @param {object} [options] Optional options to initialize with
+   * @param {string} [options.prefix="animere"] The prefix for `data` attributes
+   * @param {number} [options.offset=0.2] The ratio of intersection area (threshold) visible until an animation should appear
+   * @param {boolean} [options.watchDOM=false] Indicates if Animere should listen to DOM mutations
+   */
   constructor ({
     prefix = 'animere',
     offset = 0.2,
@@ -98,7 +103,7 @@ export default class Animere {
         })
 
       // Show element
-      node.style.visibility = ''
+      node.style.visibility = 'visible'
 
       // Start animation
       this.animateCSS(node, <string>node.dataset[this.prefix])
