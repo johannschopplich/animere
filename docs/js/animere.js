@@ -41,7 +41,7 @@ export default class Animere {
      * @param {string} [prefix="animate__"] `Animate.css` global class name prefix
      * @returns {Promise<void>} Resolves when the animation has finished
      */
-    async animateCSS(element, animation, prefix = 'animate__') {
+    animateCSS(element, animation, prefix = 'animate__') {
         return new Promise((resolve, reject) => {
             const animations = [`${prefix}animated`, `${prefix}${animation}`];
             element.classList.add(...animations);

@@ -17,7 +17,7 @@
 
 > Reveal elements while you scroll with an animation of your liking.
 
-- 🍃 **Lightweight**: 869 bytes minified & gzipped
+- 🍃 **Lightweight**: 867 bytes minified & gzipped
 - ✨ **CSS-Driven**: Utilizes [Animate.css](https://animate.style) under the hood
 - 🔧 **Customizable**: Use `data` attributes for animation duration, delay, repeat
 - ♿️ **Accessible**: Respects reduced motion preference
