@@ -1,6 +1,6 @@
 {
   "name": "animere",
-  "version": "1.7.1",
+  "version": "1.8.0",
   "description": "CSS-driven scroll-based animations",
   "type": "module",
   "main": "dist/index.js",

@@ -1,7 +1,12 @@
-/**
- * Initializes a new Animere instance
- */
 export default class Animere {
+    /**
+     * Initializes a new Animere instance
+     *
+     * @param {object} [options] Optional options to initialize with
+     * @param {string} [options.prefix="animere"] The prefix for `data` attributes
+     * @param {number} [options.offset=0.2] The ratio of intersection area (threshold) visible until an animation should appear
+     * @param {boolean} [options.watchDOM=false] Indicates if Animere should listen to DOM mutations
+     */
     constructor({ prefix = 'animere', offset = 0.2, watchDOM = false } = {}) {
         this.prefix = prefix;
         this.offset = offset;
@@ -74,7 +79,7 @@ export default class Animere {
                 node.style.setProperty(propertyName, node.dataset[dataAttr]);
             });
             // Show element
-            node.style.visibility = '';
+            node.style.visibility = 'visible';
             // Start animation
             this.animateCSS(node, node.dataset[this.prefix]);
             observer.unobserve(node);
