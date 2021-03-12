@@ -1,22 +1,17 @@
 export interface AnimereOptions {
     /** The prefix for `data` attributes */
     prefix?: string;
-    /** Offset until animation should appear */
+    /** The ratio of intersection area (threshold) visible until an animation should appear */
     offset?: number;
-    /** Indicates if Animere should be activated on DOM updates */
+    /** Indicates if Animere should listen to DOM mutations */
     watchDOM?: boolean;
 }
+/**
+ * Initializes a new Animere instance
+ */
 export default class Animere {
     protected prefix: string;
     protected offset: number;
-    /**
-     * Initializes a new Animere instance
-     *
-     * @param {object} [options] Optional options to initialize with
-     * @param {string} [options.prefix="animere"] The prefix for `data` attributes
-     * @param {number} [options.offset=0.2] The ratio of intersection area (threshold) visible until an animation should appear
-     * @param {boolean} [options.watchDOM=false] Indicates if Animere should listen to DOM mutations
-     */
     constructor({ prefix, offset, watchDOM }?: AnimereOptions);
     /**
      * Detects if the user has requested that the system minimizes the
@@ -32,7 +27,7 @@ export default class Animere {
      *
      * @param {HTMLElement} element The element to animate
      * @param {string} animation Name of the `Animate.css` animation (without prefix)
-     * @param {string} [prefix=animate__] `Animate.css` global class name prefix
+     * @param {string} [prefix="animate__"] `Animate.css` global class name prefix
      * @returns {Promise<void>} Resolves when the animation has finished
      */
     animateCSS(element: HTMLElement, animation: string, prefix?: string): Promise<void>;
