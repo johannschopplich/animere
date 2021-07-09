@@ -42,21 +42,21 @@ Animere.js can be used without a build step. Simply load it from a CDN:
 
 If you don't want the auto initialize, remove the `init` attribute and move the scripts to end of `<body>`:
 
+```html
 <script src="https://unpkg.com/animere"></script>
 <script>
   new Animere();
 </script>
-
-Or, use the ES module build:
-
-```
-$ npm install animere
 ```
 
+Or, use the ES module build by installing the `animere` npm package:
+
+```html
 <script type="module">
-  import Animere from 'animere';
+  import Animere from "animere";
   new Animere();
 </script>
+```
 
 ### Production CDN URLs
 
