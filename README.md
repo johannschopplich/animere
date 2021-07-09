@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./docs/img/favicon.svg" alt="Logo of Animere.js" width="114" height="114">
+  <img src="./public/img/favicon.svg" alt="Logo of Animere.js" width="114" height="114">
 </p>
 
 <h3 align="center">Animere.js</h3>
@@ -34,14 +34,17 @@ Or simply download the source or minified [`index.min.js`](dist/index.min.js) sc
 
 ```html
 <script type="module">
-  import Animere from './index.js'
+  import Animere from "./index.js";
 </script>
 ```
 
 [Animate.css](https://animate.style) is required. You may include the `animate.css` stylesheet into your project manually or link a cloud-hosted version:
 
 ```html
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+/>
 ```
 
 ## Usage
@@ -59,16 +62,16 @@ You can use any of the utility classes/custom properties provided by Animate.css
 Finally, to initialize the library, create a new `Animere` instance.
 
 ```js
-const animere = new Animere()
+const animere = new Animere();
 ```
 
 ## Utilities
 
-Option | Example Attribute | Description
---- | --- | ---
-Duration | `data-animere-duration="1500ms"` | Change the animation's duration to be slow or fast.
-Delay | `data-animere-delay="1s"` | Delay the animation.
-Repeat | `data-animere-repeat="3"` | The iteration count of the animation.
+| Option   | Example Attribute                | Description                                         |
+| -------- | -------------------------------- | --------------------------------------------------- |
+| Duration | `data-animere-duration="1500ms"` | Change the animation's duration to be slow or fast. |
+| Delay    | `data-animere-delay="1s"`        | Delay the animation.                                |
+| Repeat   | `data-animere-repeat="3"`        | The iteration count of the animation.               |
 
 ## API
 
@@ -76,11 +79,11 @@ Repeat | `data-animere-repeat="3"` | The iteration count of the animation.
 
 Available options are:
 
-Option | Default | Description
---- | --- | ---
-`prefix` | `animere` | The namespace so to speak for the `data` attributes.
-`offset` | `0.2` | Number between `0` and `1` of how much an element should be in the viewport before revealing it.
-`watchDOM` | `false` | Indicates if the library should watch the DOM for mutations (added nodes for example).
+| Option     | Default   | Description                                                                                      |
+| ---------- | --------- | ------------------------------------------------------------------------------------------------ |
+| `prefix`   | `animere` | The namespace so to speak for the `data` attributes.                                             |
+| `offset`   | `0.2`     | Number between `0` and `1` of how much an element should be in the viewport before revealing it. |
+| `watchDOM` | `false`   | Indicates if the library should watch the DOM for mutations (added nodes for example).           |
 
 ## Accessibility
 
