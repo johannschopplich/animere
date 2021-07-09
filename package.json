@@ -16,7 +16,7 @@
   "types": "./dist/index.d.ts",
   "scripts": {
     "dev": "vite",
-    "build": "vite build && tsc --emitDeclarationOnly",
+    "build": "vite build && tsc --emitDeclarationOnly && shx rm -rf dist/docs",
     "build:docs": "vite build --mode docs",
     "test": "echo \"No test specified\"",
     "prepare": "husky install",
@@ -50,6 +50,7 @@
     "husky": "^7.0.1",
     "lint-staged": "^11.0.0",
     "prettier": "2.3.2",
+    "shx": "^0.3.3",
     "typescript": "^4.3.5",
     "vite": "^2.4.1"
   }
