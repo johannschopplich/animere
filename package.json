@@ -2,30 +2,29 @@
   "name": "animere",
   "version": "1.9.2",
   "description": "CSS-driven scroll-based animations",
-  "type": "module",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
-  "scripts": {
-    "docs": "cp dist/index.js docs/js/animere.js",
-    "minify": "terser dist/index.js -c -m -o dist/index.min.js",
-    "dev": "tsc --watch",
-    "build": "tsc && npm run minify && npm run docs",
-    "size": "cat dist/index.min.js | gzip | wc -c",
-    "test": "echo \"No test specified\""
-  },
-  "dependencies": {
-    "animate.css": "^4.1.1"
-  },
-  "devDependencies": {
-    "terser": "^5.6.0",
-    "typescript": "^4.2.3"
-  },
   "files": [
-    "dist/*",
-    "src/*",
-    "LICENSE",
-    "README.md"
+    "dist"
   ],
+  "main": "./dist/animere.umd.js",
+  "module": "./dist/animere.es.js",
+  "exports": {
+    ".": {
+      "import": "./dist/animere.es.js",
+      "require": "./dist/animere.umd.js"
+    }
+  },
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build && tsc src/index.ts --declaration --emitDeclarationOnly --target esnext --outDir dist",
+    "build:docs": "vite build --mode docs",
+    "test": "echo \"No test specified\"",
+    "prepare": "husky install",
+    "prepublishOnly": "tsc && npm run build"
+  },
+  "lint-staged": {
+    "**/*": "prettier --write --ignore-unknown"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/johannschopplich/animere.git"
@@ -46,5 +45,12 @@
   "bugs": {
     "url": "https://github.com/johannschopplich/animere/issues"
   },
-  "homepage": "https://github.com/johannschopplich/animere#readme"
+  "homepage": "https://github.com/johannschopplich/animere#readme",
+  "devDependencies": {
+    "husky": "^7.0.1",
+    "lint-staged": "^11.0.0",
+    "prettier": "2.3.2",
+    "typescript": "^4.3.5",
+    "vite": "^2.4.1"
+  }
 }

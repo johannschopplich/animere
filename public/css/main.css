@@ -8,7 +8,8 @@
   --color-box-2: var(--color-primary);
   --color-box-3: hsl(209, 100%, 8%);
 
-  --font-family-base: "Work Sans", system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+  --font-family-base: "Work Sans", system-ui, sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji";
   --fluid-max-size: 20;
   --radius: 0.5em;
 }
