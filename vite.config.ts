@@ -1,18 +1,21 @@
 import { resolve } from "path";
-import { ConfigEnv, UserConfigExport } from "vite";
+import { ConfigEnv, LibraryOptions, UserConfigExport } from "vite";
 
-export default ({ mode }: ConfigEnv): UserConfigExport => ({
-  publicDir: mode === "docs" ? "public" : false,
-  build: {
-    // target: 'esnext',
-    // minify: false,
-    lib:
-      mode === "docs"
-        ? false
-        : {
-            entry: resolve(__dirname, "src/index.ts"),
-            name: "Animere",
-            formats: ["es", "umd", "iife"],
-          },
-  },
-});
+const libraryConfig: LibraryOptions = {
+  entry: resolve(__dirname, "src/index.ts"),
+  name: "Animere",
+  formats: ["es", "umd", "iife"],
+};
+
+export default ({ mode }: ConfigEnv): UserConfigExport => {
+  const isLib = mode === "production";
+
+  return {
+    publicDir: isLib ? false : "public",
+    build: {
+      // target: 'esnext',
+      // minify: false,
+      lib: isLib ? libraryConfig : false,
+    },
+  };
+};
