@@ -26,17 +26,48 @@
 
 ## Installation
 
+Animere.js can be used without a build step. Simply load it from a CDN:
+
+<script src="https://unpkg.com/animere" defer init></script>
+
+```html
+<!-- Anywhere on the page -->
+<div data-animere="fadeIn"></div>
+```
+
+- The `defer` attribute makes the script execute after HTML content is parsed.
+- The `init` attribute tells Animere.js to automatically initialize and animate all elements that have a `data-animere` attribute.
+
+### Manual Init
+
+If you don't want the auto initialize, remove the `init` attribute and move the scripts to end of `<body>`:
+
+<script src="https://unpkg.com/animere"></script>
+<script>
+  new Animere();
+</script>
+
+Or, use the ES module build:
+
 ```
 $ npm install animere
 ```
 
-Or simply download the source or minified [`index.min.js`](dist/index.min.js) script and import it in your web project:
-
-```html
 <script type="module">
-  import Animere from "./index.js";
+  import Animere from 'animere';
+  new Animere();
 </script>
-```
+
+### Production CDN URLs
+
+The short CDN URLs are meant for prototyping. For production usage, use a fully resolved CDN URL to avoid resolving and redirect cost:
+
+- Global build: https://unpkg.com/animere@1.10.3/dist/animere.iife.js
+  - exposes `Animere` global, supports auto init
+- ESM build: https://unpkg.com/animere@1.10.3/dist/animere.es.js
+  - Must be used with `<script type="module">`
+
+### CSS Animations
 
 [Animate.css](https://animate.style) is required. You may include the `animate.css` stylesheet into your project manually or link a cloud-hosted version:
 
@@ -99,7 +130,6 @@ Animere.js does not hide elements from Google. Since the Google Bot doesn't scro
 
 Because I couldn't find one that is as small as possible while being also versatile, SEO-friendly and accessible.
 
-## Thanks
+## Credits
 
-- [Animate.css](https://animate.style) for the best, easy to use library of CSS animations
-- [Josh.js](https://github.com/mamunhpath/josh.js) as inspiration and proving that an animation library can be small
+- [Animate.css](https://animate.style) for the best, easy to use library of CSS animations.

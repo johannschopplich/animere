@@ -179,3 +179,9 @@ export default class Animere {
     });
   }
 }
+
+// Automatically initiate if `init` attribute is present
+let s;
+if ((s = document.currentScript) && s.hasAttribute("init")) {
+  new Animere();
+}
