@@ -16,11 +16,11 @@
   "types": "./dist/index.d.ts",
   "scripts": {
     "dev": "vite",
-    "build": "vite build && tsc src/index.ts --target esnext --declaration --declarationDir dist --emitDeclarationOnly",
+    "build": "vite build && tsc --emitDeclarationOnly",
     "build:docs": "vite build --mode docs",
     "test": "echo \"No test specified\"",
     "prepare": "husky install",
-    "prepublishOnly": "tsc && npm run build"
+    "prepublishOnly": "tsc --noEmit && npm run build"
   },
   "lint-staged": {
     "**/*": "prettier --write --ignore-unknown"
