@@ -28,9 +28,9 @@
 
 Animere.js can be used without a build step. Simply load it from a CDN:
 
+```html
 <script src="https://unpkg.com/animere" defer init></script>
 
-```html
 <!-- Anywhere on the page -->
 <div data-animere="fadeIn"></div>
 ```
