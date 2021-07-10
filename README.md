@@ -62,9 +62,9 @@ Or, use the ES module build by installing the `animere` npm package:
 
 The short CDN URLs are meant for prototyping. For production usage, use a fully resolved CDN URL to avoid resolving and redirect cost:
 
-- Global build: https://unpkg.com/animere@1.10.3/dist/animere.iife.js
+- Global build: https://unpkg.com/animere@1.10.5/dist/animere.iife.js
   - exposes `Animere` global, supports auto init
-- ESM build: https://unpkg.com/animere@1.10.3/dist/animere.es.js
+- ESM build: https://unpkg.com/animere@1.10.5/dist/animere.es.js
   - Must be used with `<script type="module">`
 
 ### CSS Animations
