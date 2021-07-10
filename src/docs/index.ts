@@ -1,3 +1,6 @@
+import "./buldy.css";
+import "./main.css";
+
 import Animere from "../index";
 
 new Animere({

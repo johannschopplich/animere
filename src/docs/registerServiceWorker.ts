@@ -3,7 +3,7 @@
 
   const hasExistingSw = !!navigator.serviceWorker.controller;
 
-  if (!import.meta.env.DEV) {
+  if (import.meta.env.MODE === "docs") {
     try {
       navigator.serviceWorker.register("/service-worker.js");
     } catch (error) {
