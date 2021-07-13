@@ -1,3 +1,5 @@
+/* eslint-disable jsdoc/require-returns */
+
 export interface AnimereOptions {
   /** The prefix for `data` attributes */
   prefix?: string;
@@ -22,10 +24,10 @@ export default class Animere {
     this.prefix = prefix;
     this.offset = offset;
 
-    // Don't initialize if the user prefers a reduced amount of motion
+    // Skip initialization if the user prefers a reduced amount of motion
     if (this.prefersReducedMotion()) return;
 
-    // Don't initialize for crawlers like Google Bot
+    // Skip initialization for crawlers like Google Bot
     if (this.isCrawler()) return;
 
     for (const node of document.querySelectorAll<HTMLElement>(
@@ -70,7 +72,7 @@ export default class Animere {
   animateCSS(
     element: HTMLElement,
     animation: string,
-    prefix: string = "animate__"
+    prefix = "animate__"
   ): Promise<void> {
     return new Promise((resolve) => {
       const animations = [`${prefix}animated`, `${prefix}${animation}`];
@@ -90,6 +92,9 @@ export default class Animere {
 
   /**
    * Callback for when the target element comes into view
+   *
+   * @param {Array<IntersectionObserverEntry>} entries The intersection observer entries
+   * @param {IntersectionObserver} observer The intersection observer instance
    */
   protected async intersectionObserverCallback(
     entries: Array<IntersectionObserverEntry>,
@@ -136,6 +141,8 @@ export default class Animere {
 
   /**
    * Creates an `IntersectionObserver` to observe a target element
+   *
+   * @param {HTMLElement} element The target element to intersect
    */
   protected onIntersection(element: HTMLElement): void {
     // Hide element
