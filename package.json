@@ -1,6 +1,6 @@
 {
   "name": "animere",
-  "version": "1.10.6",
+  "version": "1.10.7",
   "description": "CSS-driven scroll-based animations",
   "files": [
     "dist"
