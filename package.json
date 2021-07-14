@@ -1,6 +1,6 @@
 {
   "name": "animere",
-  "version": "1.10.8",
+  "version": "1.10.9",
   "description": "CSS-driven scroll-based animations",
   "files": [
     "dist"
@@ -20,7 +20,7 @@
     "build:docs": "vite build --mode docs",
     "test": "echo \"No test specified\"",
     "lint": "eslint \"src/**/*.ts\"",
-    "lint:fix": "eslint \"src/**/*.ts\" --fix",
+    "lint:fix": "npm run lint -- --fix",
     "cleanup": "prettier --write \"src/**/*.ts\" --parser typescript",
     "prepare": "husky install",
     "prepublishOnly": "tsc --noEmit && npm run build"
