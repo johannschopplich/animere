@@ -8,14 +8,14 @@ const libraryConfig: LibraryOptions = {
 };
 
 export default ({ mode }: ConfigEnv): UserConfigExport => {
-  const isLib = mode === "production";
+  const isProd = mode === "production";
 
   return {
-    publicDir: isLib ? false : "public",
+    publicDir: isProd ? false : "public",
     build: {
       // target: 'esnext',
       // minify: false,
-      lib: isLib ? libraryConfig : false,
+      lib: isProd ? libraryConfig : false,
     },
   };
 };
