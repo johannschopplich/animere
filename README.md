@@ -17,7 +17,7 @@
 
 > Reveal elements while you scroll with an animation of your liking.
 
-- 🍃 **Lightweight**: 0.7kb minified & brotli
+- 🍃 **Lightweight**: 0.8kb minified & brotli
 - ✨ **CSS-driven**: Utilizes [Animate.css](https://animate.style) under the hood
 - 🔧 **Customizable**: Use `data` attributes for animation duration, delay, repeat
 - ♿️ **Accessible**: Respects reduced motion preference
@@ -38,7 +38,7 @@ Animere.js can be used without a build step. Simply load it from a CDN:
 - The `defer` attribute makes the script execute after HTML content is parsed.
 - The `init` attribute tells Animere.js to automatically initialize and animate all elements that have a `data-animere` attribute.
 
-### Manual Init
+### Manual Initialization
 
 If you don't want the auto initialize, remove the `init` attribute and move the scripts to end of `<body>`:
 
@@ -51,20 +51,18 @@ If you don't want the auto initialize, remove the `init` attribute and move the 
 
 Or, use the ES module build by installing the `animere` npm package:
 
-```html
-<script type="module">
-  import Animere from "animere";
-  new Animere();
-</script>
+```js
+import Animere from "animere";
+new Animere();
 ```
 
 ### Production CDN URLs
 
 The short CDN URLs are meant for prototyping. For production usage, use a fully resolved CDN URL to avoid resolving and redirect cost:
 
-- Global build: https://unpkg.com/animere@1.10.9/dist/animere.iife.js
+- Global build: https://unpkg.com/animere@1.11.0/dist/animere.iife.js
   - Exposes `Animere` global property, supports auto initializing
-- ESM build: https://unpkg.com/animere@1.10.9/dist/animere.es.js
+- ESM build: https://unpkg.com/animere@1.11.0/dist/animere.es.js
   - Must be used with `<script type="module">`
 
 ### CSS Animations

@@ -9,11 +9,10 @@ new Animere({
 });
 
 const qs = <T extends Element>(s: string) => document.querySelector<T>(s);
-
-// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-const template = qs<HTMLTemplateElement>("#box-template")!;
+const template = qs<HTMLTemplateElement>("#box-template");
 
 qs("#button-add-nodes")?.addEventListener("click", () => {
+  if (!template) return;
   const clone = template.content.cloneNode(true);
   qs("#main")?.appendChild(clone);
 });
