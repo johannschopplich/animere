@@ -11,8 +11,8 @@ export interface AnimereOptions {
  * Initializes a new Animere instance
  */
 export default class Animere {
-  protected prefix: string;
-  protected offset: number;
+  protected readonly prefix: string;
+  protected readonly offset: number;
 
   constructor({
     prefix = "animere",
@@ -23,10 +23,10 @@ export default class Animere {
     this.offset = offset;
 
     // Skip initialization if the user prefers a reduced amount of motion
-    if (this.prefersReducedMotion()) return;
+    if (Animere.prefersReducedMotion()) return;
 
     // Skip initialization for crawlers like Google Bot
-    if (this.isCrawler()) return;
+    if (Animere.isCrawler()) return;
 
     for (const node of document.querySelectorAll<HTMLElement>(
       `[data-${this.prefix}]`
@@ -45,14 +45,14 @@ export default class Animere {
    * Detects if the user has requested that the system minimizes the
    * amount of animation or motion it uses
    */
-  prefersReducedMotion(): boolean {
+  static prefersReducedMotion(): boolean {
     return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   }
 
   /**
    * Detects whether the user agent is capable to scroll
    */
-  isCrawler(): boolean {
+  static isCrawler(): boolean {
     return (
       !("onscroll" in window) ||
       /(gle|ing|ro)bot|crawl|spider/i.test(navigator.userAgent)
@@ -61,15 +61,13 @@ export default class Animere {
 
   /**
    * Adds animation classes and removes them after animation has finished
-   *
-   * @param {HTMLElement} element The element to animate
-   * @param {string} animation Name of the `Animate.css` animation (without prefix)
-   * @param {string} [prefix="animate__"] `Animate.css` global class name prefix
-   * @returns {Promise<void>} Resolves when the animation has finished
    */
-  animateCSS(
+  static animateCSS(
+    /** The element to animate */
     element: HTMLElement,
+    /** Name of the `Animate.css` animation (without prefix) */
     animation: string,
+    /** `Animate.css` global class name prefix */
     prefix = "animate__"
   ): Promise<void> {
     return new Promise((resolve) => {
@@ -90,9 +88,6 @@ export default class Animere {
 
   /**
    * Callback for when the target element comes into view
-   *
-   * @param {Array<IntersectionObserverEntry>} entries The intersection observer entries
-   * @param {IntersectionObserver} observer The intersection observer instance
    */
   protected async intersectionObserverCallback(
     entries: Array<IntersectionObserverEntry>,
@@ -130,7 +125,7 @@ export default class Animere {
       observer.unobserve(element);
 
       // Start animation and wait for it to finish
-      await this.animateCSS(element, <string>element.dataset[this.prefix]);
+      await Animere.animateCSS(element, <string>element.dataset[this.prefix]);
 
       // Mark element as animated
       element.dataset[`${this.prefix}Finished`] = "true";
@@ -139,8 +134,6 @@ export default class Animere {
 
   /**
    * Creates an `IntersectionObserver` to observe a target element
-   *
-   * @param {HTMLElement} element The target element to intersect
    */
   protected onIntersection(element: HTMLElement): void {
     // Hide element
@@ -149,8 +142,6 @@ export default class Animere {
     const observer = new IntersectionObserver(
       this.intersectionObserverCallback.bind(this),
       {
-        root: null,
-        rootMargin: "0px",
         threshold: this.offset,
       }
     );
