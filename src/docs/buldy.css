@@ -4,6 +4,12 @@
   box-sizing: border-box;
 }
 
+html {
+  line-height: 1.15;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-text-size-adjust: 100%;
+}
+
 body,
 h1,
 h2,
@@ -22,15 +28,11 @@ dd {
   margin: 0;
 }
 
-html {
-  line-height: 1.15;
-  -webkit-tap-highlight-color: transparent;
-  -webkit-text-size-adjust: 100%;
-}
-
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif,
-    "Apple Color Emoji", "Segoe UI Emoji";
+  block-size: -webkit-fill-available;
+  block-size: -moz-available;
+  block-size: stretch;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
 
 h1,
@@ -47,15 +49,15 @@ a:not([class]) {
   text-decoration-skip-ink: auto;
 }
 
-b,
-strong {
-  font-weight: bolder;
-}
-
 abbr[title] {
   text-decoration: underline dotted;
   cursor: help;
   text-decoration-skip-ink: none;
+}
+
+b,
+strong {
+  font-weight: bolder;
 }
 
 code,
@@ -63,8 +65,7 @@ kbd,
 samp,
 pre {
   font-size: 1em;
-  font-family: "Menlo", "Consolas", "Roboto Mono", "Ubuntu Monospace",
-    "Liberation Mono", monospace, "Apple Color Emoji", "Segoe UI Emoji";
+  font-family: "Menlo", "Consolas", "Roboto Mono", "Ubuntu Monospace", "Liberation Mono", monospace, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
 
 small {
@@ -107,24 +108,27 @@ hr:not([size]) {
   height: 1px;
 }
 
+audio,
+canvas,
+iframe,
 img,
-svg {
+svg,
+video {
   vertical-align: middle;
 }
 
+iframe,
 img,
-video {
+input,
+video,
+select,
+textarea {
   max-width: 100%;
   height: auto;
 }
 
 svg:not([fill]) {
   fill: currentColor;
-}
-
-summary {
-  cursor: pointer;
-  display: list-item;
 }
 
 table {
@@ -152,21 +156,35 @@ textarea {
 }
 
 button,
-[type="button"],
-[type="reset"],
-[type="submit"] {
+[type=button],
+[type=reset],
+[type=submit] {
   -webkit-appearance: button;
 }
 button:not(:disabled),
-[type="button"]:not(:disabled),
-[type="reset"]:not(:disabled),
-[type="submit"]:not(:disabled) {
+[type=button]:not(:disabled),
+[type=reset]:not(:disabled),
+[type=submit]:not(:disabled) {
   cursor: pointer;
 }
 
-::-moz-focus-inner {
-  padding: 0;
-  border-style: none;
+button,
+input,
+select,
+textarea {
+  background-color: transparent;
+  border: 1px solid WindowFrame;
+  color: inherit;
+  padding: 0.25em 0.375em;
+}
+
+select {
+  appearance: none;
+  border-radius: 0;
+  padding-right: 1em;
+}
+select:not([multiple]) {
+  background: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='4'%3E%3Cpath d='M4 0h6L7 4'/%3E%3C/svg%3E") no-repeat right center/1em;
 }
 
 fieldset {
@@ -184,50 +202,15 @@ textarea {
   resize: vertical;
 }
 
-[type="search"] {
-  -webkit-appearance: textfield;
-  outline-offset: -2px;
-}
-[type="search"]::-webkit-search-decoration {
-  -webkit-appearance: none;
-}
-
-button,
-input,
-select,
-textarea {
-  background-color: transparent;
-  border: 1px solid WindowFrame;
-  color: inherit;
-  padding: 0.25em 0.375em;
-}
-
-select {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  background: no-repeat right center/1em;
-  border-radius: 0;
-  padding-right: 1em;
-}
-select:not([multiple]):not([size]) {
-  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='4'%3E%3Cpath d='M4 0h6L7 4'/%3E%3C/svg%3E");
-}
-
-button:focus:not(:focus-visible) {
-  outline: 0;
-}
-
-[aria-busy="true"] {
+[aria-busy=true] {
   cursor: progress;
 }
 
-[aria-controls],
-[role="button"] {
+[aria-controls] {
   cursor: pointer;
 }
 
-[aria-disabled="true"],
+[aria-disabled=true],
 [disabled] {
   cursor: not-allowed;
 }
@@ -245,8 +228,7 @@ button:focus:not(:focus-visible) {
   --color-success-lucent: hsla(141, 71%, 48%, 0.35);
   --color-danger: hsl(348, 100%, 61%);
   --color-danger-lucent: hsla(348, 100%, 61%, 0.35);
-  --font-family-base: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif,
-    "Apple Color Emoji", "Segoe UI Emoji";
+  --font-family-base: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
   --font-family-heading: var(--font-family-base);
   --line-height-base: calc(1ex / 0.32);
   --line-height-heading: calc(1ex / 0.42);
@@ -273,7 +255,7 @@ button:focus:not(:focus-visible) {
 }
 
 :root:not([data-theme]),
-[data-theme="light"] {
+[data-theme=light] {
   --color-contrast-lowest: hsl(0, 0%, 95%);
   --color-contrast-lower: hsl(0, 0%, 82%);
   --color-contrast-low: hsl(0, 0%, 70%);
@@ -287,7 +269,7 @@ button:focus:not(:focus-visible) {
   --color-link-hover: var(--color-text);
 }
 
-[data-theme="dark"] {
+[data-theme=dark] {
   --color-contrast-lowest: hsl(0, 0%, 14%);
   --color-contrast-lower: hsl(0, 0%, 22%);
   --color-contrast-low: hsl(0, 0%, 48%);
@@ -837,13 +819,11 @@ button {
   display: block;
   background-color: var(--color-background);
   border-radius: var(--radius);
-  box-shadow: 0 0.01em 0.01em rgba(0, 0, 0, 0.025),
-    0 0.05em 0.1em rgba(0, 0, 0, 0.05), 0 0.2em 0.375em rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0.01em 0.01em rgba(0, 0, 0, 0.025), 0 0.05em 0.1em rgba(0, 0, 0, 0.05), 0 0.2em 0.375em rgba(0, 0, 0, 0.1);
   padding: var(--component-spacer);
 }
 
-.control,
-.button {
+.control, .button {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
@@ -859,9 +839,7 @@ button {
   margin-bottom: var(--component-spacer);
 }
 
-.unselectable,
-.modal-close,
-.button {
+.unselectable, .modal-close, .button {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   user-select: none;
@@ -899,28 +877,23 @@ button {
   border-color: var(--color-text);
   color: var(--color-background);
 }
-.button.is-text,
-.button.is-link {
+.button.is-text, .button.is-link {
   background-color: transparent;
   border-color: transparent;
   color: var(--color-text);
 }
-.button.is-text:disabled,
-.button.is-link:disabled {
+.button.is-text:disabled, .button.is-link:disabled {
   background-color: transparent;
   border-color: transparent;
   box-shadow: none;
 }
-.button.is-text:hover,
-.button.is-text:focus {
+.button.is-text:hover, .button.is-text:focus {
   text-decoration-line: underline;
 }
-.button.is-link:hover,
-.button.is-link:focus {
+.button.is-link:hover, .button.is-link:focus {
   background-color: var(--color-contrast-lowest);
 }
-.button.is-primary,
-.button.is-accent {
+.button.is-primary, .button.is-accent {
   --button-color: white;
   --button-background: var(--color-primary);
   --button-background-hover: var(--color-primary-hover);
@@ -930,50 +903,40 @@ button {
   border-color: transparent;
   color: var(--button-color);
 }
-.button.is-primary:hover,
-.button.is-accent:hover {
+.button.is-primary:hover, .button.is-accent:hover {
   background-color: var(--button-background-hover);
   border-color: transparent;
   color: var(--button-color);
 }
-.button.is-primary:focus,
-.button.is-accent:focus {
+.button.is-primary:focus, .button.is-accent:focus {
   border-color: transparent;
   color: var(--button-color);
 }
-.button.is-primary:focus:not(:active),
-.button.is-accent:focus:not(:active) {
+.button.is-primary:focus:not(:active), .button.is-accent:focus:not(:active) {
   box-shadow: 0 0 0 3px var(--button-shadow);
 }
-.button.is-primary:active,
-.button.is-accent:active {
+.button.is-primary:active, .button.is-accent:active {
   background-color: var(--button-background-active);
   border-color: transparent;
   color: var(--button-color);
 }
-.button.is-primary:disabled,
-.button.is-accent:disabled {
+.button.is-primary:disabled, .button.is-accent:disabled {
   background-color: var(--button-background);
   border-color: transparent;
   color: var(--button-color);
   box-shadow: none;
 }
-.button.is-primary.is-outlined,
-.button.is-accent.is-outlined {
+.button.is-primary.is-outlined, .button.is-accent.is-outlined {
   background-color: transparent;
   border-color: var(--button-background);
   color: var(--button-background);
 }
-.button.is-primary.is-outlined:hover,
-.button.is-primary.is-outlined:focus,
-.button.is-accent.is-outlined:hover,
-.button.is-accent.is-outlined:focus {
+.button.is-primary.is-outlined:hover, .button.is-primary.is-outlined:focus, .button.is-accent.is-outlined:hover, .button.is-accent.is-outlined:focus {
   background-color: var(--button-background);
   border-color: var(--button-background);
   color: var(--button-color);
 }
-.button.is-primary.is-outlined:disabled,
-.button.is-accent.is-outlined:disabled {
+.button.is-primary.is-outlined:disabled, .button.is-accent.is-outlined:disabled {
   background-color: transparent;
   border-color: var(--button-background);
   color: var(--button-background);
@@ -1109,12 +1072,10 @@ button {
   color: var(--color-contrast-low);
   opacity: 1;
 }
-.control[aria-invalid="true"],
-.control.is-error {
+.control[aria-invalid=true], .control.is-error {
   border-color: var(--color-danger);
 }
-.control[aria-invalid="true"]:focus,
-.control.is-error:focus {
+.control[aria-invalid=true]:focus, .control.is-error:focus {
   box-shadow: 0 0 0 3px var(--color-danger-lucent);
 }
 .control.is-success {
@@ -1123,8 +1084,7 @@ button {
 .control.is-success:focus {
   box-shadow: 0 0 0 3px var(--color-success-lucent);
 }
-.control:read-only,
-.control:disabled {
+.control:read-only, .control:disabled {
   background-color: var(--color-contrast-lowest);
   border-color: var(--color-contrast-lowest);
   color: var(--color-contrast-medium);
@@ -1193,7 +1153,7 @@ textarea.control:not([rows]) {
 }
 @media (min-width: 768px) {
   .modal-content,
-  .modal-card {
+.modal-card {
     width: 640px;
     max-height: calc(100vh - 40px);
     margin: 0 auto;
@@ -1224,8 +1184,7 @@ textarea.control:not([rows]) {
   outline: none;
   vertical-align: top;
 }
-.modal-close::before,
-.modal-close::after {
+.modal-close::before, .modal-close::after {
   content: "";
   display: block;
   position: absolute;
@@ -1243,8 +1202,7 @@ textarea.control:not([rows]) {
   width: 2px;
   height: 50%;
 }
-.modal-close:hover,
-.modal-close:focus {
+.modal-close:hover, .modal-close:focus {
   background-color: rgba(0, 0, 0, 0.3);
 }
 .modal-close:active {

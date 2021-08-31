@@ -18,7 +18,7 @@
 > Reveal elements while you scroll with an animation of your liking.
 
 - 🍃 **Lightweight**: 0.7kb minified & brotli
-- ✨ **CSS-Driven**: Utilizes [Animate.css](https://animate.style) under the hood
+- ✨ **CSS-driven**: Utilizes [Animate.css](https://animate.style) under the hood
 - 🔧 **Customizable**: Use `data` attributes for animation duration, delay, repeat
 - ♿️ **Accessible**: Respects reduced motion preference
 - 🔍 **SEO-friendly**: Detects e.g. Google Bot and skips initialization

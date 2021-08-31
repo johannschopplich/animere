@@ -1,17 +1,18 @@
 :root {
-  --color-primary: hsl(155, 11%, 50%);
-  --color-primary-hover: hsl(155, 11%, 40%);
-  --color-primary-active: hsl(155, 11%, 40%);
-  --color-primary-lucent: hsla(155, 11%, 50%, 0.35);
+  --color-primary: hsl(5, 71%, 65%);
+  --color-primary-hover: hsl(5, 71%, 60%);
+  --color-primary-active: hsl(5, 71%, 60%);
+  --color-primary-lucent: hsla(5, 71%, 65%, 0.35);
 
-  --color-box-1: hsl(42, 82%, 75%);
-  --color-box-2: var(--color-primary);
-  --color-box-3: hsl(209, 100%, 8%);
+  --color-accent: hsl(220, 4%, 16%);
 
-  --font-family-base: "Work Sans", system-ui, sans-serif, "Apple Color Emoji",
-    "Segoe UI Emoji";
+  --font-family-base: "Work Sans", system-ui;
   --fluid-max-size: 20;
   --radius: 0.5em;
+}
+
+html {
+  background-color: var(--color-primary);
 }
 
 body {
@@ -25,7 +26,7 @@ body {
   top: var(--space-xs);
   left: 0;
   width: 100%;
-  border: 2px solid var(--color-box-1);
+  border: 2px solid var(--color-accent);
   margin-bottom: var(--space-xs);
   z-index: 10;
 }
@@ -58,17 +59,24 @@ body {
 }
 
 #main .box {
-  background-color: var(--color-box-1);
+  background-color: var(--color-accent);
+  color: white;
 }
 
 #main .box:nth-child(3n-1) {
-  background-color: var(--color-box-2);
-  color: white;
+  background-color: white;
+  border: 2px solid var(--color-accent);
+  color: var(--color-accent);
 }
 
 #main .box:nth-child(3n) {
-  background-color: var(--color-box-3);
-  color: white;
+  background-color: var(--color-primary);
+  border: 2px solid var(--color-accent);
+  color: var(--color-accent);
+}
+
+#main .box:nth-child(3n) a {
+  --color-link: white;
 }
 
 .footer {
