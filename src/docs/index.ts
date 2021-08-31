@@ -8,10 +8,12 @@ new Animere({
   watchDOM: true,
 });
 
-const qs = (s: string) => document.querySelector(s);
-const template = <HTMLTemplateElement>qs("#box-template");
-const clone = document.importNode(template.content, true);
+const qs = <T extends Element>(s: string) => document.querySelector<T>(s);
+
+// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+const template = qs<HTMLTemplateElement>("#box-template")!;
 
 qs("#button-add-nodes")?.addEventListener("click", () => {
+  const clone = template.content.cloneNode(true);
   qs("#main")?.appendChild(clone);
 });
