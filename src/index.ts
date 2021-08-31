@@ -11,7 +11,7 @@ export interface AnimereOptions {
 }
 
 /**
- * Initializes a new Animere instance
+ * CSS-driven scroll-based animations
  */
 export default class Animere {
   protected readonly prefix: string;
