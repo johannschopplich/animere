@@ -1,5 +1,3 @@
-/* eslint-disable jsdoc/require-returns */
-
 export interface AnimereOptions {
   /** The prefix for `data` attributes */
   prefix?: string;
