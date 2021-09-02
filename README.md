@@ -108,11 +108,11 @@ const animere = new Animere();
 
 Available options are:
 
-| Option     | Default   | Description                                                                                      |
-| ---------- | --------- | ------------------------------------------------------------------------------------------------ |
-| `prefix`   | `animere` | The namespace so to speak for the `data` attributes.                                             |
-| `offset`   | `0.2`     | Number between `0` and `1` of how much an element should be in the viewport before revealing it. |
-| `watchDOM` | `false`   | Indicates if the library should watch the DOM for mutations (added nodes for example).           |
+| Option     | Default   | Description                                                                                                                                                                                                                                      |
+| ---------- | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `prefix`   | `animere` | The namespace so to speak for the `data` attributes.                                                                                                                                                                                             |
+| `offset`   | `0.2`     | Number between `0` and `1` of how much an element should be in the viewport before revealing it. See `IntersectionObserver` [`threshold` parameter](https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserver/IntersectionObserver). |
+| `watchDOM` | `false`   | Indicates if the library should watch the DOM for mutations (added nodes for example).                                                                                                                                                           |
 
 ## Accessibility
 

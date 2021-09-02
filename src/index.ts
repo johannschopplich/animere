@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
+
 import { animateCss, isCrawler, prefersReducedMotion } from "./utils";
 
 export interface AnimereOptions {
@@ -34,82 +35,76 @@ export default class Animere {
     for (const node of document.querySelectorAll<HTMLElement>(
       `[data-${this.prefix}]`
     )) {
-      this.onIntersection(node);
+      this.observeIntersection(node);
     }
 
     if (watchDOM) {
       window.addEventListener("DOMContentLoaded", () => {
-        this.onMutations();
+        this.observeMutations();
       });
     }
   }
 
   /**
-   * Callback for when the target element comes into view
+   * Initialize intersection observer on target elements
    */
-  protected async intersectionObserverCallback(
-    entries: Array<IntersectionObserverEntry>,
-    observer: IntersectionObserver
-  ): Promise<void> {
-    for (const entry of entries) {
-      if (!entry.isIntersecting) continue;
-      const element = <HTMLElement>entry.target;
-
-      // Add custom properties for `Animate.css` animations from
-      // `data` attributes if available, for example `data-animere-duration="2s"`
-      Object.keys(element.dataset)
-        .filter((i) => i !== this.prefix && i.startsWith(this.prefix))
-        .forEach((dataAttr) => {
-          const animateOption = dataAttr
-            .slice(this.prefix.length)
-            .toLowerCase();
-          const propertyName = `--animate-${animateOption}`;
-
-          if (animateOption === "delay")
-            element.style.animationDelay = `var(${propertyName})`;
-          if (animateOption === "repeat")
-            element.style.animationIterationCount = `var(${propertyName})`;
-
-          element.style.setProperty(propertyName, element.dataset[dataAttr]!);
-        });
-
-      // Show element
-      element.style.visibility = "visible";
-
-      // Stop observing the target element
-      observer.unobserve(element);
-
-      // Start animation and wait for it to finish
-      await animateCss(element, element.dataset[this.prefix]!);
-
-      // Mark element as animated
-      element.dataset[`${this.prefix}Finished`] = "true";
-    }
-  }
-
-  /**
-   * Creates an `IntersectionObserver` to observe a target element
-   */
-  protected onIntersection(element: HTMLElement): void {
+  protected observeIntersection(element: HTMLElement): void {
     // Hide element
     element.style.visibility = "hidden";
 
-    const observer = new IntersectionObserver(
-      this.intersectionObserverCallback.bind(this),
-      {
-        threshold: this.offset,
+    const callback: IntersectionObserverCallback = async (
+      entries: Array<IntersectionObserverEntry>,
+      observer: IntersectionObserver
+    ) => {
+      for (const entry of entries) {
+        if (!entry.isIntersecting) continue;
+        const element = <HTMLElement>entry.target;
+
+        // Add custom properties for `Animate.css` animations from
+        // `data` attributes if available, for example `data-animere-duration="2s"`
+        Object.keys(element.dataset)
+          .filter((i) => i !== this.prefix && i.startsWith(this.prefix))
+          .forEach((dataAttr) => {
+            const animateOption = dataAttr
+              .slice(this.prefix.length)
+              .toLowerCase();
+            const propertyName = `--animate-${animateOption}`;
+
+            if (animateOption === "delay")
+              element.style.animationDelay = `var(${propertyName})`;
+            if (animateOption === "repeat")
+              element.style.animationIterationCount = `var(${propertyName})`;
+
+            element.style.setProperty(propertyName, element.dataset[dataAttr]!);
+          });
+
+        // Show element
+        element.style.visibility = "visible";
+
+        // Stop observing the target element
+        observer.unobserve(element);
+
+        // Start animation and wait for it to finish
+        await animateCss(element, element.dataset[this.prefix]!);
+
+        // Mark element as animated
+        element.dataset[`${this.prefix}Finished`] = "true";
       }
-    );
+    };
+
+    const { offset: threshold } = this;
+    const observer = new IntersectionObserver(callback, {
+      threshold,
+    });
 
     observer.observe(element);
   }
 
   /**
-   * Wait for DOM changes and attach the `onIntersection` method
-   * on each element
+   * Wait for DOM modifications and initialize new intersection observers
    */
-  protected onMutations(): void {
-    const changeObserver = new MutationObserver((mutations) => {
+  protected observeMutations(): void {
+    const callback: MutationCallback = (mutations) => {
       for (const mutation of mutations) {
         const newNodes = <NodeListOf<HTMLElement>>mutation.addedNodes;
         if (!newNodes) continue;
@@ -119,12 +114,13 @@ export default class Animere {
           // and nodes to animate
           .filter((i) => i.nodeType === 1 && this.prefix in i.dataset)
           .forEach((node) => {
-            this.onIntersection(node);
+            this.observeIntersection(node);
           });
       }
-    });
+    };
 
-    changeObserver.observe(document.body, {
+    const observer = new MutationObserver(callback);
+    observer.observe(document.body, {
       childList: true,
       subtree: true,
     });
