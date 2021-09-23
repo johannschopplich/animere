@@ -1,11 +1,5 @@
 import { resolve } from "path";
-import { ConfigEnv, LibraryOptions, UserConfigExport } from "vite";
-
-const libraryConfig: LibraryOptions = {
-  entry: resolve(__dirname, "src/index.ts"),
-  name: "Animere",
-  formats: ["es", "umd", "iife"],
-};
+import type { ConfigEnv, UserConfigExport } from "vite";
 
 export default ({ mode }: ConfigEnv): UserConfigExport => {
   const isProd = mode === "production";
@@ -15,7 +9,11 @@ export default ({ mode }: ConfigEnv): UserConfigExport => {
     build: {
       // target: 'esnext',
       // minify: false,
-      lib: isProd ? libraryConfig : false,
+      lib: isProd && {
+        entry: resolve(__dirname, "src/index.ts"),
+        name: "Animere",
+        formats: ["es", "umd", "iife"],
+      },
     },
   };
 };

@@ -1333,11 +1333,11 @@ textarea.control:not([rows]) {
 }
 
 .vh-100 {
-  height: calc(var(--vh, 1vh) * 100) !important;
+  height: 100vh !important;
 }
 
 .min-vh-100 {
-  min-height: calc(var(--vh, 1vh) * 100) !important;
+  min-height: 100vh !important;
 }
 
 .m-xxxs {
