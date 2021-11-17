@@ -1,43 +1,14 @@
 :root {
-  --color-primary: hsl(5, 71%, 65%);
-  --color-primary-hover: hsl(5, 71%, 60%);
-  --color-primary-active: hsl(5, 71%, 60%);
-  --color-primary-lucent: hsla(5, 71%, 65%, 0.35);
-
-  --color-accent: hsl(220, 4%, 16%);
-
-  --font-family-base: "Work Sans", system-ui;
-  --fluid-max-size: 20;
-  --radius: 0.5em;
+  --color-primary: #E57166;
+  --color-accent: #27282A;
+  --font-family-normal: "Work Sans", system-ui;
+  --due-radius: 0.5rem;
 }
 
-html {
-  background-color: var(--color-primary);
-}
-
-body {
-  padding: var(--space-xs);
-}
-
-#header {
-  position: sticky;
-  display: flex;
-  align-items: center;
-  top: var(--space-xs);
-  left: 0;
-  width: 100%;
-  border: 2px solid var(--color-accent);
-  margin-bottom: var(--space-xs);
-  z-index: 10;
-}
-
-#header > :first-child {
-  flex-grow: 1;
-  padding-right: var(--space-s);
-}
-
-#main > *:not(:last-child) {
-  margin-bottom: var(--space-xs);
+.box {
+  background-color: var(--color-background);
+  border-radius: var(--due-radius);
+  padding: var(--due-spacer);
 }
 
 #main .box {
@@ -77,23 +48,4 @@ body {
 
 #main .box:nth-child(3n) a {
   --color-link: white;
-}
-
-.footer {
-  display: grid;
-  place-items: center;
-  padding: var(--space-l);
-}
-
-h1 {
-  font-size: var(--text-5);
-  font-weight: 700;
-}
-
-h2 {
-  line-height: var(--line-height-heading);
-}
-
-code {
-  border-radius: 0.125em;
 }

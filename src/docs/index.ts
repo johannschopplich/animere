@@ -1,11 +1,12 @@
-import "./buldy.css";
+import "duecss/base.css";
 import "./main.css";
+import "uno.css";
 
 import Animere from "../index";
 
 new Animere({
   offset: 0.4,
-  watchDOM: true,
+  watchDom: true,
 });
 
 const qs = <T extends Element>(s: string) => document.querySelector<T>(s);

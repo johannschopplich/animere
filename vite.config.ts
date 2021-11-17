@@ -1,7 +1,8 @@
 import { resolve } from "path";
-import type { ConfigEnv, UserConfigExport } from "vite";
+import { defineConfig } from "vite";
+import Unocss from "unocss/vite";
 
-export default ({ mode }: ConfigEnv): UserConfigExport => {
+export default defineConfig(({ mode }) => {
   const isProd = mode === "production";
 
   return {
@@ -15,5 +16,6 @@ export default ({ mode }: ConfigEnv): UserConfigExport => {
         formats: ["es", "umd", "iife"],
       },
     },
+    plugins: [Unocss()],
   };
-};
+});
