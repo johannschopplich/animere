@@ -100,7 +100,7 @@ To prevent flash of unstyled content, hide all elements which are about to anima
 
 ```css
 @media (prefers-reduced-motion: no-preference) {
-  // Will get overridden by animated elements (style attribute has higher specificity)
+  /* Will get overridden by animated elements */
   [data-animere] {
     visibility: hidden;
   }
