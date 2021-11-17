@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
-
 import { animateCss, isCrawler, prefersReducedMotion } from "./utils";
 
 export interface AnimereOptions {
@@ -8,7 +6,9 @@ export interface AnimereOptions {
   /** The ratio of intersection area (threshold) visible until an animation should appear */
   offset?: number;
   /** Indicates if Animere should listen to DOM mutations */
-  watchDOM?: boolean;
+  watchDom?: boolean;
+  /** Callback indicating if Animere should skip its initialization */
+  disallowInit?: () => boolean;
 }
 
 /**
@@ -21,24 +21,26 @@ export default class Animere {
   constructor({
     prefix = "animere",
     offset = 0.2,
-    watchDOM = false,
+    watchDom = false,
+    disallowInit,
   }: AnimereOptions = {}) {
     this.prefix = prefix;
     this.offset = offset;
 
-    // Skip initialization if the user prefers a reduced amount of motion
-    if (prefersReducedMotion) return;
+    // Skip initialization if the custom initialization callback returns `true`
+    if (disallowInit?.()) return;
 
-    // Skip initialization for crawlers like Google Bot
-    if (isCrawler) return;
+    // Skip initialization if the user prefers a reduced amount
+    // of motion or a crawler visits the website
+    if (!disallowInit && (prefersReducedMotion || isCrawler)) return;
 
-    for (const node of document.querySelectorAll<HTMLElement>(
+    for (const element of document.querySelectorAll<HTMLElement>(
       `[data-${this.prefix}]`
     )) {
-      this.observeIntersection(node);
+      this.observeIntersection(element);
     }
 
-    if (watchDOM) {
+    if (watchDom) {
       window.addEventListener("DOMContentLoaded", () => {
         this.observeMutations();
       });
@@ -75,6 +77,7 @@ export default class Animere {
             if (animateOption === "repeat")
               element.style.animationIterationCount = `var(${propertyName})`;
 
+            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
             element.style.setProperty(propertyName, element.dataset[dataAttr]!);
           });
 
@@ -85,6 +88,7 @@ export default class Animere {
         observer.unobserve(element);
 
         // Start animation and wait for it to finish
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         await animateCss(element, element.dataset[this.prefix]!);
 
         // Mark element as animated
