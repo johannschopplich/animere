@@ -18,7 +18,6 @@
     "dev": "vite",
     "build": "vite build && tsc --emitDeclarationOnly && shx rm -rf dist/docs",
     "build:docs": "vite build --mode docs",
-    "test": "echo \"No test specified\"",
     "lint": "eslint \"src/**/*.ts\"",
     "lint:fix": "npm run lint -- --fix",
     "format": "prettier --write \"src/**/*.ts\"",
@@ -53,16 +52,16 @@
   },
   "homepage": "https://github.com/johannschopplich/animere#readme",
   "devDependencies": {
-    "@types/node": "^16.10.3",
-    "@typescript-eslint/eslint-plugin": "^5.0.0",
-    "@typescript-eslint/parser": "^5.0.0",
-    "eslint": "^8.0.0",
+    "@types/node": "^16.11.7",
+    "@typescript-eslint/eslint-plugin": "^5.4.0",
+    "@typescript-eslint/parser": "^5.4.0",
+    "eslint": "^8.2.0",
     "eslint-config-prettier": "^8.3.0",
-    "husky": "^7.0.2",
-    "lint-staged": "^11.2.3",
+    "husky": "^7.0.4",
+    "lint-staged": "^12.0.2",
     "prettier": "2.4.1",
     "shx": "^0.3.3",
-    "typescript": "^4.4.3",
-    "vite": "^2.6.7"
+    "typescript": "^4.4.4",
+    "vite": "^2.6.14"
   }
 }
