@@ -1,3 +1,9 @@
+## [1.15.1](https://github.com/johannschopplich/animere/compare/v1.15.0...v1.15.1) (2021-11-17)
+
+### Bug Fixes
+
+- fouc example script ([2e41743](https://github.com/johannschopplich/animere/commit/2e4174396168cbcebf736fd794e5c2577f0ed711))
+
 # [1.15.0](https://github.com/johannschopplich/animere/compare/v1.14.1...v1.15.0) (2021-11-17)
 
 ### Features
