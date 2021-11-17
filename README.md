@@ -96,15 +96,16 @@ const animere = new Animere();
 
 ### FOUC
 
-To prevent flash of unstyled content, hide all elements which are about to animated later by adding the following line to your main CSS or into your `<head>`:
+To prevent flash of unstyled content, hide all elements which are about to animated later by adding the following script to your document's `<head>`:
 
-```css
-@media (prefers-reduced-motion: no-preference) {
-  /* Will get overridden by animated elements */
-  [data-animere] {
-    visibility: hidden;
+```js
+(() => {
+  if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    const style = document.createElement("style");
+    style.innerHTML = "[data-animere] { visibility: hidden }";
+    document.head.appendChild(style);
   }
-}
+})();
 ```
 
 ## Utilities
@@ -125,7 +126,7 @@ Available options are:
 | -------------- | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `prefix`       | `animere`   | The namespace so to speak for the `data` attributes.                                                                                                                                                                                             |
 | `offset`       | `0.2`       | Number between `0` and `1` of how much an element should be in the viewport before revealing it. See `IntersectionObserver` [`threshold` parameter](https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserver/IntersectionObserver). |
-| `disallowInit` | `undefined` | Custom callback indicating if Animere should skip its initialization. Replaces the default checks for reduced motion preference and crawler detection.                                                                                           |
+| `disallowInit` | `undefined` | Custom callback to handle if Animere should skip its initialization. Replaces the default checks for reduced motion preference and crawler detection.                                                                                            |
 | `watchDom`     | `false`     | Indicates if the library should watch the DOM for mutations (added nodes for example).                                                                                                                                                           |
 
 ## Accessibility

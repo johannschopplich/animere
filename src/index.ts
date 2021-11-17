@@ -7,7 +7,7 @@ export interface AnimereOptions {
   offset?: number;
   /** Indicates if Animere should listen to DOM mutations */
   watchDom?: boolean;
-  /** Callback indicating if Animere should skip its initialization */
+  /** Custom callback to handle if Animere should skip its initialization */
   disallowInit?: () => boolean;
 }
 
