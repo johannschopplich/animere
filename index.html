@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html class="bg-primary" lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -44,10 +44,23 @@
     <link rel="stylesheet" href="/fonts/WorkSans.css" />
   </head>
 
-  <body>
-    <header id="header" class="box">
-      <div>
-        <h1>Animere.js</h1>
+  <body class="p-2">
+    <header
+      class="
+        box
+        flex
+        items-center
+        top-2
+        left-0
+        w-full
+        border-2 border-accent
+        mb-2
+        z-10
+      "
+      style="position: sticky"
+    >
+      <div class="flex-grow pr-3">
+        <h1 class="font-size-3 font-700">Animere.js</h1>
         <h2>CSS-driven scroll-based animations</h2>
       </div>
       <div>
@@ -55,13 +68,14 @@
           data-animere="fadeInRight"
           data-animere-delay="1s"
           href="https://github.com/johannschopplich/animere"
-          class="button is-primary is-outlined"
-          >On GitHub</a
+          class="button-primary-outlined"
         >
+          On GitHub
+        </a>
       </div>
     </header>
 
-    <main id="main">
+    <main id="main" class="space-y-2">
       <div class="box">May the scrollable feature list begin! 👇</div>
       <div class="box" data-animere="zoomIn">
         <p>🍃 <strong>Lightweight</strong>: 0.8kb minified & brotli</p>
@@ -94,8 +108,8 @@
       </div>
     </main>
 
-    <footer class="footer">
-      <button id="button-add-nodes" class="button is-text">
+    <footer class="grid items-center justify-center p-8">
+      <button id="button-add-nodes" class="button-text">
         Add new DOM element
       </button>
     </footer>

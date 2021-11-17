@@ -1,6 +1,6 @@
 {
   "name": "animere",
-  "version": "1.14.1",
+  "version": "1.15.0",
   "description": "CSS-driven scroll-based animations",
   "files": [
     "dist"
@@ -21,6 +21,8 @@
     "lint": "eslint \"src/**/*.ts\"",
     "lint:fix": "npm run lint -- --fix",
     "format": "prettier --write \"src/**/*.ts\"",
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s",
+    "release": "node scripts/release.js",
     "prepare": "husky install",
     "prepublishOnly": "tsc --noEmit && npm run build"
   },
@@ -55,13 +57,21 @@
     "@types/node": "^16.11.7",
     "@typescript-eslint/eslint-plugin": "^5.4.0",
     "@typescript-eslint/parser": "^5.4.0",
+    "colorette": "^2.0.16",
+    "conventional-changelog-cli": "^2.1.1",
+    "duecss": "^0.9.1",
     "eslint": "^8.2.0",
     "eslint-config-prettier": "^8.3.0",
+    "execa": "^5.1.1",
     "husky": "^7.0.4",
     "lint-staged": "^12.0.2",
     "prettier": "2.4.1",
+    "prompts": "^2.4.2",
+    "sass": "^1.43.4",
+    "semver": "^7.3.5",
     "shx": "^0.3.3",
     "typescript": "^4.4.4",
+    "unocss": "^0.9.4",
     "vite": "^2.6.14"
   }
 }
