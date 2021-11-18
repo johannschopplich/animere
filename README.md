@@ -154,3 +154,7 @@ Because I couldn't find one that is as small as possible while being also versat
 ## Credits
 
 - [Animate.css](https://animate.style) for the best, easy to use library of CSS animations.
+
+## License
+
+[MIT](./LICENSE) License © 2021 [Johann Schopplich](https://github.com/johannschopplich)
