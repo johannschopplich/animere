@@ -1,3 +1,9 @@
+# [1.16.0](https://github.com/johannschopplich/animere/compare/v1.15.1...v1.16.0) (2021-11-18)
+
+### Bug Fixes
+
+- rename handler to `skipInit` ([d9dc7d6](https://github.com/johannschopplich/animere/commit/d9dc7d695f66cb75293ff485d68610d55fb3ef6d))
+
 ## [1.15.1](https://github.com/johannschopplich/animere/compare/v1.15.0...v1.15.1) (2021-11-17)
 
 ### Bug Fixes
