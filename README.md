@@ -108,6 +108,14 @@ To prevent flash of unstyled content, hide all elements which are about to anima
 })();
 ```
 
+Instantiate Animere accordingly:
+
+```js
+const animere = new Animere({
+  skipInit: () => window.matchMedia("(prefers-reduced-motion: reduce)").matches,
+});
+```
+
 ## Utilities
 
 | Option   | Example Attribute                | Description                                         |
@@ -122,12 +130,12 @@ To prevent flash of unstyled content, hide all elements which are about to anima
 
 Available options are:
 
-| Option         | Default     | Description                                                                                                                                                                                                                                      |
-| -------------- | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `prefix`       | `animere`   | The namespace so to speak for the `data` attributes.                                                                                                                                                                                             |
-| `offset`       | `0.2`       | Number between `0` and `1` of how much an element should be in the viewport before revealing it. See `IntersectionObserver` [`threshold` parameter](https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserver/IntersectionObserver). |
-| `disallowInit` | `undefined` | Custom callback to handle if Animere should skip its initialization. Replaces the default checks for reduced motion preference and crawler detection.                                                                                            |
-| `watchDom`     | `false`     | Indicates if the library should watch the DOM for mutations (added nodes for example).                                                                                                                                                           |
+| Option     | Default     | Description                                                                                                                                                                                                                                      |
+| ---------- | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `prefix`   | `animere`   | The namespace so to speak for the `data` attributes.                                                                                                                                                                                             |
+| `offset`   | `0.2`       | Number between `0` and `1` of how much an element should be in the viewport before revealing it. See `IntersectionObserver` [`threshold` parameter](https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserver/IntersectionObserver). |
+| `skipInit` | `undefined` | Custom handler to overwrite Animere's initialization evaluation. Replaces the default checks for reduced motion preference and crawler detection.                                                                                                |
+| `watchDom` | `false`     | Indicates if the library should watch the DOM for mutations (added nodes for example).                                                                                                                                                           |
 
 ## Accessibility
 
