@@ -1,13 +1,13 @@
 /**
- * Adds animation classes and removes them after animation has finished
+ * Adds an animation class to an element and removes it after
+ * the animation has finished
+ *
+ * Also adds a `<prefix>animated` class during the animation
  */
 export default function (
-  /** The element to animate */
   element: HTMLElement,
-  /** Name of the `Animate.css` animation (without prefix) */
   animation: string,
-  /** `Animate.css` global class name prefix */
-  prefix = "animate__"
+  prefix = ""
 ): Promise<void> {
   return new Promise((resolve) => {
     const animations = [`${prefix}animated`, `${prefix}${animation}`];
