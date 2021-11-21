@@ -1,3 +1,13 @@
+## [1.16.1](https://github.com/johannschopplich/animere/compare/v1.16.0...v1.16.1) (2021-11-21)
+
+### Bug Fixes
+
+- watch DOM option ([8b49971](https://github.com/johannschopplich/animere/commit/8b499711ac1dfd6bb4ffc9ed609aa9e47cdd73d9))
+
+### Features
+
+- generic animate util ([bfcefdd](https://github.com/johannschopplich/animere/commit/bfcefdde9d1fe5d228a1ca926a320ab79cab1ad0))
+
 # [1.16.0](https://github.com/johannschopplich/animere/compare/v1.15.1...v1.16.0) (2021-11-18)
 
 ### Bug Fixes
