@@ -1,4 +1,4 @@
-import { animateCss, isCrawler, prefersReducedMotion } from "./utils";
+import { animate, isCrawler, prefersReducedMotion } from "./utils";
 
 export interface AnimereOptions {
   /** The prefix for `data` attributes */
@@ -41,9 +41,7 @@ export default class Animere {
     }
 
     if (watchDom) {
-      window.addEventListener("DOMContentLoaded", () => {
-        this.observeMutations();
-      });
+      this.observeMutations();
     }
   }
 
@@ -89,7 +87,7 @@ export default class Animere {
 
         // Start animation and wait for it to finish
         // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-        await animateCss(element, element.dataset[this.prefix]!);
+        await animate(element, element.dataset[this.prefix]!, "animate__");
 
         // Mark element as animated
         element.dataset[`${this.prefix}Finished`] = "true";
@@ -108,7 +106,7 @@ export default class Animere {
    * Wait for DOM modifications and initialize new intersection observers
    */
   protected observeMutations(): void {
-    const callback: MutationCallback = (mutations) => {
+    const observer = new MutationObserver((mutations) => {
       for (const mutation of mutations) {
         const newNodes = <NodeListOf<HTMLElement>>mutation.addedNodes;
         if (!newNodes) continue;
@@ -121,9 +119,8 @@ export default class Animere {
             this.observeIntersection(node);
           });
       }
-    };
+    });
 
-    const observer = new MutationObserver(callback);
     observer.observe(document.body, {
       childList: true,
       subtree: true,
@@ -131,7 +128,7 @@ export default class Animere {
   }
 }
 
-export { animateCss, isCrawler, prefersReducedMotion };
+export { animate, isCrawler, prefersReducedMotion };
 
 // Automatically initiate if `init` attribute is present
 let s;
