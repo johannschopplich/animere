@@ -1,3 +1,5 @@
+## [1.16.2](https://github.com/johannschopplich/animere/compare/v1.16.1...v1.16.2) (2021-11-22)
+
 ## [1.16.1](https://github.com/johannschopplich/animere/compare/v1.16.0...v1.16.1) (2021-11-21)
 
 ### Bug Fixes
