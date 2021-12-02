@@ -1,3 +1,9 @@
+## [1.16.3](https://github.com/johannschopplich/animere/compare/v1.16.2...v1.16.3) (2021-12-02)
+
+### Bug Fixes
+
+- change logic for initResolver ([b74a81b](https://github.com/johannschopplich/animere/commit/b74a81b8e182851c6484e97761d971a7f764c55c))
+
 ## [1.16.2](https://github.com/johannschopplich/animere/compare/v1.16.1...v1.16.2) (2021-11-22)
 
 ## [1.16.1](https://github.com/johannschopplich/animere/compare/v1.16.0...v1.16.1) (2021-11-21)
