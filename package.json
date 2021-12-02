@@ -5,13 +5,7 @@
   "files": [
     "dist"
   ],
-  "exports": {
-    ".": {
-      "import": "./dist/animere.es.js",
-      "require": "./dist/animere.umd.js",
-      "types": "./dist/index.d.ts"
-    }
-  },
+  "exports": "./dist/animere.es.js",
   "types": "./dist/index.d.ts",
   "scripts": {
     "dev": "vite",

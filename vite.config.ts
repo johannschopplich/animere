@@ -13,7 +13,7 @@ export default defineConfig(({ mode }) => {
       lib: isProd && {
         entry: resolve(__dirname, "src/index.ts"),
         name: "Animere",
-        formats: ["es", "umd", "iife"],
+        formats: ["es", "iife"],
       },
     },
     plugins: [Unocss()],
