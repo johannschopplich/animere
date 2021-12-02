@@ -8,7 +8,7 @@ export interface AnimereOptions {
   /** Indicates if Animere should listen to DOM mutations */
   watchDom?: boolean;
   /** Custom handler to overwrite Animere's initialization evaluation */
-  skipInit?: () => boolean;
+  initResolver?: () => boolean;
 }
 
 /**
@@ -22,17 +22,19 @@ export default class Animere {
     prefix = "animere",
     offset = 0.2,
     watchDom = false,
-    skipInit,
+    initResolver,
   }: AnimereOptions = {}) {
     this.prefix = prefix;
     this.offset = offset;
 
-    // Skip initialization if the custom initialization callback returns `true`
-    if (skipInit?.()) return;
-
-    // Skip initialization if the user prefers a reduced amount
-    // of motion or a crawler visits the website
-    if (!skipInit && (prefersReducedMotion || isCrawler)) return;
+    if (initResolver) {
+      // Skip initialization if the custom initialization callback returns `true`
+      if (!initResolver()) return;
+    } else {
+      // Skip initialization if the user prefers a reduced amount
+      // of motion or a crawler visits the website
+      if (prefersReducedMotion || isCrawler) return;
+    }
 
     for (const element of document.querySelectorAll<HTMLElement>(
       `[data-${this.prefix}]`

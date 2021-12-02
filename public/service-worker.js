@@ -1,6 +1,6 @@
 /* eslint-env serviceworker */
 
-const VERSION = "1.15.1";
+const VERSION = "1.16.3";
 const CACHE_KEYS = {
   PRE_CACHE: `precache-${VERSION}`,
   RUNTIME: `runtime-${VERSION}`,

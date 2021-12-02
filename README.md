@@ -60,9 +60,9 @@ new Animere();
 
 The short CDN URLs are meant for prototyping. For production usage, use a fully resolved CDN URL to avoid resolving and redirect cost:
 
-- Global build: https://unpkg.com/animere@1.16.2/dist/animere.iife.js
+- Global build: https://unpkg.com/animere@1.16.3/dist/animere.iife.js
   - Exposes `Animere` global property, supports auto initializing
-- ESM build: https://unpkg.com/animere@1.16.2/dist/animere.es.js
+- ESM build: https://unpkg.com/animere@1.16.3/dist/animere.es.js
   - Must be used with `<script type="module">`
 
 ### CSS Animations
@@ -94,25 +94,36 @@ Finally, to initialize the library, create a new `Animere` instance.
 const animere = new Animere();
 ```
 
-### FOUC
+### Flash of Unstyled Content (Fouc)
 
-To prevent flash of unstyled content, hide all elements which are about to animated later by adding the following script to your document's `<head>`:
+To prevent flash of unstyled content, we want to hide all elements which are about to be animated later. This will be handled by CSS.
+
+But before we do do so, first we check if animations are appropriate in the current context. We implement a custom initialization resoler, which resembles the logic Animere.js uses by default. Add the following script to your document's `<head>`:
 
 ```js
 (() => {
-  if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-    const style = document.createElement("style");
-    style.innerHTML = "[data-animere] { visibility: hidden }";
-    document.head.appendChild(style);
+  if (
+    !matchMedia("(prefers-reduced-motion: reduce)").matches &&
+    !/(gle|ing|ro)bot|crawl|spider/i.test(navigator.userAgent)
+  ) {
+    root.dataset.animatable = "true";
   }
 })();
 ```
 
-Instantiate Animere accordingly:
+Now, hide all elements to be animated before the DOM renders:
+
+```css
+:root[data-animatable] [data-animere] {
+  visibility: hidden;
+}
+```
+
+As a last step, instantiate Animere accordingly by using a custom initialization resolver:
 
 ```js
 const animere = new Animere({
-  skipInit: () => window.matchMedia("(prefers-reduced-motion: reduce)").matches,
+  initResolver: () => document.documentElement.dataset.animatable,
 });
 ```
 
@@ -130,12 +141,12 @@ const animere = new Animere({
 
 Available options are:
 
-| Option     | Default     | Description                                                                                                                                                                                                                                      |
-| ---------- | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `prefix`   | `animere`   | The namespace so to speak for the `data` attributes.                                                                                                                                                                                             |
-| `offset`   | `0.2`       | Number between `0` and `1` of how much an element should be in the viewport before revealing it. See `IntersectionObserver` [`threshold` parameter](https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserver/IntersectionObserver). |
-| `skipInit` | `undefined` | Custom handler to overwrite Animere's initialization evaluation. Replaces the default checks for reduced motion preference and crawler detection.                                                                                                |
-| `watchDom` | `false`     | Indicates if the library should watch the DOM for mutations (added nodes for example).                                                                                                                                                           |
+| Option         | Default     | Description                                                                                                                                                                                                                                      |
+| -------------- | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `prefix`       | `animere`   | The namespace so to speak for the `data` attributes.                                                                                                                                                                                             |
+| `offset`       | `0.2`       | Number between `0` and `1` of how much an element should be in the viewport before revealing it. See `IntersectionObserver` [`threshold` parameter](https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserver/IntersectionObserver). |
+| `initResolver` | `undefined` | Custom handler for Animere's initialization evaluation. Replaces the default checks for reduced motion preference and crawler detection. Return `true` to skip Animere's initialization.                                                         |
+| `watchDom`     | `false`     | Indicates if the library should watch the DOM for mutations (added nodes for example).                                                                                                                                                           |
 
 ## Accessibility
 
