@@ -94,7 +94,7 @@ Finally, to initialize the library, create a new `Animere` instance.
 const animere = new Animere();
 ```
 
-### Flash of Unstyled Content (Fouc)
+### Flash of Unstyled Content (FOUC)
 
 To prevent flash of unstyled content, we want to hide all elements which are about to be animated later. This will be handled by CSS.
 
@@ -106,7 +106,7 @@ But before we do do so, first we check if animations are appropriate in the curr
     !matchMedia("(prefers-reduced-motion: reduce)").matches &&
     !/(gle|ing|ro)bot|crawl|spider/i.test(navigator.userAgent)
   ) {
-    root.dataset.animatable = "true";
+    document.documentElement.dataset.animatable = "true";
   }
 })();
 ```
