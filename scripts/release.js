@@ -7,7 +7,7 @@ const fs = require("fs");
 const path = require("path");
 const semver = require("semver");
 const prompts = require("prompts");
-const execa = require("execa");
+const spawn = require("cross-spawn");
 const { cyan } = require("colorette");
 const { version: currentVersion } = require("../package.json");
 
@@ -27,7 +27,7 @@ const inc = (i) => semver.inc(currentVersion, i);
  * @param {object} opts
  */
 const run = (bin, args, opts = {}) =>
-  execa(bin, args, { stdio: "inherit", ...opts });
+  spawn(bin, args, { stdio: "inherit", ...opts });
 
 /**
  * @param {string} msg
