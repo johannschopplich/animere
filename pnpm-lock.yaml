@@ -1,54 +1,54 @@
 lockfileVersion: 5.3
 
 specifiers:
-  '@types/node': ^17.0.9
-  '@types/prompts': ^2.0.14
+  '@types/node': ^17.0.10
+  '@types/prompts': ^2.4.0
   '@types/semver': ^7.3.9
   '@typescript-eslint/eslint-plugin': ^5.10.0
   '@typescript-eslint/parser': ^5.10.0
   conventional-changelog-cli: ^2.2.2
-  duecss: ^0.16.11
+  duecss: ^0.17.0
   eslint: ^8.7.0
   eslint-config-prettier: ^8.3.0
   esno: ^0.14.0
   execa: ^6.0.0
-  lint-staged: ^12.1.7
+  lint-staged: ^12.2.1
   minimist: ^1.2.5
   picocolors: ^1.0.0
   prettier: 2.5.1
   prompts: ^2.4.2
-  sass: ^1.48.0
+  sass: ^1.49.0
   semver: ^7.3.5
   shx: ^0.3.4
   simple-git-hooks: ^2.7.0
   typescript: ^4.5.4
   unocss: ^0.22.4
-  vite: ^2.7.12
+  vite: ^2.7.13
 
 devDependencies:
-  '@types/node': 17.0.9
-  '@types/prompts': 2.0.14
+  '@types/node': 17.0.10
+  '@types/prompts': 2.4.0
   '@types/semver': 7.3.9
   '@typescript-eslint/eslint-plugin': 5.10.0_3b6b276e93ead7cf6063f183a5e18d1f
   '@typescript-eslint/parser': 5.10.0_eslint@8.7.0+typescript@4.5.4
   conventional-changelog-cli: 2.2.2
-  duecss: 0.16.11
+  duecss: 0.17.0
   eslint: 8.7.0
   eslint-config-prettier: 8.3.0_eslint@8.7.0
   esno: 0.14.0_typescript@4.5.4
   execa: 6.0.0
-  lint-staged: 12.1.7
+  lint-staged: 12.2.1
   minimist: 1.2.5
   picocolors: 1.0.0
   prettier: 2.5.1
   prompts: 2.4.2
-  sass: 1.48.0
+  sass: 1.49.0
   semver: 7.3.5
   shx: 0.3.4
   simple-git-hooks: 2.7.0
   typescript: 4.5.4
   unocss: 0.22.4
-  vite: 2.7.12_sass@1.48.0
+  vite: 2.7.13_sass@1.49.0
 
 packages:
 
@@ -181,18 +181,16 @@ packages:
     resolution: {integrity: sha512-jhuKLIRrhvCPLqwPcx6INqmKeiA5EWrsCOPhrlFSrbrmU4ZMPjj5Ul/oLCMDO98XRUIwVm78xICz4EPCektzeQ==}
     dev: true
 
-  /@types/node/17.0.9:
-    resolution: {integrity: sha512-5dNBXu/FOER+EXnyah7rn8xlNrfMOQb/qXnw4NQgLkCygKBKhdmF/CA5oXVOKZLBEahw8s2WP9LxIcN/oDDRgQ==}
+  /@types/node/17.0.10:
+    resolution: {integrity: sha512-S/3xB4KzyFxYGCppyDt68yzBU9ysL88lSdIah4D6cptdcltc4NCPCAMc0+PCpg/lLIyC7IPvj2Z52OJWeIUkog==}
     dev: true
 
   /@types/normalize-package-data/2.4.1:
     resolution: {integrity: sha512-Gj7cI7z+98M282Tqmp2K5EIsoouUEzbBJhQQzDE3jSIRk6r9gsz0oUokqIUR4u1R3dMHo0pDHM7sNOHyhulypw==}
     dev: true
 
-  /@types/prompts/2.0.14:
-    resolution: {integrity: sha512-HZBd99fKxRWpYCErtm2/yxUZv6/PBI9J7N4TNFffl5JbrYMHBwF25DjQGTW3b3jmXq+9P6/8fCIb2ee57BFfYA==}
-    dependencies:
-      '@types/node': 17.0.9
+  /@types/prompts/2.4.0:
+    resolution: {integrity: sha512-7th8Opn+0XlN0O6qzO7dXOPwL6rigq/EwRS2DntaTHwSw8cLaYKeAPt5dWEKHSL+ffVSUl1itTPUC06+FlsV4Q==}
     dev: true
 
   /@types/semver/7.3.9:
@@ -959,8 +957,8 @@ packages:
       is-obj: 2.0.0
     dev: true
 
-  /duecss/0.16.11:
-    resolution: {integrity: sha512-NeJ7qFlEOjvSf7OmUXUamBjLczlrRbUwvYlMb5Tvsb/0sT71buEp6blMt9OEk+md+sSaeW4HIJ3CVO7j+2wcfQ==}
+  /duecss/0.17.0:
+    resolution: {integrity: sha512-kVbdjzckWGXUp9njtrEKK2XGx253uByJFgu/Cq1UNs0vD0sEM6NgO121wuRjnTexct7dfy++GfCn8PVjvbJbsQ==}
     dependencies:
       '@unocss/core': 0.22.4
       '@unocss/preset-uno': 0.22.4
@@ -2007,8 +2005,8 @@ packages:
     resolution: {integrity: sha512-7ylylesZQ/PV29jhEDl3Ufjo6ZX7gCqJr5F7PKrqc93v7fzSymt1BpwEU8nAUXs8qzzvqhbjhK5QZg6Mt/HkBg==}
     dev: true
 
-  /lint-staged/12.1.7:
-    resolution: {integrity: sha512-bltv/ejiLWtowExpjU+s5z8j1Byjg9AlmaAjMmqNbIicY69u6sYIwXGg0dCn0TlkrrY2CphtHIXAkbZ+1VoWQQ==}
+  /lint-staged/12.2.1:
+    resolution: {integrity: sha512-VCVcA9C2Vt5HHxSR4EZVZFJcQRJH984CGBeY+cJ/xed4mBd+JidbM/xbKcCq5ASaygAV0iITtdsCTnID7h/1OQ==}
     engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
     hasBin: true
     dependencies:
@@ -2648,8 +2646,8 @@ packages:
     resolution: {integrity: sha512-rp3So07KcdmmKbGvgaNxQSJr7bGVSVk5S9Eq1F+ppbRo70+YeaDxkw5Dd8NPN+GD6bjnYm2VuPuCXmpuYvmCXQ==}
     dev: true
 
-  /sass/1.48.0:
-    resolution: {integrity: sha512-hQi5g4DcfjcipotoHZ80l7GNJHGqQS5LwMBjVYB/TaT0vcSSpbgM8Ad7cgfsB2M0MinbkEQQPO9+sjjSiwxqmw==}
+  /sass/1.49.0:
+    resolution: {integrity: sha512-TVwVdNDj6p6b4QymJtNtRS2YtLJ/CqZriGg0eIAbAKMlN8Xy6kbv33FsEZSF7FufFFM705SQviHjjThfaQ4VNw==}
     engines: {node: '>=8.9.0'}
     hasBin: true
     dependencies:
@@ -3077,8 +3075,8 @@ packages:
       spdx-expression-parse: 3.0.1
     dev: true
 
-  /vite/2.7.12_sass@1.48.0:
-    resolution: {integrity: sha512-KvPYToRQWhRfBeVkyhkZ5hASuHQkqZUUdUcE3xyYtq5oYEPIJ0h9LWiWTO6v990glmSac2cEPeYeXzpX5Z6qKQ==}
+  /vite/2.7.13_sass@1.49.0:
+    resolution: {integrity: sha512-Mq8et7f3aK0SgSxjDNfOAimZGW9XryfHRa/uV0jseQSilg+KhYDSoNb9h1rknOy6SuMkvNDLKCYAYYUMCE+IgQ==}
     engines: {node: '>=12.2.0'}
     hasBin: true
     peerDependencies:
@@ -3097,7 +3095,7 @@ packages:
       postcss: 8.4.5
       resolve: 1.21.0
       rollup: 2.64.0
-      sass: 1.48.0
+      sass: 1.49.0
     optionalDependencies:
       fsevents: 2.3.2
     dev: true
