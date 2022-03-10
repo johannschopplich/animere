@@ -1,47 +1,21 @@
 :root {
   --du-font-family-normal: "Work Sans", system-ui;
-  --du-radius: 0.5rem;
 }
 
 .box {
-  background-color: var(--du-color-background);
-  border-radius: var(--du-radius);
-  padding: var(--du-spacer);
+  @apply bg-theme-background rounded p-lg;
 }
 
 #main .box {
-  display: grid;
-  place-items: center;
-  height: calc(30 * var(--vh, 1vh));
-  padding: var(--du-space-l);
-  font-size: var(--du-text-4);
-  line-height: var(--du-line-height-heading);
-}
-
-@media (min-width: 640px) {
-  #main .box {
-    height: calc(50 * var(--vh, 1vh));
-    padding: var(--du-space-xl);
-    font-size: var(--du-text-3);
-    text-align: center;
-  }
-}
-
-#main .box {
-  background-color: var(--du-color-accent);
-  color: white;
+  @apply h-[calc(30*var(--vh,1vh))] bg-accent text-white flex items-center justify-center p-3xl text-2xl sm:h-[calc(50*var(--vh,1vh))] sm:p-5xl sm:text-center;
 }
 
 #main .box:nth-child(3n-1) {
-  background-color: white;
-  border: 2px solid var(--du-color-accent);
-  color: var(--du-color-accent);
+  @apply bg-white border-2 border-accent text-accent;
 }
 
 #main .box:nth-child(3n) {
-  background-color: var(--du-color-primary);
-  border: 2px solid var(--du-color-accent);
-  color: var(--du-color-accent);
+  @apply bg-primary border-2 border-accent text-accent;
 }
 
 #main .box:nth-child(3n) a {

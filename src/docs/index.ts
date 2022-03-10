@@ -9,7 +9,7 @@ new Animere({
   watchDom: true,
 });
 
-const qs = <T extends Element>(s: string) => document.querySelector<T>(s);
+const qs = <T extends HTMLElement>(s: string) => document.querySelector<T>(s);
 const template = qs<HTMLTemplateElement>("#box-template");
 
 qs("#button-add-nodes")?.addEventListener("click", () => {

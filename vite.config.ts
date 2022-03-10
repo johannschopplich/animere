@@ -1,6 +1,7 @@
 import { resolve } from "path";
 import { defineConfig } from "vite";
-import Unocss from "unocss/vite";
+import UnoCSS from "unocss/vite";
+import transformerDirective from "@unocss/transformer-directives";
 
 export default defineConfig(({ mode }) => {
   const isProd = mode === "production";
@@ -13,9 +14,13 @@ export default defineConfig(({ mode }) => {
       lib: isProd && {
         entry: resolve(__dirname, "src/index.ts"),
         name: "Animere",
-        formats: ["es", "iife"],
+        formats: ["es", "umd", "iife"],
       },
     },
-    plugins: [Unocss()],
+    plugins: [
+      UnoCSS({
+        transformers: [transformerDirective()],
+      }),
+    ],
   };
 });
