@@ -4,23 +4,19 @@
  *
  * Also adds a `<prefix>animated` class during the animation
  */
-export default function (
-  element: HTMLElement,
-  animation: string,
-  prefix = ""
-): Promise<void> {
+export default function (element: HTMLElement, animation: string, prefix = ''): Promise<void> {
   return new Promise((resolve) => {
-    const animations = [`${prefix}animated`, `${prefix}${animation}`];
-    element.classList.add(...animations);
+    const animations = [`${prefix}animated`, `${prefix}${animation}`]
+    element.classList.add(...animations)
 
     // Clean classes and resolve the Promise when the animation ends
     element.addEventListener(
-      "animationend",
+      'animationend',
       () => {
-        element.classList.remove(...animations);
-        resolve();
+        element.classList.remove(...animations)
+        resolve()
       },
-      { once: true }
-    );
-  });
+      { once: true },
+    )
+  })
 }

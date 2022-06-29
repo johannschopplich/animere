@@ -52,8 +52,8 @@ If you don't want the auto initialize, remove the `init` attribute and move the 
 Or, use the ES module build by installing the `animere` npm package:
 
 ```js
-import Animere from "animere";
-new Animere();
+import Animere from 'animere'
+new Animere()
 ```
 
 ### Production CDN URLs
@@ -91,7 +91,7 @@ You can use any of the utility classes/custom properties provided by Animate.css
 Finally, to initialize the library, create a new `Animere` instance.
 
 ```js
-const animere = new Animere();
+const animere = new Animere()
 ```
 
 ### Flash of Unstyled Content (FOUC)
@@ -103,12 +103,12 @@ But before we do do so, first we check if animations are appropriate in the curr
 ```js
 (() => {
   if (
-    !matchMedia("(prefers-reduced-motion: reduce)").matches &&
-    !/(gle|ing|ro)bot|crawl|spider/i.test(navigator.userAgent)
-  ) {
-    document.documentElement.dataset.animatable = "true";
-  }
-})();
+    !matchMedia('(prefers-reduced-motion: reduce)').matches
+    && !/(gle|ing|ro)bot|crawl|spider/i.test(navigator.userAgent)
+  )
+    document.documentElement.dataset.animatable = 'true'
+
+})()
 ```
 
 Now, hide all elements to be animated before the DOM renders:
@@ -124,7 +124,7 @@ As a last step, instantiate Animere accordingly by using a custom initialization
 ```js
 const animere = new Animere({
   initResolver: () => document.documentElement.dataset.animatable,
-});
+})
 ```
 
 ## Utilities

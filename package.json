@@ -1,7 +1,22 @@
 {
   "name": "animere",
   "version": "1.17.0",
+  "packageManager": "pnpm@7.4.0",
   "description": "CSS-driven scroll-based animations",
+  "author": {
+    "name": "Johann Schopplich",
+    "email": "pkg@johannschopplich.com",
+    "url": "https://johannschopplich.com"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/johannschopplich/animere#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/johannschopplich/animere.git"
+  },
+  "bugs": {
+    "url": "https://github.com/johannschopplich/animere/issues"
+  },
   "keywords": [
     "animation",
     "animate.css",
@@ -9,77 +24,48 @@
     "scroll-animation",
     "scroll-story"
   ],
-  "homepage": "https://github.com/johannschopplich/animere#readme",
-  "bugs": {
-    "url": "https://github.com/johannschopplich/animere/issues"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/johannschopplich/animere.git"
-  },
-  "license": "MIT",
-  "author": {
-    "name": "Johann Schopplich",
-    "email": "pkg@johannschopplich.com",
-    "url": "https://johannschopplich.com"
-  },
-  "files": [
-    "dist"
-  ],
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "import": "./dist/animere.es.js",
-      "require": "./dist/animere.umd.js"
+      "require": "./dist/animere.umd.js",
+      "import": "./dist/animere.mjs"
     }
   },
   "main": "./dist/animere.umd.js",
-  "module": "./dist/animere.es.js",
+  "module": "./dist/animere.mjs",
   "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "dev": "vite",
     "build": "vite build && tsc --emitDeclarationOnly && shx rm -rf dist/docs",
     "build:docs": "vite build --mode docs",
-    "lint": "eslint \"src/**/*.ts\"",
-    "lint:fix": "npm run lint -- --fix",
-    "format": "prettier --write \"src/**/*.ts\"",
-    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s",
-    "release": "esno scripts/release.ts",
-    "prepublishOnly": "tsc --noEmit && npm run build"
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "release": "tsc --noEmit && bumpp --commit --push --tag"
   },
-  "lint-staged": {
-    "src/**/*.ts": [
-      "eslint",
-      "prettier --write"
-    ]
+  "devDependencies": {
+    "@antfu/eslint-config": "^0.25.2",
+    "@types/node": "^18.0.0",
+    "@unocss/transformer-directives": "^0.41.1",
+    "bumpp": "^8.2.1",
+    "duecss": "^0.26.0",
+    "eslint": "^8.18.0",
+    "lint-staged": "^13.0.3",
+    "sass": "^1.53.0",
+    "shx": "^0.3.4",
+    "simple-git-hooks": "^2.8.0",
+    "typescript": "^4.7.4",
+    "unocss": "^0.41.1",
+    "vite": "^3.0.0-beta.5"
   },
   "simple-git-hooks": {
     "pre-commit": "npx lint-staged"
   },
-  "devDependencies": {
-    "@types/node": "^17.0.21",
-    "@types/prompts": "^2.4.0",
-    "@types/semver": "^7.3.9",
-    "@typescript-eslint/eslint-plugin": "^5.14.0",
-    "@typescript-eslint/parser": "^5.14.0",
-    "@unocss/transformer-directives": "^0.27.2",
-    "conventional-changelog-cli": "^2.2.2",
-    "duecss": "^0.23.4",
-    "eslint": "^8.10.0",
-    "eslint-config-prettier": "^8.5.0",
-    "esno": "^0.14.1",
-    "execa": "^6.1.0",
-    "lint-staged": "^12.3.5",
-    "minimist": "^1.2.5",
-    "picocolors": "^1.0.0",
-    "prettier": "2.5.1",
-    "prompts": "^2.4.2",
-    "sass": "^1.49.9",
-    "semver": "^7.3.5",
-    "shx": "^0.3.4",
-    "simple-git-hooks": "^2.7.0",
-    "typescript": "^4.6.2",
-    "unocss": "^0.27.2",
-    "vite": "^2.8.6"
+  "lint-staged": {
+    "src/**/*.ts": [
+      "eslint"
+    ]
   }
 }
