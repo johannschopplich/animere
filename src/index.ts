@@ -140,4 +140,3 @@ let s
 if ((s = document.currentScript) && s.hasAttribute('init'))
   // eslint-disable-next-line no-new
   new Animere()
-
