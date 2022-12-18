@@ -17,7 +17,7 @@
 
 > Reveal elements while you scroll with an animation of your liking.
 
-- 🍃 **Lightweight**: 0.8kb minified & brotli
+- 🍃 **Lightweight**: 1kB minified & gzipped
 - ✨ **CSS-driven**: Utilizes [Animate.css](https://animate.style) under the hood
 - 🔧 **Customizable**: Use `data` attributes for animation duration, delay, repeat
 - ♿️ **Accessible**: Respects reduced motion preference
@@ -60,9 +60,9 @@ new Animere()
 
 The short CDN URLs are meant for prototyping. For production usage, use a fully resolved CDN URL to avoid resolving and redirect cost:
 
-- Global build: https://unpkg.com/animere@1.18.0/dist/animere.iife.js
+- Global build: https://unpkg.com/animere@1.18.1/dist/animere.iife.js
   - Exposes `Animere` global property, supports auto initializing
-- ESM build: https://unpkg.com/animere@1.18.0/dist/animere.es.js
+- ESM build: https://unpkg.com/animere@1.18.1/dist/animere.es.js
   - Must be used with `<script type="module">`
 
 ### CSS Animations
