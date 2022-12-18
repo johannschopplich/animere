@@ -1,5 +1,4 @@
-import { defineConfig, presetWind } from 'unocss'
-import transformerDirective from '@unocss/transformer-directives'
+import { defineConfig, presetWind, transformerDirectives } from 'unocss'
 import { presetDue } from 'duecss'
 
 export default defineConfig({
@@ -32,17 +31,7 @@ export default defineConfig({
         900: '#000000',
       },
     },
-    fontSize: {
-      'xs': ['0.75rem', 'var(--du-line-height-normal)'],
-      'sm': ['0.875rem', 'var(--du-line-height-normal)'],
-      'base': ['1rem', 'var(--du-line-height-normal)'],
-      'lg': ['var(--du-text-lg)', 'var(--du-line-height-heading)'],
-      'xl': ['var(--du-text-xl)', 'var(--du-line-height-heading)'],
-      '2xl': ['var(--du-text-2xl)', 'var(--du-line-height-heading)'],
-      '3xl': ['var(--du-text-3xl)', 'var(--du-line-height-heading)'],
-      '4xl': ['var(--du-text-4xl)', 'var(--du-line-height-heading)'],
-    },
   },
-  transformers: [transformerDirective()],
+  transformers: [transformerDirectives()],
   presets: [presetWind(), presetDue()],
 })
