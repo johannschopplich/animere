@@ -17,7 +17,7 @@ export default defineConfig(({ mode }) => {
       },
     },
     plugins: [
-      UnoCSS(),
+      !isProd && UnoCSS(),
     ],
   }
 })
