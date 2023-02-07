@@ -1,6 +1,6 @@
 {
   "name": "animere",
-  "version": "1.18.1",
+  "version": "1.18.2",
   "packageManager": "pnpm@7.26.3",
   "description": "CSS-driven scroll-based animations",
   "author": {
@@ -43,7 +43,7 @@
     "build:docs": "vite build --mode docs",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "release": "tsc --noEmit && bumpp --commit --push --tag"
+    "release": "tsc --noEmit && bumpp --all --commit --push --tag"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^0.35.1",
