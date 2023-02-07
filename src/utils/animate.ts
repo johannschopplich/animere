@@ -4,8 +4,8 @@
  *
  * Also adds a `<prefix>animated` class during the animation
  */
-export default function (element: HTMLElement, animation: string, prefix = ''): Promise<void> {
-  return new Promise((resolve) => {
+export default function (element: HTMLElement, animation: string, prefix = '') {
+  return new Promise<void>((resolve) => {
     const animations = [`${prefix}animated`, `${prefix}${animation}`]
     element.classList.add(...animations)
 

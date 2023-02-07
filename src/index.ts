@@ -27,16 +27,15 @@ export default class Animere {
     this.prefix = prefix
     this.offset = offset
 
+    // Skip initialization if the custom initialization callback returns `true`
     if (initResolver) {
-      // Skip initialization if the custom initialization callback returns `true`
       if (!initResolver())
         return
     }
-    else {
-      // Skip initialization if the user prefers a reduced amount
-      // of motion or a crawler visits the website
-      if (prefersReducedMotion || isCrawler)
-        return
+    // Skip initialization if the user prefers a reduced amount
+    // of motion or a crawler visits the website
+    else if (prefersReducedMotion || isCrawler) {
+      return
     }
 
     for (const element of document.querySelectorAll<HTMLElement>(
@@ -51,7 +50,7 @@ export default class Animere {
   /**
    * Initialize intersection observer on target elements
    */
-  protected observeIntersection(element: HTMLElement): void {
+  protected observeIntersection(element: HTMLElement) {
     // Hide element
     element.style.visibility = 'hidden'
 
@@ -108,7 +107,7 @@ export default class Animere {
   /**
    * Wait for DOM modifications and initialize new intersection observers
    */
-  protected observeMutations(): void {
+  protected observeMutations() {
     const observer = new MutationObserver((mutations) => {
       for (const mutation of mutations) {
         const newNodes = <NodeListOf<HTMLElement>>mutation.addedNodes

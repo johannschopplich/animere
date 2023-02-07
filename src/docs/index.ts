@@ -14,7 +14,7 @@ new Animere({
 const qs = <T extends HTMLElement>(s: string) => document.querySelector<T>(s)
 const template = qs<HTMLTemplateElement>('#box-template')
 
-qs('#button-add-nodes')?.addEventListener('click', () => {
+qs('[data-add-nodes]')?.addEventListener('click', () => {
   if (!template)
     return
   const clone = template.content.cloneNode(true)

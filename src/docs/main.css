@@ -7,15 +7,15 @@
 }
 
 #main .box {
-  --at-apply: "h-[calc(30*var(--vh,1vh))] bg-accent text-white flex items-center justify-center p-3xl text-2xl sm:h-[calc(50*var(--vh,1vh))] sm:p-5xl sm:text-center";
+  --at-apply: "bg-accent p-3xl sm:p-5xl flex h-[calc(30*var(--vh,1vh))] items-center justify-center text-2xl text-white sm:h-[calc(50*var(--vh,1vh))] sm:text-center";
 }
 
 #main .box:nth-child(3n-1) {
-  --at-apply: "bg-white border-2 border-accent text-accent";
+  --at-apply: "border-accent text-accent border-2 bg-white";
 }
 
 #main .box:nth-child(3n) {
-  --at-apply: "bg-primary border-2 border-accent text-accent";
+  --at-apply: "bg-primary border-accent text-accent border-2";
 }
 
 #main .box:nth-child(3n) a {
