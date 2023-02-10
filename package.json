@@ -1,6 +1,6 @@
 {
   "name": "animere",
-  "version": "1.19.0",
+  "version": "1.19.1",
   "packageManager": "pnpm@7.27.0",
   "description": "CSS-driven scroll-based animations",
   "author": {
