@@ -1,8 +1,8 @@
-import { animate, isCrawler, prefersReducedMotion } from './utils'
+import { animate, isCrawler, prefersReducedMotion, toPascalCase } from './utils'
 
 export interface AnimereOptions {
   /**
-   * The prefix for `data` attributes
+   * The prefix for `data` attributes in kebab-case
    * @default 'animere'
    */
   prefix?: string
@@ -27,8 +27,8 @@ export interface AnimereOptions {
  * CSS-driven scroll-based animations
  */
 export default class Animere {
-  protected readonly prefix: string
-  protected readonly offset: number
+  #prefix: string
+  #offset: number
 
   constructor({
     prefix = 'animere',
@@ -36,8 +36,8 @@ export default class Animere {
     watchDom = false,
     initResolver,
   }: AnimereOptions = {}) {
-    this.prefix = prefix
-    this.offset = offset
+    this.#prefix = prefix
+    this.#offset = offset
 
     // Skip initialization if the custom initialization callback returns `true`
     if (initResolver) {
@@ -51,7 +51,7 @@ export default class Animere {
     }
 
     for (const element of document.querySelectorAll<HTMLElement>(
-      `[data-${this.prefix}]`,
+      `[data-${this.#prefix}]`,
     ))
       this.observeIntersection(element)
 
@@ -70,6 +70,8 @@ export default class Animere {
       entries: Array<IntersectionObserverEntry>,
       observer: IntersectionObserver,
     ) => {
+      const _prefix = toPascalCase(this.#prefix)
+
       for (const entry of entries) {
         if (!entry.isIntersecting)
           continue
@@ -78,10 +80,10 @@ export default class Animere {
         // Add custom properties for `Animate.css` animations from `data`
         // attributes if available, e.g. `data-animere-duration="2s"`
         Object.keys(element.dataset)
-          .filter(i => i !== this.prefix && i.startsWith(this.prefix))
+          .filter(i => i !== _prefix && i.startsWith(_prefix))
           .forEach((dataAttr) => {
             const animateOption = dataAttr
-              .slice(this.prefix.length)
+              .slice(_prefix.length)
               .toLowerCase()
             const propertyName = `--animate-${animateOption}`
 
@@ -100,17 +102,17 @@ export default class Animere {
         observer.unobserve(element)
 
         // Start animation and wait for it to finish
-        await animate(element, element.dataset[this.prefix]!, 'animate__')
+        await animate(element, element.dataset[_prefix]!, 'animate__')
 
         // Mark element as animated
-        element.dataset[`${this.prefix}Finished`] = 'true'
+        element.dataset[`${_prefix}Finished`] = 'true'
       }
     }
 
-    const { offset: threshold } = this
-    const observer = new IntersectionObserver(callback, {
-      threshold,
-    })
+    const observer = new IntersectionObserver(
+      callback,
+      { threshold: this.#offset },
+    )
 
     observer.observe(element)
   }
@@ -120,15 +122,17 @@ export default class Animere {
    */
   protected observeMutations() {
     const observer = new MutationObserver((mutations) => {
+      const _prefix = toPascalCase(this.#prefix)
+
       for (const mutation of mutations) {
-        const newNodes = <NodeListOf<HTMLElement>>mutation.addedNodes
+        const newNodes = mutation.addedNodes as NodeListOf<HTMLElement>
         if (!newNodes)
           continue
 
         Array.from(newNodes)
           // Filter just `elements` (apart from node types like `text`)
           // and nodes to animate
-          .filter(i => i.nodeType === 1 && this.prefix in i.dataset)
+          .filter(i => i.nodeType === 1 && _prefix in i.dataset)
           .forEach((node) => {
             this.observeIntersection(node)
           })
