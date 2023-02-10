@@ -1,4 +1,4 @@
-import { animate, isCrawler, prefersReducedMotion, toPascalCase } from './utils'
+import { animate, isCrawler, prefersReducedMotion, toCamelCase } from './utils'
 
 export interface AnimereOptions {
   /**
@@ -70,7 +70,7 @@ export default class Animere {
       entries: Array<IntersectionObserverEntry>,
       observer: IntersectionObserver,
     ) => {
-      const _prefix = toPascalCase(this.#prefix)
+      const _prefix = toCamelCase(this.#prefix)
 
       for (const entry of entries) {
         if (!entry.isIntersecting)
@@ -122,7 +122,7 @@ export default class Animere {
    */
   protected observeMutations() {
     const observer = new MutationObserver((mutations) => {
-      const _prefix = toPascalCase(this.#prefix)
+      const _prefix = toCamelCase(this.#prefix)
 
       for (const mutation of mutations) {
         const newNodes = mutation.addedNodes as NodeListOf<HTMLElement>

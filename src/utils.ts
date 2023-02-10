@@ -33,11 +33,8 @@ export function animate(element: HTMLElement, animation: string, prefix = '') {
 }
 
 /**
- * Convert a given string to pascal case
+ * Convert a given string to camel case
  */
-export function toPascalCase(string: string) {
-  return string
-    .split('-')
-    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-    .join('')
+export function toCamelCase(string_: string) {
+  return string_.replace(/-([a-z])/g, match => match[1].toUpperCase())
 }
