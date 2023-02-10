@@ -1,13 +1,25 @@
 import { animate, isCrawler, prefersReducedMotion } from './utils'
 
 export interface AnimereOptions {
-  /** The prefix for `data` attributes */
+  /**
+   * The prefix for `data` attributes
+   * @default 'animere'
+   */
   prefix?: string
-  /** The ratio of intersection area (threshold) visible until an animation should appear */
+  /**
+   * The ratio of intersection area (threshold) visible until an animation should appear
+   * @default 0.2
+   */
   offset?: number
-  /** Indicates if Animere should listen to DOM mutations */
+  /**
+   * Indicates if Animere should listen to DOM mutations
+   * @default false
+   */
   watchDom?: boolean
-  /** Custom handler to overwrite Animere's initialization evaluation */
+  /**
+   * Custom handler to overwrite Animere's initialization evaluation
+   * @default undefined
+   */
   initResolver?: () => boolean
 }
 
@@ -61,7 +73,7 @@ export default class Animere {
       for (const entry of entries) {
         if (!entry.isIntersecting)
           continue
-        const element = <HTMLElement>entry.target
+        const element = entry.target as HTMLElement
 
         // Add custom properties for `Animate.css` animations from
         // `data` attributes if available, for example `data-animere-duration="2s"`
@@ -88,7 +100,6 @@ export default class Animere {
         observer.unobserve(element)
 
         // Start animation and wait for it to finish
-
         await animate(element, element.dataset[this.prefix]!, 'animate__')
 
         // Mark element as animated
