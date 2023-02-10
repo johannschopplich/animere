@@ -77,6 +77,7 @@ export default class Animere {
 
         // Skip if `data-animere-skip` attribute is present
         if (`${this.prefix}Skip` in element.dataset) {
+          element.style.visibility = 'visible'
           observer.unobserve(element)
           continue
         }
