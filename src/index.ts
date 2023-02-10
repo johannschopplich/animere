@@ -75,8 +75,14 @@ export default class Animere {
           continue
         const element = entry.target as HTMLElement
 
-        // Add custom properties for `Animate.css` animations from
-        // `data` attributes if available, for example `data-animere-duration="2s"`
+        // Skip if `data-animere-skip` attribute is present
+        if (`${this.prefix}Skip` in element.dataset) {
+          observer.unobserve(element)
+          continue
+        }
+
+        // Add custom properties for `Animate.css` animations from `data`
+        // attributes if available, e.g. `data-animere-duration="2s"`
         Object.keys(element.dataset)
           .filter(i => i !== this.prefix && i.startsWith(this.prefix))
           .forEach((dataAttr) => {
