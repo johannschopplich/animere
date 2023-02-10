@@ -51,7 +51,7 @@ export default class Animere {
     }
 
     for (const element of document.querySelectorAll<HTMLElement>(
-      `[data-${this.#prefix}]`,
+      `[data-${this.#prefix}]:not([data-${this.#prefix}-skip])`,
     ))
       this.observeIntersection(element)
 
