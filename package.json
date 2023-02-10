@@ -1,7 +1,7 @@
 {
   "name": "animere",
-  "version": "1.18.2",
-  "packageManager": "pnpm@7.26.3",
+  "version": "1.18.3",
+  "packageManager": "pnpm@7.27.0",
   "description": "CSS-driven scroll-based animations",
   "author": {
     "name": "Johann Schopplich",
@@ -46,10 +46,10 @@
     "release": "tsc --noEmit && bumpp --all --commit --push --tag"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^0.35.1",
+    "@antfu/eslint-config": "^0.35.2",
     "@types/node": "^18.13.0",
     "bumpp": "^8.2.1",
-    "duecss": "^0.27.5",
+    "duecss": "^0.28.0",
     "eslint": "^8.33.0",
     "lint-staged": "^13.1.1",
     "sass": "^1.58.0",
