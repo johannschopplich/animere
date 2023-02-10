@@ -75,13 +75,6 @@ export default class Animere {
           continue
         const element = entry.target as HTMLElement
 
-        // Skip if `data-animere-skip` attribute is present
-        if (`${this.prefix}Skip` in element.dataset) {
-          element.style.visibility = 'visible'
-          observer.unobserve(element)
-          continue
-        }
-
         // Add custom properties for `Animate.css` animations from `data`
         // attributes if available, e.g. `data-animere-duration="2s"`
         Object.keys(element.dataset)
