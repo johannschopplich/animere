@@ -1,8 +1,8 @@
-import { animate, isCrawler, prefersReducedMotion, toCamelCase } from './utils'
+import { animate, isCrawler, prefersReducedMotion, toCamelCase, toKebabCase } from './utils'
 
 export interface AnimereOptions {
   /**
-   * The prefix for `data` attributes in kebab-case
+   * The prefix for `data` attributes
    * @default 'animere'
    */
   prefix?: string
@@ -36,7 +36,7 @@ export default class Animere {
     watchDom = false,
     initResolver,
   }: AnimereOptions = {}) {
-    this.#prefix = prefix
+    this.#prefix = toKebabCase(prefix)
     this.#offset = offset
 
     // Skip initialization if the custom initialization callback returns `true`

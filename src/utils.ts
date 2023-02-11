@@ -38,3 +38,10 @@ export function animate(element: HTMLElement, animation: string, prefix = '') {
 export function toCamelCase(string_: string) {
   return string_.replace(/-([a-z])/g, match => match[1].toUpperCase())
 }
+
+/**
+ * Convert a given string to kebab case
+ */
+export function toKebabCase(string_: string) {
+  return string_.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase()
+}
