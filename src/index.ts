@@ -12,7 +12,7 @@ export interface AnimereOptions {
    */
   offset?: number
   /**
-   * Limit the intersection calculation to the x or y-axis
+   * Determine intersection based on an element's width or height as well
    * @default undefined
    */
   axis?: 'x' | 'y'
@@ -80,14 +80,12 @@ export default class Animere {
       [entry],
       observer,
     ) => {
-      if (this.#options.axis === 'x' && !this.isIntersectingAxis(entry, 'x'))
-        return
-
-      if (this.#options.axis === 'y' && !this.isIntersectingAxis(entry, 'y'))
-        return
-
-      if (!this.#options.axis && !entry.isIntersecting)
-        return
+      if (!entry.isIntersecting) {
+        if (this.#options.axis && !this.isIntersectingAxis(entry, this.#options.axis))
+          return
+        else if (!this.#options.axis)
+          return
+      }
 
       const element = entry.target as HTMLElement
 
@@ -161,25 +159,24 @@ export default class Animere {
     entry: IntersectionObserverEntry,
     axis: 'x' | 'y',
   ) {
-    const rootBounds = entry.rootBounds!
-    const boundingClientRect = entry.boundingClientRect
+    const { rootBounds, boundingClientRect } = entry
     let threshold = entry.intersectionRatio
 
     if (threshold === 0)
       return false
 
     if (axis === 'x') {
-      threshold = (boundingClientRect.width + rootBounds.width) * threshold / 2
+      threshold = (boundingClientRect.width + rootBounds!.width) * threshold / 2
       return (
-        boundingClientRect.right - threshold >= rootBounds.left
-        && boundingClientRect.left + threshold <= rootBounds.right
+        boundingClientRect.right - threshold >= rootBounds!.left
+        && boundingClientRect.left + threshold <= rootBounds!.right
       )
     }
     else if (axis === 'y') {
-      threshold = (boundingClientRect.height + rootBounds.height) * threshold / 2
+      threshold = (boundingClientRect.height + rootBounds!.height) * threshold / 2
       return (
-        boundingClientRect.bottom - threshold >= rootBounds.top
-        && boundingClientRect.top + threshold <= rootBounds.bottom
+        boundingClientRect.bottom - threshold >= rootBounds!.top
+        && boundingClientRect.top + threshold <= rootBounds!.bottom
       )
     }
 
