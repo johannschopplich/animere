@@ -12,7 +12,8 @@ export interface AnimereOptions {
    */
   offset?: number
   /**
-   * Determine intersection based on an element's width or height as well
+   * Determine intersection based on an element's width or height,
+   * rather than the element's size
    * @default undefined
    */
   axis?: 'x' | 'y'
@@ -73,13 +74,10 @@ export default class Animere {
       [entry],
       observer,
     ) => {
-      if (
-        !entry.isIntersecting
-        && (
-          (axis && !this.isIntersectingAxis(entry, axis))
-          || !axis
-        )
-      )
+      if (!axis && !entry.isIntersecting)
+        return
+
+      if (axis && !this.isIntersectingAxis(entry, axis))
         return
 
       const element = entry.target as HTMLElement
@@ -135,6 +133,8 @@ export default class Animere {
 
     if (threshold === 0)
       return false
+    else if (threshold === 1)
+      return true
 
     if (axis === 'x') {
       threshold = (boundingClientRect.width + rootBounds!.width) * threshold / 2
