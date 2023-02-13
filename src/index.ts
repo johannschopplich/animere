@@ -17,61 +17,54 @@ export interface AnimereOptions {
    */
   axis?: 'x' | 'y'
   /**
-   * Indicates if Animere should listen to DOM mutations
-   * @default false
-   */
-  watchDOM?: boolean
-  /**
-   * Custom handler to overwrite Animere's initialization evaluation
+   * Custom handler to determine when to initialize Animere
    * @default undefined
    */
   initResolver?: () => boolean
 }
 
+type AnimereObserverOptions = Pick<AnimereOptions, 'prefix' | 'offset' | 'axis'>
+
 /**
  * CSS-driven scroll-based animations
  */
 export default class Animere {
-  #options: Required<Pick<AnimereOptions, 'prefix' | 'offset'>> & Pick<AnimereOptions, 'axis'>
-
   constructor({
     prefix = 'animere',
-    offset = 0.2,
-    watchDOM = false,
+    offset,
     axis,
-    initResolver,
+    initResolver = () => !prefersReducedMotion && !isCrawler,
   }: AnimereOptions = {}) {
     const _prefix = toKebabCase(prefix)
 
-    this.#options = {
-      prefix: _prefix,
-      offset,
-      axis,
-    }
-
-    // Skip initialization if the custom initialization callback returns `true`
-    if (initResolver && !initResolver())
-      return
-
     // Skip initialization if the user prefers a reduced amount
     // of motion or a crawler visits the website
-    if (!initResolver && (prefersReducedMotion || isCrawler))
+    if (!initResolver())
       return
 
     for (const element of document.querySelectorAll<HTMLElement>(
       `[data-${_prefix}]:not([data-${_prefix}-skip])`,
-    ))
-      this.initIntersectionObserver(element)
-
-    if (watchDOM)
-      this.initMutationObserver()
+    )) {
+      this.initIntersectionObserver(element, {
+        prefix: _prefix,
+        offset,
+        axis,
+      })
+    }
   }
 
   /**
    * Initialize intersection observer on target elements
    */
-  protected initIntersectionObserver(element: HTMLElement) {
-    const _prefix = toCamelCase(this.#options.prefix)
+  public initIntersectionObserver(
+    element: HTMLElement,
+    {
+      prefix = 'animere',
+      offset = 0.2,
+      axis,
+    }: AnimereObserverOptions,
+  ) {
+    const _prefix = toCamelCase(prefix)
 
     // Hide element
     element.style.visibility = 'hidden'
@@ -83,8 +76,8 @@ export default class Animere {
       if (
         !entry.isIntersecting
         && (
-          (this.#options.axis && !this.isIntersectingAxis(entry, this.#options.axis))
-          || !this.#options.axis
+          (axis && !this.isIntersectingAxis(entry, axis))
+          || !axis
         )
       )
         return
@@ -124,34 +117,10 @@ export default class Animere {
 
     const observer = new IntersectionObserver(
       callback,
-      { threshold: this.#options.offset },
+      { threshold: offset },
     )
 
     observer.observe(element)
-  }
-
-  /**
-   * Wait for DOM modifications and initialize new intersection observers
-   */
-  protected initMutationObserver() {
-    const _prefix = toCamelCase(this.#options.prefix)
-
-    const callback: MutationCallback = (records) => {
-      for (const { addedNodes } of records) {
-        ([...addedNodes] as HTMLElement[])
-          // Filter just `elements` (apart from node types like `text`)
-          // and nodes to animate
-          .filter(i => i.nodeType === 1 && _prefix in i.dataset)
-          .forEach(this.initIntersectionObserver)
-      }
-    }
-
-    const observer = new MutationObserver(callback)
-
-    observer.observe(document.body, {
-      childList: true,
-      subtree: true,
-    })
   }
 
   /**

@@ -15,12 +15,11 @@
 
 ### Key Features
 
-- 🍃 **Lightweight**: 1.4 kB minified & gzipped
+- 🍃 **Lightweight**: 1.2 kB minified & gzipped
 - ✨ **CSS-driven**: Utilizes [Animate.css](https://animate.style) under the hood
 - 🔧 **Customizable**: Use `data` attributes for animation duration, delay, repeat
 - ♿️ **Accessible**: Respects reduced motion preference
 - 🔍 **SEO-friendly**: Detects e.g. Google Bot and skips initialization
-- 👀 **Observant**: Watches for DOM changes
 
 ## Installation
 
@@ -143,7 +142,6 @@ Available options are:
 | `prefix`       | `animere`   | The prefix for `data` attributes, e.g. resulting in `data-animere` for the default value.                                                                                                                                                        |
 | `offset`       | `0.2`       | Number between `0` and `1` of how much an element should be in the viewport before revealing it. See `IntersectionObserver` [`threshold` parameter](https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserver/IntersectionObserver). |
 | `axis`         | `undefined` | In some cases, you may also want to calculate the intersection for the width or height of an element, instead of its entire size. Use `x` or `y` as axis values to take them into account.                                                       |
-| `watchDOM`     | `false`     | Indicates if the library should watch the DOM for mutations (added nodes).                                                                                                                                                                       |
 | `initResolver` | `undefined` | Custom handler for Animere's initialization evaluation. Replaces the default checks for reduced motion preference and crawler detection. Return `true` to skip Animere's initialization.                                                         |
 
 ## Accessibility
