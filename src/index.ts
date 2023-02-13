@@ -80,12 +80,14 @@ export default class Animere {
       [entry],
       observer,
     ) => {
-      if (!entry.isIntersecting) {
-        if (this.#options.axis && !this.isIntersectingAxis(entry, this.#options.axis))
-          return
-        else if (!this.#options.axis)
-          return
-      }
+      if (
+        !entry.isIntersecting
+        && (
+          (this.#options.axis && !this.isIntersectingAxis(entry, this.#options.axis))
+          || !this.#options.axis
+        )
+      )
+        return
 
       const element = entry.target as HTMLElement
 
@@ -159,8 +161,8 @@ export default class Animere {
     entry: IntersectionObserverEntry,
     axis: 'x' | 'y',
   ) {
-    const { rootBounds, boundingClientRect } = entry
-    let threshold = entry.intersectionRatio
+    const { intersectionRatio, boundingClientRect, rootBounds } = entry
+    let threshold = intersectionRatio
 
     if (threshold === 0)
       return false
