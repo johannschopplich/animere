@@ -15,9 +15,7 @@
 
 ### Key Features
 
-> Reveal elements while you scroll with an animation of your liking.
-
-- 🍃 **Lightweight**: 1kB minified & gzipped
+- 🍃 **Lightweight**: 1.4 kB minified & gzipped
 - ✨ **CSS-driven**: Utilizes [Animate.css](https://animate.style) under the hood
 - 🔧 **Customizable**: Use `data` attributes for animation duration, delay, repeat
 - ♿️ **Accessible**: Respects reduced motion preference
@@ -98,7 +96,7 @@ const animere = new Animere()
 
 To prevent flash of unstyled content, we want to hide all elements which are about to be animated later. This will be handled by CSS.
 
-But before we do do so, first we check if animations are appropriate in the current context. We implement a custom initialization resoler, which resembles the logic Animere.js uses by default. Add the following script to your document's `<head>`:
+But before we do so, first we check if animations are appropriate in the current context. We implement a custom initialization resolver, which resembles the logic Animere.js uses by default. Add the following script to your document's `<head>`:
 
 ```js
 (() => {
@@ -107,14 +105,13 @@ But before we do do so, first we check if animations are appropriate in the curr
     && !/(gle|ing|ro)bot|crawl|spider/i.test(navigator.userAgent)
   )
     document.documentElement.dataset.animatable = 'true'
-
 })()
 ```
 
 Now, hide all elements to be animated before the DOM renders:
 
 ```css
-:root[data-animatable] [data-animere] {
+:root[data-animatable] :where([data-animere]) {
   visibility: hidden;
 }
 ```
@@ -123,7 +120,7 @@ As a last step, instantiate Animere accordingly by using a custom initialization
 
 ```js
 const animere = new Animere({
-  initResolver: () => document.documentElement.dataset.animatable,
+  initResolver: () => !!document.documentElement.dataset.animatable,
 })
 ```
 
@@ -145,8 +142,9 @@ Available options are:
 | -------------- | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `prefix`       | `animere`   | The namespace so to speak for the `data` attributes.                                                                                                                                                                                             |
 | `offset`       | `0.2`       | Number between `0` and `1` of how much an element should be in the viewport before revealing it. See `IntersectionObserver` [`threshold` parameter](https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserver/IntersectionObserver). |
+| `axis`         | `undefined` | Limit the intersection calculation to the x or y-axis instead of the element's size.                                                                                                                                                             |
+| `watchDOM`     | `false`     | Indicates if the library should watch the DOM for mutations (added nodes).                                                                                                                                                                       |
 | `initResolver` | `undefined` | Custom handler for Animere's initialization evaluation. Replaces the default checks for reduced motion preference and crawler detection. Return `true` to skip Animere's initialization.                                                         |
-| `watchDom`     | `false`     | Indicates if the library should watch the DOM for mutations (added nodes for example).                                                                                                                                                           |
 
 ## Accessibility
 

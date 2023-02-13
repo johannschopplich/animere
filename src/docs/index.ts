@@ -8,7 +8,7 @@ import Animere from '../index'
 // eslint-disable-next-line no-new
 new Animere({
   offset: 0.4,
-  watchDom: true,
+  watchDOM: true,
 })
 
 const qs = <T extends HTMLElement>(s: string) => document.querySelector<T>(s)
