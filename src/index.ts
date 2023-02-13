@@ -1,4 +1,10 @@
-import { animate, isCrawler, prefersReducedMotion, toCamelCase, toKebabCase } from './utils'
+import {
+  animate,
+  isCrawler,
+  prefersReducedMotion,
+  toCamelCase,
+  toKebabCase,
+} from './utils'
 
 export interface AnimereOptions {
   /**
@@ -12,8 +18,8 @@ export interface AnimereOptions {
    */
   offset?: number
   /**
-   * Determine intersection based on an element's width or height,
-   * rather than the element's size
+   * Determine intersection based on an element's width or height as well,
+   * instead of the element's size alone
    * @default undefined
    */
   axis?: 'x' | 'y'
@@ -24,7 +30,10 @@ export interface AnimereOptions {
   initResolver?: () => boolean
 }
 
-type AnimereObserverOptions = Pick<AnimereOptions, 'prefix' | 'offset' | 'axis'>
+type AnimereObserverOptions = Pick<
+  AnimereOptions,
+  'prefix' | 'offset' | 'axis'
+>
 
 /**
  * CSS-driven scroll-based animations
@@ -59,11 +68,7 @@ export default class Animere {
    */
   public initIntersectionObserver(
     element: HTMLElement,
-    {
-      prefix = 'animere',
-      offset = 0.2,
-      axis,
-    }: AnimereObserverOptions,
+    { prefix = 'animere', offset = 0.2, axis }: AnimereObserverOptions,
   ) {
     const _prefix = toCamelCase(prefix)
 
@@ -77,7 +82,7 @@ export default class Animere {
       if (!axis && !entry.isIntersecting)
         return
 
-      if (axis && !this.isIntersectingAxis(entry, axis))
+      if (axis && !this.isIntersectingAxis(entry, offset, axis))
         return
 
       const element = entry.target as HTMLElement
@@ -87,9 +92,7 @@ export default class Animere {
       Object.keys(element.dataset)
         .filter(i => i !== _prefix && i.startsWith(_prefix))
         .forEach((dataAttr) => {
-          const animateOption = dataAttr
-            .slice(_prefix.length)
-            .toLowerCase()
+          const animateOption = dataAttr.slice(_prefix.length).toLowerCase()
           const propertyName = `--animate-${animateOption}`
 
           if (animateOption === 'delay')
@@ -113,10 +116,7 @@ export default class Animere {
       element.dataset[`${_prefix}Finished`] = 'true'
     }
 
-    const observer = new IntersectionObserver(
-      callback,
-      { threshold: offset },
-    )
+    const observer = new IntersectionObserver(callback, { threshold: offset })
 
     observer.observe(element)
   }
@@ -126,28 +126,29 @@ export default class Animere {
    */
   protected isIntersectingAxis(
     entry: IntersectionObserverEntry,
+    threshold: number,
     axis: 'x' | 'y',
   ) {
     const { intersectionRatio, boundingClientRect, rootBounds } = entry
-    let threshold = intersectionRatio
+    let _threshold = intersectionRatio
 
-    if (threshold === 0)
+    if (_threshold === 0)
       return false
-    else if (threshold === 1)
+    else if (_threshold > threshold)
       return true
 
     if (axis === 'x') {
-      threshold = (boundingClientRect.width + rootBounds!.width) * threshold / 2
+      _threshold = ((boundingClientRect.width + rootBounds!.width) * _threshold) / 2
       return (
-        boundingClientRect.right - threshold >= rootBounds!.left
-        && boundingClientRect.left + threshold <= rootBounds!.right
+        boundingClientRect.right - _threshold >= rootBounds!.left
+        && boundingClientRect.left + _threshold <= rootBounds!.right
       )
     }
     else if (axis === 'y') {
-      threshold = (boundingClientRect.height + rootBounds!.height) * threshold / 2
+      _threshold = ((boundingClientRect.height + rootBounds!.height) * _threshold) / 2
       return (
-        boundingClientRect.bottom - threshold >= rootBounds!.top
-        && boundingClientRect.top + threshold <= rootBounds!.bottom
+        boundingClientRect.bottom - _threshold >= rootBounds!.top
+        && boundingClientRect.top + _threshold <= rootBounds!.bottom
       )
     }
 
