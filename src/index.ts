@@ -40,15 +40,13 @@ export default class Animere {
     this.#offset = offset
 
     // Skip initialization if the custom initialization callback returns `true`
-    if (initResolver) {
-      if (!initResolver())
-        return
-    }
+    if (initResolver && !initResolver())
+      return
+
     // Skip initialization if the user prefers a reduced amount
     // of motion or a crawler visits the website
-    else if (prefersReducedMotion || isCrawler) {
+    if (!initResolver && (prefersReducedMotion || isCrawler))
       return
-    }
 
     for (const element of document.querySelectorAll<HTMLElement>(
       `[data-${this.#prefix}]:not([data-${this.#prefix}-skip])`,
@@ -63,50 +61,48 @@ export default class Animere {
    * Initialize intersection observer on target elements
    */
   protected observeIntersection(element: HTMLElement) {
+    const _prefix = toCamelCase(this.#prefix)
+
     // Hide element
     element.style.visibility = 'hidden'
 
     const callback: IntersectionObserverCallback = async (
-      entries: Array<IntersectionObserverEntry>,
-      observer: IntersectionObserver,
+      [entry],
+      observer,
     ) => {
-      const _prefix = toCamelCase(this.#prefix)
+      if (!entry.isIntersecting)
+        return
+      const element = entry.target as HTMLElement
 
-      for (const entry of entries) {
-        if (!entry.isIntersecting)
-          continue
-        const element = entry.target as HTMLElement
+      // Add custom properties for `Animate.css` animations from `data`
+      // attributes if available, e.g. `data-animere-duration="2s"`
+      Object.keys(element.dataset)
+        .filter(i => i !== _prefix && i.startsWith(_prefix))
+        .forEach((dataAttr) => {
+          const animateOption = dataAttr
+            .slice(_prefix.length)
+            .toLowerCase()
+          const propertyName = `--animate-${animateOption}`
 
-        // Add custom properties for `Animate.css` animations from `data`
-        // attributes if available, e.g. `data-animere-duration="2s"`
-        Object.keys(element.dataset)
-          .filter(i => i !== _prefix && i.startsWith(_prefix))
-          .forEach((dataAttr) => {
-            const animateOption = dataAttr
-              .slice(_prefix.length)
-              .toLowerCase()
-            const propertyName = `--animate-${animateOption}`
+          if (animateOption === 'delay')
+            element.style.animationDelay = `var(${propertyName})`
+          if (animateOption === 'repeat')
+            element.style.animationIterationCount = `var(${propertyName})`
 
-            if (animateOption === 'delay')
-              element.style.animationDelay = `var(${propertyName})`
-            if (animateOption === 'repeat')
-              element.style.animationIterationCount = `var(${propertyName})`
+          element.style.setProperty(propertyName, element.dataset[dataAttr]!)
+        })
 
-            element.style.setProperty(propertyName, element.dataset[dataAttr]!)
-          })
+      // Show element
+      element.style.visibility = 'visible'
 
-        // Show element
-        element.style.visibility = 'visible'
+      // Stop observing the target element
+      observer.unobserve(element)
 
-        // Stop observing the target element
-        observer.unobserve(element)
+      // Start animation and wait for it to finish
+      await animate(element, element.dataset[_prefix]!, 'animate__')
 
-        // Start animation and wait for it to finish
-        await animate(element, element.dataset[_prefix]!, 'animate__')
-
-        // Mark element as animated
-        element.dataset[`${_prefix}Finished`] = 'true'
-      }
+      // Mark element as animated
+      element.dataset[`${_prefix}Finished`] = 'true'
     }
 
     const observer = new IntersectionObserver(
@@ -121,19 +117,21 @@ export default class Animere {
    * Wait for DOM modifications and initialize new intersection observers
    */
   protected observeMutations() {
-    const observer = new MutationObserver((records) => {
-      const _prefix = toCamelCase(this.#prefix)
+    const _prefix = toCamelCase(this.#prefix)
 
+    const callback: MutationCallback = (records) => {
       for (const { addedNodes } of records) {
         ([...addedNodes] as HTMLElement[])
-          // Filter just `elements` (apart from node types like `text`)
-          // and nodes to animate
+        // Filter just `elements` (apart from node types like `text`)
+        // and nodes to animate
           .filter(i => i.nodeType === 1 && _prefix in i.dataset)
           .forEach((node) => {
             this.observeIntersection(node)
           })
       }
-    })
+    }
+
+    const observer = new MutationObserver(callback)
 
     observer.observe(document.body, {
       childList: true,
