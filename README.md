@@ -60,9 +60,9 @@ new Animere()
 
 The short CDN URLs are meant for prototyping. For production usage, use a fully resolved CDN URL to avoid resolving and redirect cost:
 
-- Global build: https://unpkg.com/animere@1.19.2/dist/animere.iife.js
+- Global build: https://unpkg.com/animere@1.19.4/dist/animere.iife.js
   - Exposes `Animere` global property, supports auto initializing
-- ESM build: https://unpkg.com/animere@1.19.2/dist/animere.es.js
+- ESM build: https://unpkg.com/animere@1.19.4/dist/animere.es.js
   - Must be used with `<script type="module">`
 
 ### CSS Animations
