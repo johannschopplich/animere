@@ -18,7 +18,7 @@ export interface AnimereOptions {
    */
   offset?: number
   /**
-   * Determine intersection based on an element's width or height as well,
+   * Determine intersection based on an element's width or height additionally,
    * instead of the element's size alone
    * @default undefined
    */
@@ -129,30 +129,23 @@ export default class Animere {
     threshold: number,
     axis: 'x' | 'y',
   ) {
-    const { intersectionRatio, boundingClientRect, rootBounds } = entry
-    let _threshold = intersectionRatio
-
-    if (_threshold === 0)
-      return false
-    else if (_threshold > threshold)
-      return true
+    const { boundingClientRect, rootBounds } = entry
+    let _threshold = threshold
 
     if (axis === 'x') {
-      _threshold = ((boundingClientRect.width + rootBounds!.width) * _threshold) / 2
+      _threshold = threshold * boundingClientRect.width
       return (
         boundingClientRect.right - _threshold >= rootBounds!.left
         && boundingClientRect.left + _threshold <= rootBounds!.right
       )
     }
-    else if (axis === 'y') {
-      _threshold = ((boundingClientRect.height + rootBounds!.height) * _threshold) / 2
+    else {
+      _threshold = threshold * boundingClientRect.height
       return (
         boundingClientRect.bottom - _threshold >= rootBounds!.top
         && boundingClientRect.top + _threshold <= rootBounds!.bottom
       )
     }
-
-    return false
   }
 }
 
