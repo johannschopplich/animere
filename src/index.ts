@@ -121,15 +121,11 @@ export default class Animere {
    * Wait for DOM modifications and initialize new intersection observers
    */
   protected observeMutations() {
-    const observer = new MutationObserver((mutations) => {
+    const observer = new MutationObserver((records) => {
       const _prefix = toCamelCase(this.#prefix)
 
-      for (const mutation of mutations) {
-        const newNodes = mutation.addedNodes as NodeListOf<HTMLElement>
-        if (!newNodes)
-          continue
-
-        Array.from(newNodes)
+      for (const { addedNodes } of records) {
+        ([...addedNodes] as HTMLElement[])
           // Filter just `elements` (apart from node types like `text`)
           // and nodes to animate
           .filter(i => i.nodeType === 1 && _prefix in i.dataset)
