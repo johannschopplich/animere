@@ -18,12 +18,6 @@ export interface AnimereOptions {
    */
   offset?: number
   /**
-   * Determine intersection based on an element's width or height additionally,
-   * instead of the element's size alone
-   * @default undefined
-   */
-  axis?: 'x' | 'y'
-  /**
    * Custom handler to determine when to initialize Animere
    * @default undefined
    */
@@ -32,7 +26,7 @@ export interface AnimereOptions {
 
 type AnimereObserverOptions = Pick<
   AnimereOptions,
-  'prefix' | 'offset' | 'axis'
+  'prefix' | 'offset'
 >
 
 /**
@@ -42,7 +36,6 @@ export default class Animere {
   constructor({
     prefix = 'animere',
     offset,
-    axis,
     initResolver = () => !prefersReducedMotion && !isCrawler,
   }: AnimereOptions = {}) {
     const _prefix = toKebabCase(prefix)
@@ -58,7 +51,6 @@ export default class Animere {
       this.initIntersectionObserver(element, {
         prefix: _prefix,
         offset,
-        axis,
       })
     }
   }
@@ -68,7 +60,7 @@ export default class Animere {
    */
   public initIntersectionObserver(
     element: HTMLElement,
-    { prefix = 'animere', offset = 0.2, axis }: AnimereObserverOptions,
+    { prefix = 'animere', offset = 0.2 }: AnimereObserverOptions,
   ) {
     const _prefix = toCamelCase(prefix)
 
@@ -79,10 +71,7 @@ export default class Animere {
       [entry],
       observer,
     ) => {
-      if (!axis && !entry.isIntersecting)
-        return
-
-      if (axis && !this.isIntersectingAxis(entry, offset, axis))
+      if (!entry.isIntersecting)
         return
 
       const element = entry.target as HTMLElement
@@ -119,33 +108,6 @@ export default class Animere {
     const observer = new IntersectionObserver(callback, { threshold: offset })
 
     observer.observe(element)
-  }
-
-  /**
-   * Custom intersection calculation for the x or y-axis
-   */
-  protected isIntersectingAxis(
-    entry: IntersectionObserverEntry,
-    threshold: number,
-    axis: 'x' | 'y',
-  ) {
-    const { boundingClientRect, rootBounds } = entry
-    let _threshold = threshold
-
-    if (axis === 'x') {
-      _threshold = threshold * boundingClientRect.width
-      return (
-        boundingClientRect.right - _threshold >= rootBounds!.left
-        && boundingClientRect.left + _threshold <= rootBounds!.right
-      )
-    }
-    else {
-      _threshold = threshold * boundingClientRect.height
-      return (
-        boundingClientRect.bottom - _threshold >= rootBounds!.top
-        && boundingClientRect.top + _threshold <= rootBounds!.bottom
-      )
-    }
   }
 }
 
