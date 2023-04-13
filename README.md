@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./public/img/favicon.svg" alt="Logo of Animere.js" width="114" height="114">
+  <img src="./public/img/favicon.svg" alt="Animere.js Logo" width="180" height="180">
 </p>
 
 <h3 align="center">Animere.js</h3>
@@ -50,6 +50,7 @@ Or, use the ES module build by installing the `animere` npm package:
 
 ```js
 import Animere from 'animere'
+
 new Animere()
 ```
 
@@ -103,7 +104,7 @@ But before we do so, first we check if animations are appropriate in the current
     !matchMedia('(prefers-reduced-motion: reduce)').matches
     && !/(gle|ing|ro)bot|crawl|spider/i.test(navigator.userAgent)
   )
-    document.documentElement.dataset.animatable = 'true'
+    document.documentElement.dataset.animatable = ''
 })()
 ```
 
@@ -119,7 +120,7 @@ As a last step, instantiate Animere accordingly by using a custom initialization
 
 ```js
 const animere = new Animere({
-  initResolver: () => !!document.documentElement.dataset.animatable,
+  shouldInitialize: () => 'animatable' in document.documentElement.dataset,
 })
 ```
 
@@ -137,11 +138,11 @@ const animere = new Animere({
 
 Available options are:
 
-| Option         | Default     | Description                                                                                                                                                                                                                                      |
-| -------------- | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `prefix`       | `animere`   | The prefix for `data` attributes, e.g. resulting in `data-animere` for the default value.                                                                                                                                                        |
-| `offset`       | `0.2`       | Number between `0` and `1` of how much an element should be in the viewport before revealing it. See `IntersectionObserver` [`threshold` parameter](https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserver/IntersectionObserver). |
-| `initResolver` | `undefined` | Custom handler for Animere's initialization evaluation. Replaces the default checks for reduced motion preference and crawler detection. Return `true` to skip Animere's initialization.                                                         |
+| Option             | Default     | Description                                                                                                                                                                                                                                      |
+| ------------------ | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `prefix`           | `animere`   | The prefix for `data` attributes, e.g. resulting in `data-animere` for the default value.                                                                                                                                                        |
+| `offset`           | `0.2`       | Number between `0` and `1` of how much an element should be in the viewport before revealing it. See `IntersectionObserver` [`threshold` parameter](https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserver/IntersectionObserver). |
+| `shouldInitialize` | `undefined` | Custom handler for Animere's initialization evaluation. Replaces the default checks for reduced motion preference and crawler detection. Return `true` to skip Animere's initialization.                                                         |
 
 ## Accessibility
 

@@ -21,6 +21,8 @@ export interface AnimereOptions {
    * Custom handler to determine when to initialize Animere
    * @default undefined
    */
+  shouldInitialize?: () => boolean
+  /** @deprecated Use `shouldInitialize` instead */
   initResolver?: () => boolean
 }
 
@@ -36,13 +38,14 @@ export default class Animere {
   constructor({
     prefix = 'animere',
     offset,
-    initResolver = () => !prefersReducedMotion && !isCrawler,
+    shouldInitialize = () => !prefersReducedMotion && !isCrawler,
+    initResolver,
   }: AnimereOptions = {}) {
     const _prefix = toKebabCase(prefix)
 
     // Skip initialization if the user prefers a reduced amount
     // of motion or a crawler visits the website
-    if (!initResolver())
+    if (!shouldInitialize() || (initResolver && !initResolver()))
       return
 
     for (const element of document.querySelectorAll<HTMLElement>(
@@ -117,5 +120,4 @@ export { animate, isCrawler, prefersReducedMotion }
 let s
 // eslint-disable-next-line no-cond-assign
 if ((s = document.currentScript) && s.hasAttribute('init'))
-  // eslint-disable-next-line no-new
   new Animere()

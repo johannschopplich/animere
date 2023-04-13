@@ -35,13 +35,13 @@ export function animate(element: HTMLElement, animation: string, prefix = '') {
 /**
  * Convert a given string to camel case
  */
-export function toCamelCase(string_: string) {
-  return string_.replace(/-([a-z])/g, match => match[1].toUpperCase())
+export function toCamelCase(value: string) {
+  return value.replace(/-([a-z])/g, (_, char) => char.toUpperCase())
 }
 
 /**
  * Convert a given string to kebab case
  */
-export function toKebabCase(string_: string) {
-  return string_.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase()
+export function toKebabCase(value: string) {
+  return value.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase()
 }
