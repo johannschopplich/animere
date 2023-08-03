@@ -33,10 +33,10 @@ devDependencies:
     version: 5.0.4
   unocss:
     specifier: ^0.51.4
-    version: 0.51.4(postcss@8.4.21)(vite@4.2.1)
+    version: 0.51.4(postcss@8.4.21)(vite@4.2.3)
   vite:
     specifier: ^4.2.1
-    version: 4.2.1(@types/node@18.15.11)(sass@1.62.0)
+    version: 4.2.3(@types/node@18.15.11)(sass@1.62.0)
 
 packages:
 
@@ -699,12 +699,12 @@ packages:
       eslint-visitor-keys: 3.4.0
     dev: true
 
-  /@unocss/astro@0.51.4(vite@4.2.1):
+  /@unocss/astro@0.51.4(vite@4.2.3):
     resolution: {integrity: sha512-denp8/PHvzfN9azfTF72+ey6xpgUB4L4416FI4DfcfKPzRMo4KjIaHlTD6xuaJwBdC8UJSOIcDRXldRGPT33Ag==}
     dependencies:
       '@unocss/core': 0.51.4
       '@unocss/reset': 0.51.4
-      '@unocss/vite': 0.51.4(vite@4.2.1)
+      '@unocss/vite': 0.51.4(vite@4.2.3)
     transitivePeerDependencies:
       - rollup
       - vite
@@ -868,7 +868,7 @@ packages:
       '@unocss/core': 0.51.4
     dev: true
 
-  /@unocss/vite@0.51.4(vite@4.2.1):
+  /@unocss/vite@0.51.4(vite@4.2.3):
     resolution: {integrity: sha512-zrACPc6c99Phipi1totFjGzUvcucP+HZoeSTr4VDPQQk/vo7CuSmYFNMzWEw2NynWJgkv/FUdLTnK0tZj08LCA==}
     peerDependencies:
       vite: ^2.9.0 || ^3.0.0-0 || ^4.0.0
@@ -883,7 +883,7 @@ packages:
       chokidar: 3.5.3
       fast-glob: 3.2.12
       magic-string: 0.30.0
-      vite: 4.2.1(@types/node@18.15.11)(sass@1.62.0)
+      vite: 4.2.3(@types/node@18.15.11)(sass@1.62.0)
     transitivePeerDependencies:
       - rollup
     dev: true
@@ -1374,7 +1374,7 @@ packages:
     peerDependencies:
       unocss: '*'
     dependencies:
-      unocss: 0.51.4(postcss@8.4.21)(vite@4.2.1)
+      unocss: 0.51.4(postcss@8.4.21)(vite@4.2.3)
     dev: true
 
   /duplexer@0.1.2:
@@ -3599,7 +3599,7 @@ packages:
       '@types/unist': 2.0.6
     dev: true
 
-  /unocss@0.51.4(postcss@8.4.21)(vite@4.2.1):
+  /unocss@0.51.4(postcss@8.4.21)(vite@4.2.3):
     resolution: {integrity: sha512-84kRoL29Rk0AKdeS2GGZ+YduW5F0S2on3cSxA2Hh1KlI4MN8Xvxa8+f4RfFS0U5iH4yoHohvcWThRgjDhOWSeg==}
     engines: {node: '>=14'}
     peerDependencies:
@@ -3608,7 +3608,7 @@ packages:
       '@unocss/webpack':
         optional: true
     dependencies:
-      '@unocss/astro': 0.51.4(vite@4.2.1)
+      '@unocss/astro': 0.51.4(vite@4.2.3)
       '@unocss/cli': 0.51.4
       '@unocss/core': 0.51.4
       '@unocss/extractor-arbitrary-variants': 0.51.4
@@ -3627,7 +3627,7 @@ packages:
       '@unocss/transformer-compile-class': 0.51.4
       '@unocss/transformer-directives': 0.51.4
       '@unocss/transformer-variant-group': 0.51.4
-      '@unocss/vite': 0.51.4(vite@4.2.1)
+      '@unocss/vite': 0.51.4(vite@4.2.3)
     transitivePeerDependencies:
       - postcss
       - rollup
@@ -3652,8 +3652,8 @@ packages:
       spdx-expression-parse: 3.0.1
     dev: true
 
-  /vite@4.2.1(@types/node@18.15.11)(sass@1.62.0):
-    resolution: {integrity: sha512-7MKhqdy0ISo4wnvwtqZkjke6XN4taqQ2TBaTccLIpOKv7Vp2h4Y+NpmWCnGDeSvvn45KxvWgGyb0MkHvY1vgbg==}
+  /vite@4.2.3(@types/node@18.15.11)(sass@1.62.0):
+    resolution: {integrity: sha512-kLU+m2q0Y434Y1kCy3TchefAdtFso0ILi0dLyFV8Us3InXTU11H/B5ZTqCKIQHzSKNxVG/yEx813EA9f1imQ9A==}
     engines: {node: ^14.18.0 || >=16.0.0}
     hasBin: true
     peerDependencies:
