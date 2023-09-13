@@ -1,7 +1,7 @@
 {
   "name": "animere",
   "version": "2.1.1",
-  "packageManager": "pnpm@8.2.0",
+  "packageManager": "pnpm@8.7.5",
   "description": "CSS-driven scroll-based animations",
   "author": {
     "name": "Johann Schopplich",
@@ -27,8 +27,8 @@
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "require": "./dist/animere.umd.js",
-      "import": "./dist/animere.mjs"
+      "import": "./dist/animere.mjs",
+      "require": "./dist/animere.umd.js"
     }
   },
   "main": "./dist/animere.umd.js",
@@ -46,18 +46,18 @@
     "release": "tsc --noEmit && bumpp --all --commit --push --tag"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^0.38.4",
-    "@types/node": "^18.15.11",
-    "bumpp": "^9.1.0",
+    "@antfu/eslint-config": "^0.41.3",
+    "@types/node": "^20.6.0",
+    "bumpp": "^9.2.0",
     "duecss": "^0.30.0",
-    "eslint": "^8.38.0",
-    "lint-staged": "^13.2.1",
-    "sass": "^1.62.0",
+    "eslint": "^8.49.0",
+    "lint-staged": "^14.0.1",
+    "sass": "^1.66.1",
     "shx": "^0.3.4",
-    "simple-git-hooks": "^2.8.1",
-    "typescript": "^5.0.4",
-    "unocss": "^0.51.4",
-    "vite": "^4.2.1"
+    "simple-git-hooks": "^2.9.0",
+    "typescript": "^5.2.2",
+    "unocss": "^0.55.7",
+    "vite": "^4.4.9"
   },
   "simple-git-hooks": {
     "pre-commit": "npx lint-staged"
