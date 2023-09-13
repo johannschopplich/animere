@@ -63,10 +63,7 @@ function initIntersectionObserver(
   // Hide element
   element.style.visibility = 'hidden'
 
-  const callback: IntersectionObserverCallback = async (
-    [entry],
-    observer,
-  ) => {
+  const callback: IntersectionObserverCallback = async ([entry], observer) => {
     if (!entry.isIntersecting)
       return
 
