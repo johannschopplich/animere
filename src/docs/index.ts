@@ -3,9 +3,9 @@ import 'duecss/base.css'
 import './main.css'
 import 'uno.css'
 
-import Animere from '../index'
+import { createAnimere } from '../index'
 
-new Animere({ offset: 0.4 })
+createAnimere({ offset: 0.4 })
 
 const template = qs<HTMLTemplateElement>('#box-template')
 
