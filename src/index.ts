@@ -1,3 +1,4 @@
+/* eslint-disable jsdoc/require-param */
 import {
   animate,
   isCrawler,
@@ -22,8 +23,6 @@ export interface AnimereOptions {
    * @default undefined
    */
   shouldInitialize?: () => boolean
-  /** @deprecated Use `shouldInitialize` instead */
-  initResolver?: () => boolean
 }
 
 type AnimereObserverOptions = Pick<
@@ -39,13 +38,12 @@ export default class Animere {
     prefix = 'animere',
     offset,
     shouldInitialize = () => !prefersReducedMotion && !isCrawler,
-    initResolver,
   }: AnimereOptions = {}) {
     const _prefix = toKebabCase(prefix)
 
     // Skip initialization if the user prefers a reduced amount
     // of motion or a crawler visits the website
-    if (!shouldInitialize() || (initResolver && !initResolver()))
+    if (!shouldInitialize())
       return
 
     for (const element of document.querySelectorAll<HTMLElement>(

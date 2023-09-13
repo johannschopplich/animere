@@ -1,3 +1,4 @@
+/* eslint-disable jsdoc/require-param */
 /**
  * Detects whether the user agent is capable to scroll
  */

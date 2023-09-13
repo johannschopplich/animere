@@ -1,25 +1,23 @@
 {
   "compilerOptions": {
     "target": "ESNext",
-    "outDir": "dist",
     "useDefineForClassFields": true,
     "module": "ESNext",
     "lib": ["ESNext", "DOM", "DOM.Iterable"],
     "skipLibCheck": true,
-    "declaration": true,
+    "outDir": "dist",
 
     /* Bundler mode */
     "moduleResolution": "Bundler",
-    "allowImportingTsExtensions": true,
+    // "allowImportingTsExtensions": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
     "esModuleInterop": true,
-    "noEmit": true,
-    "jsx": "preserve",
+    // "noEmit": true,
+    "declaration": true,
 
     /* Linting */
     "strict": true
   },
-  "include": ["src/**/*.ts", "src/**/*.d.ts"],
-  "references": [{ "path": "./tsconfig.node.json" }]
+  "include": ["src"]
 }
