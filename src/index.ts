@@ -1,4 +1,3 @@
-/* eslint-disable jsdoc/require-param */
 import {
   animate,
   isCrawler,
@@ -104,7 +103,5 @@ function initIntersectionObserver(
 }
 
 // Automatically initiate if `init` attribute is present
-let s
-// eslint-disable-next-line no-cond-assign
-if ((s = document.currentScript) && s.hasAttribute('init'))
+if (document.currentScript?.hasAttribute('init'))
   createAnimere()
