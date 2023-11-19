@@ -13,8 +13,8 @@ const PRECACHE_URLS = [
   '/fonts/WorkSans-Bold.woff2',
 ]
 
-self.addEventListener('install', (event) => {
-  self.skipWaiting()
+globalThis.addEventListener('install', (event) => {
+  globalThis.skipWaiting()
 
   event.waitUntil(
     (async () => {
@@ -24,8 +24,8 @@ self.addEventListener('install', (event) => {
   )
 })
 
-self.addEventListener('activate', (event) => {
-  self.clients.claim()
+globalThis.addEventListener('activate', (event) => {
+  globalThis.clients.claim()
 
   event.waitUntil(
     (async () => {
@@ -38,7 +38,7 @@ self.addEventListener('activate', (event) => {
   )
 })
 
-self.addEventListener('fetch', (event) => {
+globalThis.addEventListener('fetch', (event) => {
   const { request } = event
 
   // Cache-first strategy

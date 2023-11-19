@@ -6,7 +6,7 @@
 
 <p align="center">
   CSS-driven scroll-based animations<br>
-  <a href="https://animere.jhnn.dev"><strong>Explore the demo »</strong></a>
+  <a href="https://animere.netlify.app"><strong>Explore the demo »</strong></a>
 </p>
 
 <br>
