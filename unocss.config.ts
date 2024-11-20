@@ -30,6 +30,9 @@ export default defineConfig({
         900: '#000000',
       },
     },
+    fontFamily: {
+      sans: '"Work Sans", ui-sans-serif, system-ui, sans-serif',
+    },
   },
   transformers: [transformerDirectives()],
   presets: [presetWind()],
