@@ -54,20 +54,9 @@
     "bumpp": "^9.8.1",
     "eslint": "^9.15.0",
     "eslint-plugin-format": "^0.1.2",
-    "lint-staged": "^15.2.10",
-    "sass": "^1.81.0",
     "shx": "^0.3.4",
-    "simple-git-hooks": "^2.11.1",
     "typescript": "^5.6.3",
     "unocss": "^0.64.1",
     "vite": "^5.4.11"
-  },
-  "simple-git-hooks": {
-    "pre-commit": "npx lint-staged"
-  },
-  "lint-staged": {
-    "src/**/*.ts": [
-      "eslint"
-    ]
   }
 }
