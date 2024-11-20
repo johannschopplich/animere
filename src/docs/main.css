@@ -1,23 +1,23 @@
-:root {
-  --du-font-family-normal: "Work Sans", system-ui;
+body {
+  font-family: 'Work Sans', system-ui;
 }
 
 .box {
-  --at-apply: "bg-theme-background rounded p-lg";
+  --at-apply: 'bg-white rounded p-lg';
 }
 
 #main .box {
-  --at-apply: "bg-accent p-3xl sm:p-5xl flex h-[calc(30*var(--vh,1vh))] items-center justify-center text-2xl text-white sm:h-[calc(50*var(--vh,1vh))] sm:text-center";
+  --at-apply: 'bg-accent p-3xl sm:p-5xl flex h-[calc(30*var(--vh,1vh))] items-center justify-center text-2xl text-white sm:h-[calc(50*var(--vh,1vh))] sm:text-center';
 }
 
 #main .box:nth-child(3n-1) {
-  --at-apply: "border-accent text-accent border-2 bg-white";
+  --at-apply: 'border-accent text-accent border-2 bg-white';
 }
 
 #main .box:nth-child(3n) {
-  --at-apply: "bg-primary border-accent text-accent border-2";
+  --at-apply: 'bg-primary border-accent text-accent border-2';
 }
 
 #main .box:nth-child(3n) a {
-  --du-color-link: white;
+  color: white;
 }

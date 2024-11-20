@@ -1,5 +1,5 @@
-<!DOCTYPE html>
-<html class="var-color-primary var-color-accent bg-primary" lang="en">
+<!doctype html>
+<html class="bg-primary" lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -7,47 +7,29 @@
     <title>Animere.js</title>
     <link rel="canonical" href="https://animere.netlify.app" />
 
-    <meta
-      name="description"
-      content="Animere.js – CSS-Driven Scroll-Based Animations"
-    />
+    <meta name="description" content="Animere.js – CSS-Driven Scroll-Based Animations" />
 
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://animere.netlify.app" />
     <meta property="og:title" content="Animere.js" />
-    <meta
-      property="og:description"
-      content="Animere.js – CSS-Driven Scroll-Based Animations"
-    />
+    <meta property="og:description" content="Animere.js – CSS-Driven Scroll-Based Animations" />
     <meta property="og:image" content="/img/apple-touch-icon.png" />
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:url" content="https://animere.netlify.app" />
     <meta name="twitter:title" content="Animere.js" />
-    <meta
-      name="twitter:description"
-      content="Animere.js – CSS-Driven Scroll-Based Animations"
-    />
+    <meta name="twitter:description" content="Animere.js – CSS-Driven Scroll-Based Animations" />
     <meta name="twitter:image" content="/img/apple-touch-icon.png" />
 
     <link rel="icon" href="/img/favicon.svg" type="image/svg+xml" />
-    <link
-      rel="apple-touch-icon"
-      href="/img/apple-touch-icon.png"
-      sizes="180x180"
-    />
+    <link rel="apple-touch-icon" href="/img/apple-touch-icon.png" sizes="180x180" />
 
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
-    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <link rel="stylesheet" href="/fonts/WorkSans.css" />
   </head>
 
   <body class="p-2">
-    <header
-      class="box sticky flex items-center top-2 left-0 right-0 border-2 border-accent mb-2 z-10"
-    >
+    <header class="box sticky flex items-center top-2 left-0 right-0 border-2 border-accent mb-2 z-10">
       <div class="flex-grow pr-3">
         <h1 class="text-2xl font-700">Animere.js</h1>
         <h2>CSS-driven scroll-based animations</h2>
@@ -57,7 +39,7 @@
           data-animere="fadeInRight"
           data-animere-delay="1s"
           href="https://github.com/johannschopplich/animere"
-          class="button-primary-outlined"
+          class="underline underline-offset-3 inline-flex"
         >
           On GitHub
         </a>
@@ -70,34 +52,21 @@
         <p>🍃 <strong>Lightweight</strong>: 1 kb minified & gzip</p>
       </div>
       <div class="box" data-animere="fadeInLeft">
-        <p>
-          ✨ <strong>CSS-Driven</strong>: Utilizes
-          <a href="https://animate.style">Animate.css</a> under the hood
-        </p>
+        <p>✨ <strong>CSS-Driven</strong>: Utilizes <a href="https://animate.style">Animate.css</a> under the hood</p>
       </div>
       <div class="box" data-animere="lightSpeedInRight">
-        <p>
-          🔧 <strong>Customizable</strong>: Use <code>data</code> attributes for
-          animation duration, delay, repeat
-        </p>
+        <p>🔧 <strong>Customizable</strong>: Use <code>data</code> attributes for animation duration, delay, repeat</p>
       </div>
       <div class="box" data-animere="rotateInUpLeft">
-        <p>
-          ♿️ <strong>Accessible</strong>: Respects reduced motion preference
-        </p>
+        <p>♿️ <strong>Accessible</strong>: Respects reduced motion preference</p>
       </div>
       <div class="box" data-animere="zoomInRight">
-        <p>
-          🔍 <strong>SEO-friendly</strong>: Detects e.g. Google Bot and skips
-          initialization
-        </p>
+        <p>🔍 <strong>SEO-friendly</strong>: Detects e.g. Google Bot and skips initialization</p>
       </div>
     </main>
 
     <footer class="grid items-center justify-center p-8">
-      <button class="button-text" data-add-nodes>
-        Add new DOM element
-      </button>
+      <button class="underline underline-offset-3" data-add-nodes>Add new DOM element</button>
     </footer>
 
     <template id="box-template">

@@ -1,4 +1,11 @@
 // @ts-check
 import antfu from '@antfu/eslint-config'
 
-export default antfu()
+export default antfu({
+  unocss: true,
+
+  formatters: {
+    css: true,
+    html: true,
+  },
+})

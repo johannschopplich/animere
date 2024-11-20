@@ -1,6 +1,5 @@
 import { createAnimere } from '../index'
-import 'duecss/reset.css'
-import 'duecss/base.css'
+import '@unocss/reset/tailwind.css'
 import './main.css'
 
 import 'uno.css'

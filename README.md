@@ -42,7 +42,7 @@ If you don't want the auto initialize, remove the `init` attribute and move the 
 ```html
 <script src="https://unpkg.com/animere"></script>
 <script>
-  Animere().createAnimere();
+  Animere().createAnimere()
 </script>
 ```
 
@@ -68,10 +68,7 @@ The short CDN URLs are meant for prototyping. For production usage, use a fully 
 [Animate.css](https://animate.style) is required. You may include the `animate.css` stylesheet into your project manually or link a cloud-hosted version:
 
 ```html
-<link
-  rel="stylesheet"
-  href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
-/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 ```
 
 ## Usage

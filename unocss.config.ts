@@ -1,4 +1,3 @@
-import { presetDue } from 'duecss'
 import { defineConfig, presetWind, transformerDirectives } from 'unocss'
 
 export default defineConfig({
@@ -33,5 +32,5 @@ export default defineConfig({
     },
   },
   transformers: [transformerDirectives()],
-  presets: [presetWind(), presetDue()],
+  presets: [presetWind()],
 })
