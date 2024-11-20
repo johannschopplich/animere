@@ -2,7 +2,7 @@
   "name": "animere",
   "type": "module",
   "version": "3.0.0",
-  "packageManager": "pnpm@8.10.5",
+  "packageManager": "pnpm@9.14.2",
   "description": "CSS-driven scroll-based animations",
   "author": {
     "name": "Johann Schopplich",
@@ -47,18 +47,18 @@
     "release": "tsc --noEmit && bumpp --all --commit --push --tag"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^2.0.0",
-    "@types/node": "^20.9.2",
-    "bumpp": "^9.2.0",
-    "duecss": "^0.31.3",
-    "eslint": "^8.54.0",
-    "lint-staged": "^15.1.0",
-    "sass": "^1.69.5",
+    "@antfu/eslint-config": "^3.9.2",
+    "@types/node": "^22.9.1",
+    "bumpp": "^9.8.1",
+    "duecss": "^0.32.0",
+    "eslint": "^9.15.0",
+    "lint-staged": "^15.2.10",
+    "sass": "^1.81.0",
     "shx": "^0.3.4",
-    "simple-git-hooks": "^2.9.0",
-    "typescript": "^5.2.2",
-    "unocss": "^0.57.6",
-    "vite": "^5.0.0"
+    "simple-git-hooks": "^2.11.1",
+    "typescript": "^5.6.3",
+    "unocss": "^0.64.1",
+    "vite": "^5.4.11"
   },
   "simple-git-hooks": {
     "pre-commit": "npx lint-staged"

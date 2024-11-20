@@ -1,6 +1,6 @@
 import { resolve } from 'node:path'
-import { defineConfig } from 'vite'
 import UnoCSS from 'unocss/vite'
+import { defineConfig } from 'vite'
 
 export default defineConfig(({ mode }) => {
   const isProd = mode === 'production'
@@ -8,8 +8,6 @@ export default defineConfig(({ mode }) => {
   return {
     publicDir: isProd ? false : 'public',
     build: {
-      // target: 'esnext',
-      // minify: false,
       lib: isProd && {
         entry: resolve(__dirname, 'src/index.ts'),
         name: 'Animere',

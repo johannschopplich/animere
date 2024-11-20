@@ -9,7 +9,7 @@
       navigator.serviceWorker.register('/service-worker.js')
     }
     catch (error) {
-      console.error('Error during service worker registration:', error)
+      console.error('Failed to register service worker:', error)
     }
   }
   else if (hasExistingSw) {

@@ -1,5 +1,5 @@
-import { defineConfig, presetWind, transformerDirectives } from 'unocss'
 import { presetDue } from 'duecss'
+import { defineConfig, presetWind, transformerDirectives } from 'unocss'
 
 export default defineConfig({
   theme: {

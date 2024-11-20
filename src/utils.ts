@@ -1,7 +1,7 @@
 /**
  * Detects whether the user agent is capable to scroll
  */
-export const isCrawler = !('onscroll' in window) || /(gle|ing|ro)bot|crawl|spider/i.test(navigator.userAgent)
+export const isCrawler = !('onscroll' in window) || /(?:gle|ing|ro)bot|crawl|spider/i.test(navigator.userAgent)
 
 /**
  * Detects if the user has requested that the system minimizes the

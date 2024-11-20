@@ -104,9 +104,10 @@ But before we do so, first we check if animations are appropriate in the current
 (() => {
   if (
     !matchMedia('(prefers-reduced-motion: reduce)').matches
-    && !/(gle|ing|ro)bot|crawl|spider/i.test(navigator.userAgent)
-  )
+    && !/(?:gle|ing|ro)bot|crawl|spider/i.test(navigator.userAgent)
+  ) {
     document.documentElement.dataset.animatable = ''
+  }
 })()
 ```
 

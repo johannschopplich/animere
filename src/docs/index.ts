@@ -1,9 +1,9 @@
+import { createAnimere } from '../index'
 import 'duecss/reset.css'
 import 'duecss/base.css'
 import './main.css'
-import 'uno.css'
 
-import { createAnimere } from '../index'
+import 'uno.css'
 
 createAnimere({ offset: 0.4 })
 
