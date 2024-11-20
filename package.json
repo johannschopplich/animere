@@ -1,7 +1,7 @@
 {
   "name": "animere",
   "type": "module",
-  "version": "3.0.2",
+  "version": "3.0.3",
   "packageManager": "pnpm@9.14.2",
   "description": "CSS-driven scroll-based animations",
   "author": {
