@@ -28,12 +28,12 @@
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "import": "./dist/animere.mjs",
-      "require": "./dist/animere.umd.js"
+      "import": "./dist/animere.js",
+      "require": "./dist/animere.umd.cjs"
     }
   },
-  "main": "./dist/animere.umd.js",
-  "module": "./dist/animere.mjs",
+  "main": "./dist/animere.umd.cjs",
+  "module": "./dist/animere.js",
   "types": "./dist/index.d.ts",
   "files": [
     "dist"
