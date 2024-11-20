@@ -77,8 +77,8 @@ function initIntersectionObserver(
     // attributes if available, e.g. `data-animere-duration="2s"`
     Object.entries(element.dataset)
       .filter(([key]) => key !== camelCasePrefix && key.startsWith(camelCasePrefix))
-      .forEach(([dataAttr, value]) => {
-        const animateOption = dataAttr.slice(camelCasePrefix.length).toLowerCase()
+      .forEach(([key, value]) => {
+        const animateOption = key.slice(camelCasePrefix.length).toLowerCase()
         const propertyName = `--animate-${animateOption}`
 
         if (animateOption === 'delay')
